@@ -45,5 +45,10 @@ namespace Library_Project.Resources.Windows
             HomePan.Visibility = Visibility.Collapsed;
             BookPan.Visibility = Visibility.Visible;
         }
+
+        private void HomePn_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
