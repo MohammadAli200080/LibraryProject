@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library_Project.Resources.Windows;
 
-namespace Library_Project.Resources.Windows
+namespace Library_Project
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
