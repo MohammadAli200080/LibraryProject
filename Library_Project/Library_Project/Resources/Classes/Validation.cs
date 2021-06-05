@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Library_Project.Resources.Classes
 {
-    class Validation
+    static class Validation
     {
+        public static bool EmailExists(string email)
+        {
+
+        }
     }
 }

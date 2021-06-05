@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Classes\Book.cs" />
     <Compile Include="Resources\Classes\Validation.cs" />
     <Compile Include="Resources\Windows\Employee.xaml.cs">
       <DependentUpon>Employee.xaml</DependentUpon>
