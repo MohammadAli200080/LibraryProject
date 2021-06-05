@@ -12,7 +12,7 @@ namespace Library_Project.Resources.Classes
         public string UserName { get; set; }
         public string PassWord { get; set; }
     }
-    public class Manager : Users
+    public class Managers : Users
     {
         private decimal _balance;
         public decimal Balance
@@ -51,53 +51,53 @@ namespace Library_Project.Resources.Classes
             return true;
         }
         //this function for show All Employees
-        public static List<Employee> TakeAllEmployee()
+        public static List<Employees> TakeAllEmployee()
         {
             //select from Table related to the Employee Information in SQLServer and return as a list of Object of Employee Class
-            return new List<Employee>();
+            return new List<Employees>();
         }
     }
-    public class Employee : Users
+    public class Employees : Users
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public byte[] Image { get; set; }
         public decimal Pocket { get; set; }
         //this function for show all Members
-        public static List<Member> TakeAllMember()
+        public static List<Members> TakeAllMember()
         {
             //select from Table related to the Member Information in SQLServer and return as a list of Object of Member Class
-            return new List<Member>();
+            return new List<Members>();
         }
-        public static Member SearchNormalMember(string MemberName)
+        public static Members SearchNormalMember(string MemberName)
         {
             //select from Table related to the Member Information in SQLServer where name is equal to MemberName 
             //then return as a list of Object of Member Class
-            return new Member();
+            return new Members();
         }
-        public static List<Member> TakeDelayedMemebrsInReturn()
+        public static List<Members> TakeDelayedMemebrsInReturn()
         {
             //select from Table related to the Member Information in SQLServer where the Members Delayed in Return,then return 
             //as a list of Object of Member Class
-            return new List<Member>();
+            return new List<Members>();
         }
-        public static Member SearchDelayInReturn(string MemberName)
+        public static Members SearchDelayInReturn(string MemberName)
         {
             //select from Table related to the Member Information in SQLServer where name is equal to MemberName 
             //then return as a list of Object of Member Class
-            return new Member();
+            return new Members();
         }
-        public static List<Member> TakeDelayedMemebrsInPayment()
+        public static List<Members> TakeDelayedMemebrsInPayment()
         {
             //select from Table related to the Member Information in SQLServer where the Members Delayed in Payment.then return 
             //as a list of Object of Member Class
-            return new List<Member>();
+            return new List<Members>();
         }
-        public static Member SearchDelayInPayment(string MemberName)
+        public static Members SearchDelayInPayment(string MemberName)
         {
             //select from Table related to the Member Information in SQLServer where name is equal to MemberName 
             //then return as a list of Object of Member Class
-            return new Member();
+            return new Members();
         }
         public static bool ChangeInfo(List<string> ChangedInfo)
         {
@@ -108,7 +108,7 @@ namespace Library_Project.Resources.Classes
             return true;
         }
     }
-    public class Member : Users
+    public class Members : Users
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
