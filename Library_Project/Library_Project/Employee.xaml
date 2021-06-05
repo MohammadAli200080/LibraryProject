@@ -1,0 +1,80 @@
+﻿<Window x:Class="Library_Project.Employee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library_Project"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Title="MainWindow" Height="700" Width="1200" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        
+                <Border Background="White"/>
+                <Grid>
+                    <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                        <StackPanel>
+                            <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
+                                به بخش کارمندان خوش آمدید
+                            </Label>
+                            <Image Width="560" Height="475" Margin="0,30,20,0" Source="—Pngtree—cartoon employee discussing work_4538195.png" />
+                        </StackPanel>
+                    </Border>
+                    <Border Name="BookPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                        <StackPanel>
+                            <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
+                                به بخش کتاب ها خوش آمدید
+                            </Label>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
+                        <StackPanel Margin="0,0,0,0">
+                            <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو کارمند</Label>
+                            <ListView FontSize="15" Margin="0,80,0,0">
+                        <ListViewItem x:Name="HomePn" Padding="6" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
+                                        <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                        <ListViewItem x:Name="BooksPn" Padding="6" MouseLeftButtonUp="BooksPn_MouseLeftButtonUp">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="Books" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
+                                        <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="MyBookPn" Padding="6">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="AccountBoxMultiple" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
+                                        <TextBlock Text="اعضای کتابخانه" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="WalletPn" Padding="6">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FFC18505"/>
+                                        <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="AccountPn" Padding="5">
+                                </ListViewItem>
+                            </ListView>
+
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Grid VerticalAlignment="Top" Height="70">
+
+                    <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+                    <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                    <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
+                    <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
+                    <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
+                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+                    <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
+                </Grid>
+
+    </Grid>
+</Window>

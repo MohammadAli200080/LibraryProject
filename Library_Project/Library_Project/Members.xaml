@@ -1,0 +1,135 @@
+﻿<Window x:Class="Library_Project.Members"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library_Project"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Title="MainWindow" Height="700" Width="1200" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        
+                <Border Background="White"/>
+                <Grid>
+                    <Border BorderBrush="Black" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                        <StackPanel>
+                            <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
+                                به بخش کاربری خوش آمدید
+                            </Label>
+                            <Image Width="660" Height="575" Margin="0,-50,20,0" Source="download.png" />
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
+                        <StackPanel Margin="0,0,0,0">
+                            <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو کاربر</Label>
+                            <ListView FontSize="15" Margin="0,80,0,0">
+                                <ListViewItem x:Name="HomePn" Padding="5" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
+                                        <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="BooksPn" Padding="5">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="Books" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
+                                        <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="MyBookPn" Padding="5">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="BookAccount" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
+                                        <TextBlock Text="کتاب های من" VerticalAlignment="Center" Margin="-123,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="WalletPn" Padding="5">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FFC18505"/>
+                                        <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                                <ListViewItem x:Name="AccountPn" Padding="5">
+                                    <StackPanel Orientation="Horizontal" Height="36">
+                                        <materialDesign:PackIcon Kind="AccountBox" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF477422"/>
+                                        <TextBlock Text="اشتراک" VerticalAlignment="Center" Margin="-86,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </ListViewItem>
+                            </ListView>
+
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <!--<StackPanel O-->
+                <!--rientation="Horizontal">
+            <StackPanel Width="370" Margin="0,70,0,0">
+                <Image  Margin="0,40,30,0" Width="370" Height="370" Stretch="Fill" Source="/download.png"/>
+            </StackPanel>
+
+            <Border Width="820" Margin="0,90,0,0">
+                <Grid>
+                    <TextBlock Text="بخش کاربر" FontSize="25" Foreground="Black" HorizontalAlignment="Right" Margin="30,30,30,0"/>
+
+                    <Border Width="250" Height="100" CornerRadius="20" Background="#FF0077b6"
+                            HorizontalAlignment="Left" Margin="50,115,0,195">
+                        <Grid>
+                            <Button x:Name="btnBook"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
+                                Click="btnBook_Click"/>
+                            <TextBlock Text="کتاب ها" FontSize="20" VerticalAlignment="Top" Margin="170,38,-20,0" Foreground="White"/>
+                            <materialDesign:PackIcon Kind="Books" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <Image Margin="-70,5,70,-5" Height="95"/>
+                        </Grid>
+
+
+                    </Border>
+                    <Border  Width="250" Height="100" CornerRadius="20"   BorderBrush="Black" Background="#FF100538"
+                            HorizontalAlignment="Right" Margin="0,115,10,195">
+                        <Grid>
+                            <Button x:Name="btnMyBook"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
+                                />
+                            <TextBlock Text="کیف پول" FontSize="20" VerticalAlignment="Top" Margin="165,35,-15,0" Foreground="White"/>
+                            <materialDesign:PackIcon Kind="Wallet" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <Image Height="95" Margin="-72,0,72,0" />
+                        </Grid>
+
+
+                    </Border>
+                    <Border  Width="250" Height="100" CornerRadius="20" Background="#FF118CA4"
+                            VerticalAlignment="Bottom" Margin="50,0,300,65">
+                        <Grid>
+                            <Button x:Name="btnBank"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
+                                />
+                            <TextBlock Text="کتاب های من" FontSize="20" VerticalAlignment="Top" Margin="132,38,2,0" Foreground="White"/>
+                            <materialDesign:PackIcon Kind="BookAccount" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <Image Width="90" Height="90" Margin="5,5,155,5"/>
+                        </Grid>
+
+                    </Border>
+                    <Border  Width="250" Height="100" CornerRadius="20" Background="#FF0C3F49"
+                             HorizontalAlignment="Right" Margin="0,185,10,5">
+                        <Grid>
+                            <Button x:Name="btnAccount"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
+                         />
+                            <TextBlock Text="اشتراک" FontSize="20" VerticalAlignment="Top" Margin="180,38,-46,0" Foreground="White"/>
+                            <materialDesign:PackIcon Kind="AccountBox" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+        </StackPanel>-->
+                <Grid VerticalAlignment="Top" Height="70">
+
+                    <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+                    <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                    <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
+                    <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
+                    <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
+                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+                    <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
+                </Grid>
+
+            </Grid>
+</Window>
