@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Library_Project
+namespace Library_Project.Resources.Windows
 {
     /// <summary>
     /// Interaction logic for Employee.xaml

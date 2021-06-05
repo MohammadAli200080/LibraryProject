@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Library_Project
+namespace Library_Project.Resourses.Windows
 {
     /// <summary>
-    /// Interaction logic for Members.xaml
+    /// Interaction logic for Payment.xaml
     /// </summary>
-    public partial class Members : Window
+    public partial class Payment : Window
     {
-        public Members()
+        public Payment()
         {
             InitializeComponent();
         }
@@ -32,10 +32,6 @@ namespace Library_Project
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-        private void HomePn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Welcome");
         }
     }
 }

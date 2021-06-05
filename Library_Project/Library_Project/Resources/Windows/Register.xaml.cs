@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Library_Project
+namespace Library_Project.Resourses.Windows
 {
     /// <summary>
     /// Interaction logic for Register.xaml

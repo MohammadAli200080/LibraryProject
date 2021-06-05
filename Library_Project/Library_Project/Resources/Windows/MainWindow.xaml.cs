@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Library_Project
+namespace Library_Project.Resources.Windows
 {
     /// <summary>
-    /// Interaction logic for Payment.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Payment : Window
+    public partial class MainWindow : Window
     {
-        public Payment()
+        public MainWindow()
         {
             InitializeComponent();
         }
@@ -29,9 +30,11 @@ namespace Library_Project
             Application.Current.Shutdown();
         }
 
-        private void btnMin_Click(object sender, RoutedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            Employee employee = new Employee();
+            employee.Show();
+            this.Close();
         }
     }
 }
