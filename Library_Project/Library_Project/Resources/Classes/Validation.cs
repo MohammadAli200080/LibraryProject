@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library_Project.Resources.Classes
 {
-    static class Validation
+    public static class Validation
     {
 
         // <summary> Checks wether an email address exists or not </summary>

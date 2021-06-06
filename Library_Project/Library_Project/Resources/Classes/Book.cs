@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library_Project.Resources.Classes
 {
-    class Book
+    public class Book
     {
         private string _name;
         private string _author;
