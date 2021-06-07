@@ -123,6 +123,13 @@ namespace Library_Project.Resources.Classes
 
                 if (table.Rows.Count == 1)
                     return true;
+
+                table.Clear();
+
+                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username + "' AND password = '" + password + "'", connection);
+
+                if (table.Rows.Count == 1)
+                    return true;
             }
             catch (Exception)
             {
