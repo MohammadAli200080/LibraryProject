@@ -92,3 +92,5 @@ C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Library_Project.csproj.CopyComplete
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Library_Project.exe
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Library_Project.pdb
+C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\bin\Debug\System.Data.SqlClient.dll
+C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\bin\Debug\System.Data.SqlClient.xml

@@ -104,9 +104,9 @@ namespace Library_Project.Resources.Classes
             return false;
         }
         //this function for show all Members
-        public static List<Members> TakeAllMember()
+        public static List<Member> TakeAllMember()
         {
-            List<Members> MembersTmp = new List<Members>();
+            List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members");
 
@@ -123,7 +123,7 @@ namespace Library_Project.Resources.Classes
                 register = data.Rows[i]["registeryDate"].ToString();
                 subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
 
-                MembersTmp.Add(new Members
+                MembersTmp.Add(new Member
                 {
                     UserName = Username,
                     PassWord = passWord,
@@ -138,9 +138,9 @@ namespace Library_Project.Resources.Classes
             return MembersTmp;
         }
         //this function for show information of selected Member in between All Members
-        public static List<Members> SearchAllMember(string MemberName)
+        public static List<Member> SearchAllMember(string MemberName)
         {
-            List<Members> MembersTmp = new List<Members>();
+            List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + MemberName + "'");
 
@@ -158,7 +158,7 @@ namespace Library_Project.Resources.Classes
                 register = data.Rows[0]["registeryDate"].ToString();
                 subsriptionDate = data.Rows[0]["subscriptionEndingDate"].ToString();
 
-                MembersTmp.Add(new Members
+                MembersTmp.Add(new Member
                 {
                     UserName = Username,
                     PassWord = passWord,
@@ -172,9 +172,9 @@ namespace Library_Project.Resources.Classes
             }           
             return MembersTmp;
         }
-        public static List<Members> TakeDelayedMemebrsInReturn()
+        public static List<Member> TakeDelayedMemebrsInReturn()
         {
-            List<Members> MembersTmp = new List<Members>();
+            List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT T_Members.username,T_Members.password,T_Members.email,T_Members.phoneNumber,T_Members.imgSrc,T_Members.pocket,T_Members.registeryDate,T_Members.subscriptionEndingDate,T_Borrowed.returnDate FROM T_Members INNER " +
                 "JOIN T_Borrowed ON T_Borrowed.username = T_Members.username");
@@ -194,7 +194,7 @@ namespace Library_Project.Resources.Classes
                     subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
                     pocket = data.Rows[i]["pocket"].ToString();
 
-                    MembersTmp.Add(new Members
+                    MembersTmp.Add(new Member
                     {
                         UserName = Username,
                         PassWord = passWord,
@@ -210,9 +210,9 @@ namespace Library_Project.Resources.Classes
             return MembersTmp;
         }
         //this function for show information of selected Member in between All DelayedMemebrsInReturn BOOKS
-        public static List<Members> SearchDelayInReturn(string MemberName)
+        public static List<Member> SearchDelayInReturn(string MemberName)
         {
-            List<Members> MembersTmp = new List<Members>();
+            List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT T_Members.username,T_Members.password,T_Members.email,T_Members.phoneNumber,T_Members.imgSrc,T_Members.pocket,T_Members.registeryDate,T_Members.subscriptionEndingDate,T_Borrowed.returnDate FROM T_Members INNER " +
                 "JOIN T_Borrowed ON T_Borrowed.username = T_Members.username AND T_Members.username='"+MemberName+"'");
@@ -231,7 +231,7 @@ namespace Library_Project.Resources.Classes
                 register = data.Rows[0]["registeryDate"].ToString();
                 subsriptionDate = data.Rows[0]["subscriptionEndingDate"].ToString();
 
-                MembersTmp.Add(new Members
+                MembersTmp.Add(new Member
                 {
                     UserName = Username,
                     PassWord = passWord,
@@ -245,9 +245,9 @@ namespace Library_Project.Resources.Classes
             }           
             return MembersTmp;
         }
-        public static List<Members> TakeDelayedMemebrsInPayment()
+        public static List<Member> TakeDelayedMemebrsInPayment()
         {
-            List<Members> MembersTmp = new List<Members>();
+            List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members");
 
@@ -266,7 +266,7 @@ namespace Library_Project.Resources.Classes
                     subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
                     pocket = data.Rows[i]["pocket"].ToString();
 
-                    MembersTmp.Add(new Members
+                    MembersTmp.Add(new Member
                     {
                         UserName = Username,
                         PassWord = passWord,
@@ -281,9 +281,9 @@ namespace Library_Project.Resources.Classes
             }
             return MembersTmp;
         }
-        public static List<Members> SearchDelayInPayment(string MemberName)
+        public static List<Member> SearchDelayInPayment(string MemberName)
         {
-            List<Members> MembersTmp = new List<Members>();
+            List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + MemberName + "'");
 
@@ -301,7 +301,7 @@ namespace Library_Project.Resources.Classes
                 register = data.Rows[0]["registeryDate"].ToString();
                 subsriptionDate = data.Rows[0]["subscriptionEndingDate"].ToString();
 
-                MembersTmp.Add(new Members
+                MembersTmp.Add(new Member
                 {
                     UserName = Username,
                     PassWord = passWord,
@@ -332,7 +332,7 @@ namespace Library_Project.Resources.Classes
             return false;
         }
     }
-    public class Members : Users
+    public class Member : Users
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
