@@ -63,7 +63,6 @@ namespace Library_Project.Resources.Classes
 
             try
             {
-
                 DataTable table = DatabaseControl.TableFiller("select * from T_Books", connection);
 
                 string name, author, category, publishNumber, quantity;
@@ -78,7 +77,6 @@ namespace Library_Project.Resources.Classes
 
                     books.Add(new Book(name, author, category, publishNumber, quantity));
                 }
-
             }
             catch (Exception)
             {
@@ -102,7 +100,6 @@ namespace Library_Project.Resources.Classes
 
             try
             {
-
                 DataTable table = DatabaseControl.TableFiller("select * from T_Borrowed", connection);
 
                 var allBooks = TakeAllBooks();

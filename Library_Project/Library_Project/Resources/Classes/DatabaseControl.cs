@@ -28,7 +28,6 @@ namespace Library_Project.Resources.Classes
             sqldata.Fill(data);
 
             return data;
-
         }
         public static bool Exe(string inputCmd)
         {
