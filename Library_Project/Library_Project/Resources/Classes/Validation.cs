@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 
 namespace Library_Project.Resources.Classes
 {
@@ -15,23 +18,30 @@ namespace Library_Project.Resources.Classes
 
         public static bool EmailExists(string email)
         {
-            // take data from database_Employee. it may have data besides string
-            // take data1 from database_Member. it may have data besides string
 
-            string[] data = null;
+            SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
-            string[] data1 = null;
-
-            for (int i = 0; i < data.Length; i++)
+            try
             {
-                if (data[i] == email)
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where email = '" + email + "'", connection);
+
+                if (table.Rows.Count == 1)
+                    return true;
+
+                table.Clear();
+
+                table = DatabaseControl.TableFiller("select * from T_Members where email = '" + email + "'", connection);
+
+                if (table.Rows.Count == 1)
                     return true;
             }
-
-            for (int i = 0; i < data1.Length; i++)
+            catch (Exception)
             {
-                if (data1[i] == email)
-                    return true;
+                throw;
+            }
+            finally
+            {
+                connection.Close();
             }
 
             return false;
@@ -41,23 +51,29 @@ namespace Library_Project.Resources.Classes
 
         public static bool UserNameExists(string username)
         {
-            // take data from database_Employee. it may have data besides string
-            // take data1 from database_Member. it may have data besides string
+            SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
-            string[] data = null;
-
-            string[] data1 = null;
-
-            for (int i = 0; i < data.Length; i++)
+            try
             {
-                if (data[i] == username)
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where username = '" + username + "'", connection);
+
+                if (table.Rows.Count == 1)
+                    return true;
+
+                table.Clear();
+
+                table = DatabaseControl.TableFiller("select * from T_Members where email = '" + username + "'", connection);
+
+                if (table.Rows.Count == 1)
                     return true;
             }
-
-            for (int i = 0; i < data1.Length; i++)
+            catch (Exception)
             {
-                if (data1[i] == username)
-                    return true;
+                throw;
+            }
+            finally
+            {
+                connection.Close();
             }
 
             return false;
@@ -67,47 +83,64 @@ namespace Library_Project.Resources.Classes
 
         public static bool PhoneNumberExists(string phoneNumber)
         {
-            // take data from database_Employee. it may have data besides string
-            // take data1 from database_Member. it may have data besides string
+            SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
-            string[] data = null;
-
-            string[] data1 = null;
-
-            for (int i = 0; i < data.Length; i++)
+            try
             {
-                if (data[i] == phoneNumber)
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where phoneNumber = '" + phoneNumber + "'", connection);
+
+                if (table.Rows.Count == 1)
+                    return true;
+
+                table.Clear();
+
+                table = DatabaseControl.TableFiller("select * from T_Members where phoneNumber = '" + phoneNumber + "'", connection);
+
+                if (table.Rows.Count == 1)
                     return true;
             }
-
-            for (int i = 0; i < data1.Length; i++)
+            catch (Exception)
             {
-                if (data1[i] == phoneNumber)
-                    return true;
+                throw;
+            }
+            finally
+            {
+                connection.Close();
             }
 
             return false;
         }
 
-        // <summary> Checks wether an email and password corresponds or not </summary>
+        // <summary> Checks wether a username and password corresponds or not </summary>
 
-        public static bool PasswordCorresponds(string password, string email)
+        public static bool PasswordCorresponds(string password, string username)
         {
-            // take data from database_Employee. it may have data besides string
-            // take data1 from database_Member. it may have data besides string
+            SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
-            bool flag = false;
+            try
+            {
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where username = '" + username + "' AND password = '" + password + "'", connection);
 
-            Dictionary<string, string> dict1 = null;
-            Dictionary<string, string> dict2 = null;
+                if (table.Rows.Count == 1)
+                    return true;
 
-            string actualValue;
-            flag = dict1.TryGetValue(email, out actualValue) && actualValue == password;
+                table.Clear();
 
-            if (flag == true)
-                return flag;
+                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username + "' AND password = '" + password + "'", connection);
 
-            return dict2.TryGetValue(email, out actualValue) && actualValue == password;
+                if (table.Rows.Count == 1)
+                    return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return false;
         }
 
         public static bool IsValidEmail(string email)

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
+
 
 namespace Library_Project.Resources.Classes
 {
@@ -24,7 +28,7 @@ namespace Library_Project.Resources.Classes
             {
                 // check if the publishnumber is positive or not
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException("Quantity", "Should be positive number.");
+                    throw new ArgumentOutOfRangeException("PublishNumber", "Should be positive number.");
                 _publishNumber = value;
             }
         }
@@ -55,18 +59,35 @@ namespace Library_Project.Resources.Classes
 
         public static Book[] TakeAllBooks()
         {
-            // take data from sql
-            string[] data = null;
-
-            if (data == null)
-                return null;
-
             List<Book> books = new List<Book>();
+            SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
-            for (int i = 0; i < data.Length; i++)
+            try
             {
-                Book book = new Book(data[i++], data[i++], data[i++], data[i++], data[i]);
-                books.Add(book);
+
+                DataTable table = DatabaseControl.TableFiller("select * from T_Books", connection);
+
+                string name, author, category, publishNumber, quantity;
+
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    name = table.Rows[i]["bookName"].ToString();
+                    author = table.Rows[i]["author"].ToString();
+                    category = table.Rows[i]["category"].ToString();
+                    publishNumber = table.Rows[i]["publishNumber"].ToString();
+                    quantity = table.Rows[i]["qunatity"].ToString();
+
+                    books.Add(new Book(name, author, category, publishNumber, quantity));
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
             }
 
             return books.ToArray();
@@ -77,19 +98,34 @@ namespace Library_Project.Resources.Classes
 
         public static Book[] TakeBorrowedBooks()
         {
-            // take data from tabke Bookname_CustomerName
-            string[] data = null;
-
-            if (data == null)
-                return null;
-
             List<Book> books = new List<Book>();
-            Book[] allBooks = TakeAllBooks();
+            SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
-            for (int i = 0; i < data.Length; i += 2)
+            try
             {
-                Book book = SearchBookByName(data[i]);
-                books.Add(book);
+
+                DataTable table = DatabaseControl.TableFiller("select * from T_Borrowed", connection);
+
+                var allBooks = TakeAllBooks();
+
+                List<string> names = new List<string>();
+                for (int i = 0; i < table.Rows.Count; i++)
+                    names.Add(table.Rows[i]["bookName"].ToString());
+
+                books = names.Distinct()
+                             .Join(allBooks,
+                             name => name,
+                             book => book.Name,
+                             (name, book) => book)
+                             .ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
             }
 
             return books.ToArray();
@@ -174,10 +210,8 @@ namespace Library_Project.Resources.Classes
 
             var index = Array.FindIndex(books, b => b.Name == name);
 
-            if (index < 0)
-                return false;
-            else
-                return true;
+            if (index < 0) return false;
+            else return true;
         }
 
         // <summary> a method for checking availability of book by name </summary>
@@ -194,10 +228,8 @@ namespace Library_Project.Resources.Classes
 
             var index = Array.FindIndex(books, b => b.Name == name);
 
-            if (index < 0)
-                return false;
-            else
-                return true;
+            if (index < 0) return false;
+            else return true;
         }
     }
 }
