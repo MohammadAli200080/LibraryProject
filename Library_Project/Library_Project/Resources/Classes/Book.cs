@@ -7,7 +7,6 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 
-
 namespace Library_Project.Resources.Classes
 {
     public class Book
