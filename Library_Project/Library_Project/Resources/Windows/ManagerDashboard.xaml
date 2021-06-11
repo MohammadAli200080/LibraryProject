@@ -14,16 +14,73 @@
 
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
                     <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20" Content="به بخش مدیر خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/ManagerDashboard.png" />
                 </StackPanel>
             </Border>
-            <Border Name="BookPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="BookPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                <StackPanel>
+                    <Label Foreground="Black" HorizontalAlignment="Center" Margin="20,20,-20,0" FontSize="20">
+                        به بخش کتاب ها خوش آمدید
+                    </Label>
+                    <DockPanel Margin="0,20,0,0">
+                        <Button x:Name="ShowBook" Width="130" Height="70" Margin="270,40,70,0">
+                            <DockPanel Margin="10,0,0,0">
+                                <materialDesign:PackIcon Kind="BookSearch" Width="20" Height="20" Margin="-25,0,65,0"/>
+                                <Label Content="نمایش کتاب ها" Foreground="White" Margin="-60,0,-30,0" FontSize="12"/>
+                            </DockPanel>
+                        </Button>
+                    </DockPanel>
+                    <DockPanel Margin="10,0,0,0">
+                        <Button x:Name="AddBook" Width="130" Height="70" Margin="-60,-70,70,0">
+                            <DockPanel Margin="10,0,0,0">
+                                <materialDesign:PackIcon Kind="BookAdd" Width="20" Height="20" Margin="-20,0,65,0"/>
+                                <Label Content="افزودن کتاب" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                            </DockPanel>
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+            <Border Name="EmployeesPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
                     <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
-                        به بخش کتاب ها خوش آمدید
+                        به بخش کارمندان پنل مدیریریت،خوش آمدید
+                    </Label>
+                    <DockPanel>
+                        <Button x:Name="ShowEmployee" Width="130" Height="70" Margin="630,40,70,0">
+                            <DockPanel Margin="10,0,0,0">
+                                <materialDesign:PackIcon Kind="AccountMultiple" Width="20" Height="20" Margin="-20,0,65,0"/>
+                                <Label Content="نمایش کارمندان" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="AddEmployee" Width="130" Height="70" Margin="-420,40,150,0">
+                            <DockPanel Margin="5,0,0,0">
+                                <materialDesign:PackIcon Kind="AccountAdd" Width="20" Height="20" Margin="-20,0,65,0"/>
+                                <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="RemoveEmployee" Width="130" Height="70" Margin="-720,40,150,0">
+                            <DockPanel Margin="10,0,0,0">
+                                <materialDesign:PackIcon Kind="AccountRemove" Width="20" Height="20" Margin="-20,0,65,0"/>
+                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="SalarayEmployee" Width="130" Height="70" Margin="-1150,40,90,0">
+                            <DockPanel Margin="12,0,0,0">
+                                <materialDesign:PackIcon Kind="Money" Width="20" Height="20" Margin="-20,3,65,0"/>
+                                <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                            </DockPanel>
+                        </Button>
+                    </DockPanel>
+                    
+                </StackPanel>
+            </Border>
+            <Border Name="BankPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                <StackPanel>
+                    <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
+                        به بخش بانک ها خوش آمدید
                     </Label>
                 </StackPanel>
             </Border>
@@ -31,7 +88,7 @@
                 <StackPanel Margin="0,0,0,0">
                     <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو مدیریت</Label>
                     <ListView FontSize="15" Margin="0,80,0,0">
-                        <ListViewItem x:Name="HomePn" Padding="6" MouseLeftButtonUp="HomePn_MouseLeftButtonUp" Selected="HomePn_Selected">
+                        <ListViewItem x:Name="HomePn" Padding="6" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
                                 <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
@@ -43,13 +100,13 @@
                                 <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="MyBookPn" Padding="6">
+                        <ListViewItem x:Name="EmployeesPn" Padding="6" MouseLeftButtonUp="EmployeesPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="AccountMultiple" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
                                 <TextBlock VerticalAlignment="Center" Margin="-116,8,0,8" FontSize="15" FontWeight="Bold" Width="72"><Run FlowDirection="RightToLeft" Text="کارمندان"/></TextBlock>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="WalletPn" Padding="6">
+                        <ListViewItem x:Name="WalletPn" Padding="6" MouseLeftButtonUp="WalletPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Bank" Width="30" Height="30" Margin="247,0,0,6" Foreground="#FF31640E" VerticalAlignment="Bottom"/>
                                 <TextBlock VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="بانک پول"/></TextBlock>

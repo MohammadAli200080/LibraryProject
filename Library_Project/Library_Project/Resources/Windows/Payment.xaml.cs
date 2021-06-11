@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library_Project.Resources.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace Library_Project.Resourses.Windows
 {
@@ -23,15 +25,85 @@ namespace Library_Project.Resourses.Windows
         {
             InitializeComponent();
         }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+        private void btnPay_Click(object sender, RoutedEventArgs e)
+        {
+            string CardNumber = txCardNum1.Text + txCardNum2.Text + txCardNum3.Text + txCardNum4.Text;
+            string PassWord = txPass.Password;
+            string CVV2 = txCVV2.Text;
+            string expiry = txYear.Text +'/'+ txMonth.Text;
+
+            if (!Library_Project.Resources.Classes.Validation.IsValidCvv2(CVV2))
+            {
+                MessageBox.Show("CVV2 نادرست می باشد");
+                txCVV2.Text = "";
+                return;
+            }
+            if (!Library_Project.Resources.Classes.Validation.IsValidExpiry(expiry))
+            {
+                MessageBox.Show("تاریخ انقضا کارت غیر قابل قبول است");
+                txMoney.Text = "";
+                txMonth.Text = "";
+                txYear.Text = "";
+                return;
+            }
+            if (!Library_Project.Resources.Classes.Validation.IsValidCardNumber(CardNumber))
+            {
+                MessageBox.Show("شماره کارت نامعتبر است");
+                txCardNum1.Text = "";
+                txCardNum2.Text = "";
+                txCardNum3.Text = "";
+                txCardNum4.Text = "";
+                return;
+            }
+            if (!Library_Project.Resources.Classes.Validation.IsValidPassCard(PassWord))
+            {
+                MessageBox.Show("رمز کارت نادرست می باشد");
+                txPass.Password = "";
+                return;
+            }
+            if (decimal.Parse(txMoney.Text) < 100000)
+            {
+                MessageBox.Show("حداقل باید 100,000ریال پرداخت کنید");
+                txMoney.Text = "";
+                return;
+            }
+            if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
+            {
+                MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                 MainWindow Login = new MainWindow();
+                 Login.Show();
+                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("اطلاعات نادرست می باشد");
+                txCardNum1.Text = "";
+                txCardNum2.Text = "";
+                txCardNum3.Text = "";
+                txCardNum4.Text = "";
+                txCVV2.Text = "";
+                txMoney.Text = "";
+                txMonth.Text = "";
+                txPass.Password = "";
+                txYear.Text = "";
+                return;
+            }
+        }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("ثبت نام انجام نشد");
+            DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='"+ Register.Info[0] + "'");
+            MainWindow Login = new MainWindow();
+            Login.Show();
+            this.Close();
         }
     }
 }

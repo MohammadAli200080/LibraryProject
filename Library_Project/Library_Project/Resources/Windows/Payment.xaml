@@ -74,21 +74,23 @@
                             <TextBlock Text=": سال" Foreground="White" Margin="-390,18,0,0" FontSize="16" Width="36"/>
                             <Border BorderBrush="White" BorderThickness="1" Width="70" Margin="-630,15,-90,20">
                                 <TextBox x:Name="txYear" Margin="0,0" Foreground="White"
-                                 Width="60" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14" MaxLength="2"/>
+                                 Width="60" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14" MaxLength="4"/>
                             </Border>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="510">
                             <materialDesign:PackIcon Kind="Money" Width="30" Height="30" Foreground="White" HorizontalAlignment="Right" Margin="450,0,0,0"/>
                             <TextBlock Text=": مبلغ واریزی" Foreground="White" Margin="-130,5,0,0" FontSize="16"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="510">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="510" FlowDirection="RightToLeft">
                             <Border BorderBrush="White" BorderThickness="1" Width="450" Margin="30,0,0,0" Height="40">
                                 <TextBox x:Name="txMoney" Margin="10,7,5,0" Foreground="White"
                                  materialDesign:HintAssist.Hint="مبلغ" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
                             </Border>
                         </StackPanel>
                         <Button x:Name="btnPay" Content="پرداخت" Width="100" Background="#191970" BorderBrush="Black" FontSize="14"
-                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Margin="0,0,0,-120"/>
+                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Margin="0,0,-150,-120" Click="btnPay_Click"/>
+                        <Button x:Name="btnCancel" Content="انصراف" Width="100" Background="#191970" BorderBrush="Black" FontSize="14"
+                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Margin="0,0,200,-120" Click="btnCancel_Click"/>
                     </StackPanel>
                 </Border>
             </Border>

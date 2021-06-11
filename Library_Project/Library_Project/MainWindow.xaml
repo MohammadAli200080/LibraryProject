@@ -41,7 +41,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="60,10,20,0">
                         <Button x:Name="btnCreat" Content="اکانت جدید" Width="100" HorizontalAlignment="Left" Background="#191970" BorderBrush="Black" FontSize="14"
-                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black">
+                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="btnCreat_Click">
                         </Button>
                         <Button x:Name="btnLogin" Content="ورود" Margin="45,0,0,0" Width="100" HorizontalAlignment="Right" Background="#191970" BorderBrush="Black"
                             materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="btnLogin_Click"/>

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library_Project.Resources.Windows;
 using Library_Project.Resources.Classes;
+using Library_Project.Resourses.Windows;
 
 namespace Library_Project
 {
@@ -27,12 +28,10 @@ namespace Library_Project
         {
             InitializeComponent();
         }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             if(Properties.Settings.Default.UserName==txtuserName.Text && Properties.Settings.Default.PassWord == txtPassword.Password)
@@ -67,6 +66,12 @@ namespace Library_Project
                 }
             }
             MessageBox.Show("نام کاربری/ پسورد نادرست می باشد");
+        }
+        private void btnCreat_Click(object sender, RoutedEventArgs e)
+        {
+            Register CreatAcount = new Register();
+            CreatAcount.Show();
+            this.Close();
         }
     }
 }

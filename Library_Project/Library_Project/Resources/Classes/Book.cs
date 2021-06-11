@@ -31,7 +31,6 @@ namespace Library_Project.Resources.Classes
                 _publishNumber = value;
             }
         }
-
         public int Quantity
         {
             get => _quantity;
@@ -43,7 +42,6 @@ namespace Library_Project.Resources.Classes
                 _quantity = value;
             }
         }
-
         public Book(string name, string author, string category, string publishNumber, string quantity)
         {
             this.Name = name;

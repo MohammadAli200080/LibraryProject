@@ -38,17 +38,30 @@ namespace Library_Project.Resources.Windows
         {
             HomePan.Visibility = Visibility.Visible;
             BookPan.Visibility = Visibility.Collapsed;
+            EmployeesPan.Visibility = Visibility.Collapsed;
+            BankPan.Visibility = Visibility.Collapsed;
         }
 
         private void BooksPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             HomePan.Visibility = Visibility.Collapsed;
             BookPan.Visibility = Visibility.Visible;
+            EmployeesPan.Visibility = Visibility.Collapsed;
+            BankPan.Visibility = Visibility.Collapsed;
         }
-
-        private void HomePn_Selected(object sender, RoutedEventArgs e)
+        private void WalletPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            HomePan.Visibility = Visibility.Collapsed;
+            BookPan.Visibility = Visibility.Collapsed;
+            EmployeesPan.Visibility = Visibility.Collapsed;
+            BankPan.Visibility = Visibility.Visible;
+        }
+        private void EmployeesPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            HomePan.Visibility = Visibility.Collapsed;
+            BookPan.Visibility = Visibility.Collapsed;
+            EmployeesPan.Visibility = Visibility.Visible;
+            BankPan.Visibility = Visibility.Collapsed;
         }
     }
 }

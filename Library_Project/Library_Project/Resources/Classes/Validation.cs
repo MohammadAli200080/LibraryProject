@@ -13,14 +13,11 @@ namespace Library_Project.Resources.Classes
 {
     public static class Validation
     {
-
         // <summary> Checks wether an email address exists or not </summary>
 
         public static bool EmailExists(string email)
         {
-
             SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
-
             try
             {
                 DataTable table = DatabaseControl.TableFiller("select * from T_Employees where email = '" + email + "'", connection);
@@ -46,7 +43,6 @@ namespace Library_Project.Resources.Classes
 
             return false;
         }
-
         // <summary> Checks wether a username address exists or not </summary>
 
         public static bool UserNameExists(string username)
@@ -62,7 +58,7 @@ namespace Library_Project.Resources.Classes
 
                 table.Clear();
 
-                table = DatabaseControl.TableFiller("select * from T_Members where email = '" + username + "'", connection);
+                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username + "'", connection);
 
                 if (table.Rows.Count == 1)
                     return true;
@@ -78,7 +74,6 @@ namespace Library_Project.Resources.Classes
 
             return false;
         }
-
         // <summary> Checks wether an email and password corresponds or not </summary>
 
         public static bool PhoneNumberExists(string phoneNumber)
@@ -110,23 +105,22 @@ namespace Library_Project.Resources.Classes
 
             return false;
         }
-
         // <summary> Checks wether a username and password corresponds or not </summary>
 
-        public static bool PasswordCorresponds(string password, string username)
+        public static bool PasswordCorresponds(string password)
         {
             SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
             try
             {
-                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where username = '" + username + "' AND password = '" + password + "'", connection);
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where password = '" + password + "'", connection);
 
                 if (table.Rows.Count == 1)
                     return true;
 
                 table.Clear();
 
-                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username + "' AND password = '" + password + "'", connection);
+                table = DatabaseControl.TableFiller("select * from T_Members where password = '" + password + "'", connection);
 
                 if (table.Rows.Count == 1)
                     return true;
@@ -162,7 +156,15 @@ namespace Library_Project.Resources.Classes
             if (re.IsMatch(password)) return true;
             else return false;
         }
+        public static bool IsValidPassCard(string PassCard)
+        {
+            string pattern = @"^[0-9]*$";
 
+            Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
+
+            if (re.IsMatch(PassCard)) return true;
+            else return false;
+        }
         public static bool IsValidUsername(string username)
         {
             string pattern = @"[a-z]{3,32}";
@@ -173,42 +175,46 @@ namespace Library_Project.Resources.Classes
             else return false;
         }
 
-        public static bool IsValidPhoneNumber(int studentId)
+        public static bool IsValidPhoneNumber(string PhoneNumber)
         {
             string stringOfRegex = @"^09+[0-9]{9}$";
 
             Regex re = new Regex(stringOfRegex, RegexOptions.IgnoreCase);
 
-            if (re.IsMatch(studentId.ToString())) return true;
+            if (re.IsMatch(PhoneNumber.ToString())) return true;
             else return false;
         }
 
         public static bool IsValidCvv2(string cvv2)
         {
-            string stringOfRegex = @"([0-9]{3} | [0-9]{4})";
+            string stringOfRegex = "^[0-9]{3,4}$";
 
             Regex re = new Regex(stringOfRegex, RegexOptions.IgnoreCase);
 
             if (re.IsMatch(cvv2.ToString())) return true;
             else return false;
         }
-
         public static bool IsValidExpiry(string expiry)
         {
-            string format = "yyMMdd";
+            try
+            {
+                string[] temp=expiry.Split('/');
+                PersianCalendar pc = new PersianCalendar();
+                DateTime dt1 = pc.ToDateTime(int.Parse(temp[0]), int.Parse(temp[1]), 01, 0, 0, 0, 0);
 
-            var time = DateTime.ParseExact(expiry, format, CultureInfo.InvariantCulture);
-
-            if (DateTime.Now.Year < time.Year)
-                return true;
-
-            if (DateTime.Now.Year == time.Year)
-                if (DateTime.Now.Month <= time.Month - 3)
+                if (DateTime.Now.Year < dt1.Year)
                     return true;
 
+                if (DateTime.Now.Year == dt1.Year)
+                    if (DateTime.Now.Month <= dt1.Month - 3)
+                        return true;
+            }
+            catch
+            {
+                return false;
+            }
             return false;
         }
-
         public static bool IsValidCardNumber(string card)
         {
             string strRegex = @"^[0-9]{16}";
@@ -219,18 +225,21 @@ namespace Library_Project.Resources.Classes
 
             for (int i = 0; i < 16; i++)
             {
-                numbers[i] = Convert.ToInt32(card[i++]);
+                numbers[i] = int.Parse(card.Substring(i, 1));
 
-                int number = Convert.ToInt32(card[i]);
-                number *= 2;
-                if (number < 10)
-                    numbers[i] = number;
-                else
+                if (i % 2 == 0)
                 {
-                    int a = number % 10;
-                    number /= 10;
-                    numbers[i] = number + a;
-                }
+                    int number = int.Parse(card.Substring(i, 1));
+                    number *= 2;
+                    if (number < 10)
+                        numbers[i] = number;
+                    else
+                    {
+                        int a = number % 10;
+                        number /= 10;
+                        numbers[i] = number + a;
+                    }
+                }               
             }
 
             int sum = numbers.Sum();

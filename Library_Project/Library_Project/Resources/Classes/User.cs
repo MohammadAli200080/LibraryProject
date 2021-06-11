@@ -34,7 +34,7 @@ namespace Library_Project.Resources.Classes
         //this function for remove employee in library
         public static bool RemoveEmployee(string UserName)
         {
-            if (DatabaseControl.Exe("DELETE FROM T_Employees WHERE username =" + UserName))
+            if (DatabaseControl.Exe("DELETE FROM T_Employees WHERE username ='"+ UserName + "'"))
                 return true;
             return false;
         }
@@ -327,7 +327,7 @@ namespace Library_Project.Resources.Classes
         //for remove member from Library
         public static bool RemoveMember(string UserName)
         {
-            if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username = " + UserName))
+            if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username = '"+ UserName + "'"))
                 return true;
             return false;
         }
@@ -362,15 +362,15 @@ namespace Library_Project.Resources.Classes
         public static bool CheckAbleToGetBook(string UserName)
         {
             DataTable data = new DataTable();
-            data = DatabaseControl.Select("SELECT COUNT (*) as count from T_Borrowed where username=" + UserName);
+            data = DatabaseControl.Select("SELECT COUNT (*) as count from T_Borrowed where username='"+ UserName + "'");
             if (int.Parse(data.Rows[0]["count"].ToString()) > 5) return false;
 
             data = new DataTable();
-            data = DatabaseControl.Select("SELECT subscriptionEndingDate FROM T_Members WHERE username=" + UserName);
+            data = DatabaseControl.Select("SELECT subscriptionEndingDate FROM T_Members WHERE username='"+ UserName + "'");
             if (!date(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["subscriptionEndingDate"].ToString()))
                 return false;
             data = new DataTable();
-            data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE username=" + UserName);
+            data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE username='"+ UserName + "'");
             if (date2(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["returnDate"].ToString()))
                 return false;
 
@@ -380,12 +380,12 @@ namespace Library_Project.Resources.Classes
         {
             DataTable data = new DataTable();
             DataTable data2 = new DataTable();
-            data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE bookName=" + BookName);
+            data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE bookName='"+ BookName + "'");
             if (date2(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["returnDate"].ToString()))
             {
                 data = new DataTable();
-                data = DatabaseControl.Select("SELECT username FROM T_Borrowed WHERE bookName = " + BookName);
-                data2 = DatabaseControl.Select("SELECT pocket FROM T_Members WHERE username=" + data.Rows[0]["username"].ToString());
+                data = DatabaseControl.Select("SELECT username FROM T_Borrowed WHERE bookName = '"+ BookName + "'");
+                data2 = DatabaseControl.Select("SELECT pocket FROM T_Members WHERE username='"+ data.Rows[0]["username"].ToString() + "'");
 
                 if (decimal.Parse(data2.Rows[0]["pocket"].ToString()) < 10000) return false;
             }
@@ -396,8 +396,8 @@ namespace Library_Project.Resources.Classes
         public static bool GetBook(string BookName,string UserName)
         {
             if (!CheckAbleToGetBook(UserName)) return false;
-            Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName=" + BookName);
-            if (!DatabaseControl.Exe("DELETE FROM T_Books WHERE bookName=" + BookName)) return false;
+            Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='"+ BookName + "'");
+            if (!DatabaseControl.Exe("DELETE FROM T_Books WHERE bookName='"+ BookName + "'")) return false;
             if (!DatabaseControl.Exe("INSERT INTO T_Borrowed VALUES ('" + BookName.Trim() + "','" + UserName.Trim() + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "')"))
                 return false;
 
@@ -406,12 +406,26 @@ namespace Library_Project.Resources.Classes
         public static bool ReturnBook(string BookName, string UserName)
         {
             if (!AbleToReturnBook(BookName)) return false;
-            if (!DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE bookName=" + BookName)) return false;
+            if (!DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE bookName='"+ BookName + "'")) return false;
             if (!DatabaseControl.Exe("INSERT INTO T_Books VALUES ('" + Data.Rows[0]["bookName"].ToString() + "','" + int.Parse(Data.Rows[0]["publishNumber"].ToString()) + "'," +
                 "'" + int.Parse(Data.Rows[0]["quantity"].ToString()) + "','" + Data.Rows[0]["author"].ToString() + "','" + Data.Rows[0]["category"].ToString() + "')"))
                 return false;
 
             return true;
+        }
+        public static bool Addmember(List<string> Information)
+        {
+            try
+            {                
+                 if (DatabaseControl.Exe("INSERT INTO T_Members VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "'," +
+                        "'" + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "')"))
+                     return true;
+            }
+            catch
+            {
+
+            }
+            return false;
         }
     }
 }
