@@ -75,26 +75,26 @@
                         <RowDefinition Height=".5*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontSize="40">
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,122" FontSize="40" FontWeight="Black">
                         به بخش کارمندان پنل مدیریریت، خوش آمدید
                     </Label>
                     <DockPanel>
                         <Button x:Name="AddEmployee" Width="220" Height="70" Margin="50,100,30,10" Click="AddEmployee_Click">
                             <DockPanel Margin="5,0,0,0">
                                 <materialDesign:PackIcon Kind="AccountAdd" Width="50" Height="50" Margin="-20,0,65,0"/>
-                                <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25"/>
+                                <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="RemoveEmployee" Width="220" Height="70" Margin="30,100,30,10" Click="RemoveEmployee_Click">
                             <DockPanel Margin="10,0,0,0">
                                 <materialDesign:PackIcon Kind="AccountRemove" Width="50" Height="50" Margin="-20,0,65,0"/>
-                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25"/>
+                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="SalarayEmployee" Width="220" Height="70" Margin="30,100,50,10">
                             <DockPanel Margin="12,0,0,0">
-                                <materialDesign:PackIcon Kind="Money" Width="50" Height="50" Margin="-20,3,65,0"/>
-                                <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25"/>
+                                <materialDesign:PackIcon Kind="Money" Width="50" Height="50" Margin="-20,3,65,0" />
+                                <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                     </DockPanel>

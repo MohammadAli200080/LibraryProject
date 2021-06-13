@@ -103,7 +103,9 @@ namespace Library_Project.Resources.Windows
 
         private void RemoveEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            RemoveEmployeeWindow window = new RemoveEmployeeWindow();
+            window.Show();
+            this.Close();
         }
     }
 }

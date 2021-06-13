@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library_Project.Resources.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,19 @@ namespace Library_Project.Resources.Windows
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (Managers.RemoveEmployee(name.Text.Trim()))
+                MessageBox.Show("کارمند با موفقیت حذف شد");
+            else MessageBox.Show("همچین کاربری موجود نیست");
+            ManagerDashboard md = new ManagerDashboard();
+            md.Show();
+            this.Close();
+        }
 
+        private void Cancle_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerDashboard md = new ManagerDashboard();
+            md.Show();
+            this.Close();
         }
     }
 }
