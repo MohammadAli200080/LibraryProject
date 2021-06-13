@@ -28,7 +28,7 @@ namespace Library_Project.Resources.Windows
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void btnMin_Click(object sender, RoutedEventArgs e)
@@ -70,7 +70,7 @@ namespace Library_Project.Resources.Windows
             }
 
             md.AllBooks = Book.TakeAllBooks().ToList();
-
+            md.allBooksData.ItemsSource = md.AllBooks;
             MessageBox.Show("کتاب با موفقیت اضافه شد");
 
             this.Close();

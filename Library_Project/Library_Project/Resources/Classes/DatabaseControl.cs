@@ -88,7 +88,7 @@ namespace Library_Project.Resources.Classes
 
             count = Convert.ToInt32(table.Rows[0]["quantity"].ToString()) + 1;
 
-            command.CommandText = "UPDATE T_Books SET quantity = '" + count + "' WHERE name = '" + name + "' ";
+            command.CommandText = "UPDATE T_Books SET quantity = '" + count + "' WHERE bookName = '" + name + "' ";
 
             command.ExecuteNonQuery();
 

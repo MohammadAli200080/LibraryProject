@@ -11,6 +11,12 @@ namespace Library_Project.Resources.Classes
 {
     public class Book
     {
+        //public string Name { get; set; }
+        //public string Author { get; set; }
+        //public string Category { get; set; }
+        //public int PublishNumber { get; set; }
+        //public int Quantity { get; set; }
+
         private string _name;
         private string _author;
         private string _category;
@@ -71,7 +77,7 @@ namespace Library_Project.Resources.Classes
                     author = table.Rows[i]["author"].ToString();
                     category = table.Rows[i]["category"].ToString();
                     publishNumber = table.Rows[i]["publishNumber"].ToString();
-                    quantity = table.Rows[i]["qunatity"].ToString();
+                    quantity = table.Rows[i]["quantity"].ToString();
 
                     books.Add(new Book(name, author, category, publishNumber, quantity));
                 }

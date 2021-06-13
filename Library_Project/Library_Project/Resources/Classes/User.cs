@@ -412,9 +412,18 @@ namespace Library_Project.Resources.Classes
 
             return true;
         }
+        public static bool CheckExistBook(string Name)
+        {
+            DataTable data = new DataTable();
+            data = DatabaseControl.Select("SELECT quantity FROM T_Books WHERE bookName = '" + Name + "'");
+            if (data.Rows[0]["quantity"].ToString() == "0") return false;
+
+            return false;
+        }
         static DataTable Data = new DataTable();
         public static bool GetBook(string BookName, string UserName)
         {
+            if (!CheckExistBook(BookName)) return false;
             if (!CheckAbleToGetBook(UserName)) return false;
             Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + BookName + "'");
             if (!DatabaseControl.Exe("DELETE FROM T_Books WHERE bookName='" + BookName + "'")) return false;
