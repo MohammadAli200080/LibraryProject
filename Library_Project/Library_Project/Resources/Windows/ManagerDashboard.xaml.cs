@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Library_Project.Resources.Classes;
 
 namespace Library_Project.Resources.Windows
 {
@@ -19,9 +20,14 @@ namespace Library_Project.Resources.Windows
     /// </summary>
     public partial class ManagerDashboard : Window
     {
+        public List<Book> AllBooks { get; set; }
+
         public ManagerDashboard()
         {
+            AllBooks = Book.TakeAllBooks().ToList();
+
             InitializeComponent();
+            DataContext = this;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -62,6 +68,12 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Collapsed;
             EmployeesPan.Visibility = Visibility.Visible;
             BankPan.Visibility = Visibility.Collapsed;
+        }
+
+        private void AddBook_Click(object sender, RoutedEventArgs e)
+        {
+            AddBookWindow window = new AddBookWindow();
+            window.Show();
         }
     }
 }

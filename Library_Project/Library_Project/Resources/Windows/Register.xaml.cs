@@ -84,12 +84,6 @@ namespace Library_Project.Resourses.Windows
                     txtPassword.Password = "";
                     return;
                 }
-                if (Library_Project.Resources.Classes.Validation.PasswordCorresponds(txtPassword.Password))
-                {
-                    MessageBox.Show("پسورد تکراری می باشد");
-                    txtPassword.Password = "";
-                    return;
-                }
                 if(!Library_Project.Resources.Classes.Validation.IsValidPhoneNumber(Info[2]))
                 {
                     MessageBox.Show("تلفن همراه نادرست می باشد");

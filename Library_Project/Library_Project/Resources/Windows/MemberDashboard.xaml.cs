@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Library_Project.Resources.Windows
 {
     /// <summary>
-    /// Interaction logic for Employee.xaml
+    /// Interaction logic for MemberDashboard.xaml
     /// </summary>
-    public partial class Employee : Window
+    public partial class MemberDashboard : Window
     {
-        public Employee()
+        public MemberDashboard()
         {
             InitializeComponent();
         }
@@ -33,17 +33,9 @@ namespace Library_Project.Resources.Windows
         {
             this.WindowState = WindowState.Minimized;
         }
-
         private void HomePn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            HomePan.Visibility = Visibility.Visible;
-            BookPan.Visibility = Visibility.Collapsed;
-        }
-
-        private void BooksPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            HomePan.Visibility = Visibility.Collapsed;
-            BookPan.Visibility = Visibility.Visible;
+            MessageBox.Show("Welcome");
         }
     }
 }
