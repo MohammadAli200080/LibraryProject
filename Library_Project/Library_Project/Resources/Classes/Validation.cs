@@ -107,23 +107,29 @@ namespace Library_Project.Resources.Classes
         }
         // <summary> Checks wether a username and password corresponds or not </summary>
 
-        public static bool PasswordCorresponds(string password)
+        public static bool PasswordCorresponds(string password, string username, out string window)
         {
             SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=db_Library;Integrated Security=True");
 
             try
             {
-                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where password = '" + password + "'", connection);
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where username = '" + username + "' AND password = '" + password + "'", connection);
 
                 if (table.Rows.Count == 1)
+                {
+                    window = "Employee";
                     return true;
+                }
 
                 table.Clear();
 
-                table = DatabaseControl.TableFiller("select * from T_Members where password = '" + password + "'", connection);
+                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username + "' AND password = '" + password + "'", connection);
 
                 if (table.Rows.Count == 1)
+                {
+                    window = "Member";
                     return true;
+                }
             }
             catch (Exception)
             {
@@ -134,8 +140,10 @@ namespace Library_Project.Resources.Classes
                 connection.Close();
             }
 
+            window = null;
             return false;
         }
+
 
         public static bool IsValidEmail(string email)
         {
