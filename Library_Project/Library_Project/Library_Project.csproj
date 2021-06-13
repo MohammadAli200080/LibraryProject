@@ -70,14 +70,17 @@
     <Compile Include="Resources\Classes\DatabaseControl.cs" />
     <Compile Include="Resources\Classes\User.cs" />
     <Compile Include="Resources\Classes\Validation.cs" />
-    <Compile Include="Resources\Windows\Employee.xaml.cs">
-      <DependentUpon>Employee.xaml</DependentUpon>
+    <Compile Include="Resources\Windows\AddBookWindow.xaml.cs">
+      <DependentUpon>AddBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Windows\EmployeeDashboard.xaml.cs">
+      <DependentUpon>EmployeeDashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Windows\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Windows\Members.xaml.cs">
-      <DependentUpon>Members.xaml</DependentUpon>
+    <Compile Include="Resources\Windows\MemberDashboard.xaml.cs">
+      <DependentUpon>MemberDashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Windows\Payment.xaml.cs">
       <DependentUpon>Payment.xaml</DependentUpon>
@@ -85,10 +88,6 @@
     <Compile Include="Resources\Windows\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resources\Windows\Employee.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,13 +100,21 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Windows\AddBookWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Windows\EmployeeDashboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Windows\ManagerDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Windows\Members.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Resources\Windows\MemberDashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Windows\Payment.xaml">
       <SubType>Designer</SubType>
