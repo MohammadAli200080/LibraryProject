@@ -28,14 +28,25 @@ namespace Library_Project.Resources.Windows
         private List<Employees> _allEmployees;
         public List<Employees> AllEmployees { get { return _allEmployees; } set { _allEmployees = value; NotifyPropertyChanged("AllEmployees"); } }
 
+        private decimal _money;
+        public decimal Money { get { return _money; } set { _money = value; NotifyPropertyChanged("Money"); } }
+
         public ManagerDashboard()
         {
             if (Book.TakeAllBooks() != null)
                 AllBooks = Book.TakeAllBooks().ToList();
-            else AllBooks = null;
+            else AllBooks = new List<Book>();
+
+            if (Managers.TakeAllEmployee() != null)
+                AllEmployees = Managers.TakeAllEmployee().ToList();
+            else AllEmployees = new List<Employees>();
+
+            Money = Properties.Settings.Default.Bank;
 
             InitializeComponent();
             DataContext = this;
+
+            money.Text = Money.ToString() + " تومان";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -106,6 +117,22 @@ namespace Library_Project.Resources.Windows
             RemoveEmployeeWindow window = new RemoveEmployeeWindow();
             window.Show();
             this.Close();
+        }
+
+        private void SalarayEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            PayEmployeeWindow window = new PayEmployeeWindow();
+            window.Show();
+            this.Close();
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            Managers.PayManager(Convert.ToDecimal(addedMoney.Text));
+            Money += Convert.ToDecimal(addedMoney.Text);
+            money.Text = Money.ToString() + " تومان";
+            addedMoney.Clear();
+            MessageBox.Show(".با موفقیت مقدار حساب شما شارژ شد");
         }
     }
 }

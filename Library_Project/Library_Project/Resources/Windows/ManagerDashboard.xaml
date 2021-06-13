@@ -14,9 +14,9 @@
 
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
-                    <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20" Content="به بخش مدیر خوش آمدید"/>
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="40" Content=".به بخش مدیر خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/ManagerDashboard.png" />
                 </StackPanel>
             </Border>
@@ -69,7 +69,7 @@
                     </DataGrid>
                 </Grid>
             </Border>
-            <Border Name="EmployeesPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="EmployeesPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height=".5*"/>
@@ -91,7 +91,7 @@
                                 <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
-                        <Button x:Name="SalarayEmployee" Width="220" Height="70" Margin="30,100,50,10">
+                        <Button x:Name="SalarayEmployee" Width="220" Height="70" Margin="30,100,50,10" Click="SalarayEmployee_Click">
                             <DockPanel Margin="12,0,0,0">
                                 <materialDesign:PackIcon Kind="Money" Width="50" Height="50" Margin="-20,3,65,0" />
                                 <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
@@ -100,7 +100,7 @@
                     </DockPanel>
                     <DataGrid x:Name="allEmployeesData" Grid.Row="1" Background="WhiteSmoke">
                         <ScrollViewer>
-                            <ItemsControl ItemsSource="{Binding AllEmplyees, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                            <ItemsControl ItemsSource="{Binding AllEmployees, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -108,19 +108,13 @@
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Margin="30, 5, 10, 5" TextAlignment="Center" Text="{Binding Name}"                   Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+                                            <TextBlock Grid.Column="0" Margin="60, 5, 10, 5" TextAlignment="Center" Text="{Binding UserName}"                   Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
 
-                                            <TextBlock Grid.Column="1" Margin="10, 5, 10, 5" Text="{Binding Author}" TextAlignment="Center"                 Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+                                            <TextBlock Grid.Column="1" Margin="10, 5, 10, 5" Text="{Binding Email}" TextAlignment="Center"                 Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
 
-                                            <TextBlock Grid.Column="2" Margin="10, 5, 10, 5" Text="{Binding Category}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                            <TextBlock Grid.Column="3" Margin="10, 5, 10, 5" Text="{Binding PublishNumber}" TextAlignment="Center"          Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                            <TextBlock Grid.Column="4" Margin="10, 5, 30, 5" Text="{Binding Quantity}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+                                            <TextBlock Grid.Column="2" Margin="10, 5, 60, 5" Text="{Binding PhoneNumber}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
                                         </Grid>
 
                                     </DataTemplate>
@@ -131,11 +125,30 @@
                 </Grid>
             </Border>
             <Border Name="BankPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
-                <StackPanel>
-                    <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
-                        به بخش بانک ها خوش آمدید
-                    </Label>
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                            به بخش بانک پنل مدیریریت، خوش آمدید
+                        </Label>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,80,50" FontSize="30" FontWeight="Black" Text=":مقدار مبلغی که میخواهید به بانک پول بیفزایید را وارد  کنید" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#7400B8"/>
+                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                 Width="330" Height="60" Background="#FFEDE8F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="مبلغ" x:Name="addedMoney"/>
+                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Content="ثبت" Foreground="#7400B8" x:Name="submit" Click="Submit_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
             </Border>
             <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
                 <StackPanel Margin="0,0,0,0">

@@ -82,6 +82,9 @@
     <Compile Include="Resources\Windows\MemberDashboard.xaml.cs">
       <DependentUpon>MemberDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Windows\PayEmployeeWindow.xaml.cs">
+      <DependentUpon>PayEmployeeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Windows\Payment.xaml.cs">
       <DependentUpon>Payment.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
     <Page Include="Resources\Windows\MemberDashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Windows\PayEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Windows\Payment.xaml">
       <SubType>Designer</SubType>
