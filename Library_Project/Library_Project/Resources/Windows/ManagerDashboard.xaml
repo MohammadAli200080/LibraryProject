@@ -20,7 +20,7 @@
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/ManagerDashboard.png" />
                 </StackPanel>
             </Border>
-            <Border Name="BookPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="BookPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.5*"/>
@@ -69,39 +69,66 @@
                     </DataGrid>
                 </Grid>
             </Border>
-            <Border Name="EmployeesPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
-                <StackPanel>
-                    <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
-                        به بخش کارمندان پنل مدیریریت،خوش آمدید
+            <Border Name="EmployeesPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontSize="40">
+                        به بخش کارمندان پنل مدیریریت، خوش آمدید
                     </Label>
                     <DockPanel>
-                        <Button x:Name="ShowEmployee" Width="130" Height="70" Margin="630,40,70,0">
-                            <DockPanel Margin="10,0,0,0">
-                                <materialDesign:PackIcon Kind="AccountMultiple" Width="20" Height="20" Margin="-20,0,65,0"/>
-                                <Label Content="نمایش کارمندان" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
-                            </DockPanel>
-                        </Button>
-                        <Button x:Name="AddEmployee" Width="130" Height="70" Margin="-420,40,150,0">
+                        <Button x:Name="AddEmployee" Width="220" Height="70" Margin="50,100,30,10" Click="AddEmployee_Click">
                             <DockPanel Margin="5,0,0,0">
-                                <materialDesign:PackIcon Kind="AccountAdd" Width="20" Height="20" Margin="-20,0,65,0"/>
-                                <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                                <materialDesign:PackIcon Kind="AccountAdd" Width="50" Height="50" Margin="-20,0,65,0"/>
+                                <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25"/>
                             </DockPanel>
                         </Button>
-                        <Button x:Name="RemoveEmployee" Width="130" Height="70" Margin="-720,40,150,0">
+                        <Button x:Name="RemoveEmployee" Width="220" Height="70" Margin="30,100,30,10" Click="RemoveEmployee_Click">
                             <DockPanel Margin="10,0,0,0">
-                                <materialDesign:PackIcon Kind="AccountRemove" Width="20" Height="20" Margin="-20,0,65,0"/>
-                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                                <materialDesign:PackIcon Kind="AccountRemove" Width="50" Height="50" Margin="-20,0,65,0"/>
+                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25"/>
                             </DockPanel>
                         </Button>
-                        <Button x:Name="SalarayEmployee" Width="130" Height="70" Margin="-1150,40,90,0">
+                        <Button x:Name="SalarayEmployee" Width="220" Height="70" Margin="30,100,50,10">
                             <DockPanel Margin="12,0,0,0">
-                                <materialDesign:PackIcon Kind="Money" Width="20" Height="20" Margin="-20,3,65,0"/>
-                                <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="12"/>
+                                <materialDesign:PackIcon Kind="Money" Width="50" Height="50" Margin="-20,3,65,0"/>
+                                <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25"/>
                             </DockPanel>
                         </Button>
                     </DockPanel>
+                    <DataGrid x:Name="allEmployeesData" Grid.Row="1" Background="WhiteSmoke">
+                        <ScrollViewer>
+                            <ItemsControl ItemsSource="{Binding AllEmplyees, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
 
-                </StackPanel>
+                                            <TextBlock Grid.Column="0" Margin="30, 5, 10, 5" TextAlignment="Center" Text="{Binding Name}"                   Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+
+                                            <TextBlock Grid.Column="1" Margin="10, 5, 10, 5" Text="{Binding Author}" TextAlignment="Center"                 Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+
+                                            <TextBlock Grid.Column="2" Margin="10, 5, 10, 5" Text="{Binding Category}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+
+                                            <TextBlock Grid.Column="3" Margin="10, 5, 10, 5" Text="{Binding PublishNumber}" TextAlignment="Center"          Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+
+                                            <TextBlock Grid.Column="4" Margin="10, 5, 30, 5" Text="{Binding Quantity}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DataGrid>
+                </Grid>
             </Border>
             <Border Name="BankPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>

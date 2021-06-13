@@ -37,7 +37,7 @@ namespace Library_Project.Resources.Classes
             set
             {
                 // check if the quantity is positive or not
-                if (value <= 0)
+                if (value < 0)
                     throw new ArgumentOutOfRangeException("Quantity", "Should be positive number.");
                 _quantity = value;
             }
@@ -224,6 +224,12 @@ namespace Library_Project.Resources.Classes
 
             if (index < 0) return false;
             else return true;
+        }
+
+        public void AddBook()
+        {
+            string command = "insert into T_Books (bookName,publishNumber,quantity,author,category) VALUES('" + Name + "','" + PublishNumber + "','" + Quantity + "','" + Author + "','" + Category + "')";
+            DatabaseControl.Exe(command);
         }
     }
 }

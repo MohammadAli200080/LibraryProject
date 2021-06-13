@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\App.xaml
-7239299193
+8-1883728354
 
-16-2023685016
+17-324141343
 16-1121036899
-MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;
+MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;Resources\Windows\RemoveEmployeeWindow.xaml;
 
-False
+True
 

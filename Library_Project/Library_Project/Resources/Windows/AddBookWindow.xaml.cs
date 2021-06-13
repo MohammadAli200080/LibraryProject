@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Library_Project.Resources.Classes;
 
 namespace Library_Project.Resources.Windows
 {
@@ -19,9 +20,60 @@ namespace Library_Project.Resources.Windows
     /// </summary>
     public partial class AddBookWindow : Window
     {
-        public AddBookWindow()
+        ManagerDashboard md;
+        public AddBookWindow(ManagerDashboard managerDashboard)
         {
+            md = managerDashboard;
             InitializeComponent();
+        }
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnMin_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnAddBook_Click(object sender, RoutedEventArgs e)
+        {
+            Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, "1");
+
+            try
+            {
+                if (Book.BookExists(book.Name))
+                {
+                    DatabaseControl.UpdateBookTable(book.Name);
+                }
+                else
+                {
+                    book.AddBook();
+                }
+            }
+            catch (ArgumentOutOfRangeException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            catch(FormatException err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            catch
+            {
+                throw;
+            }
+
+            md.AllBooks = Book.TakeAllBooks().ToList();
+
+            MessageBox.Show("کتاب با موفقیت اضافه شد");
+
+            this.Close();
         }
     }
 }

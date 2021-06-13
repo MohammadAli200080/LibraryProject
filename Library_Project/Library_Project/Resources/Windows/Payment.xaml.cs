@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Globalization;
+using Library_Project.Resources.Windows;
 
 namespace Library_Project.Resourses.Windows
 {
@@ -21,7 +22,8 @@ namespace Library_Project.Resourses.Windows
     /// </summary>
     public partial class Payment : Window
     {
-        public Payment()
+        typeOfUser type;
+        public Payment(typeOfUser type)
         {
             InitializeComponent();
         }
@@ -38,7 +40,7 @@ namespace Library_Project.Resourses.Windows
             string CardNumber = txCardNum1.Text + txCardNum2.Text + txCardNum3.Text + txCardNum4.Text;
             string PassWord = txPass.Password;
             string CVV2 = txCVV2.Text;
-            string expiry = txYear.Text +'/'+ txMonth.Text;
+            string expiry = txYear.Text + '/' + txMonth.Text;
 
             if (!Library_Project.Resources.Classes.Validation.IsValidCvv2(CVV2))
             {
@@ -75,12 +77,26 @@ namespace Library_Project.Resourses.Windows
                 txMoney.Text = "";
                 return;
             }
-            if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
+
+            if (type == typeOfUser.Member)
             {
-                MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
-                 MainWindow Login = new MainWindow();
-                 Login.Show();
-                 this.Close();
+                if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
+                {
+                    MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                    MainWindow Login = new MainWindow();
+                    Login.Show();
+                    this.Close();
+                }
+            }
+            else if (type == typeOfUser.Employee)
+            {
+                if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
+                {
+                    MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                    ManagerDashboard managerDashboard = new ManagerDashboard();
+                    managerDashboard.Show();
+                    this.Close();
+                }
             }
             else
             {
@@ -100,7 +116,7 @@ namespace Library_Project.Resourses.Windows
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("ثبت نام انجام نشد");
-            DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='"+ Register.Info[0] + "'");
+            DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='" + Register.Info[0] + "'");
             MainWindow Login = new MainWindow();
             Login.Show();
             this.Close();

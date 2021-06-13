@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Library_Project.Resources.Classes;
+using Library_Project.Resources.Windows;
 
 namespace Library_Project.Resourses.Windows
 {
@@ -24,8 +25,11 @@ namespace Library_Project.Resourses.Windows
         OpenFileDialog open = new OpenFileDialog();
         public static List<string> Info = new List<string>();
         bool IsImage = false;
-        public Register()
+        typeOfUser type;
+        public Register(typeOfUser type)
         {
+            this.type = type;
+
             InitializeComponent();
         }
 
@@ -84,7 +88,7 @@ namespace Library_Project.Resourses.Windows
                     txtPassword.Password = "";
                     return;
                 }
-                if(!Library_Project.Resources.Classes.Validation.IsValidPhoneNumber(Info[2]))
+                if (!Library_Project.Resources.Classes.Validation.IsValidPhoneNumber(Info[2]))
                 {
                     MessageBox.Show("تلفن همراه نادرست می باشد");
                     txtPhone.Text = "";
@@ -108,20 +112,42 @@ namespace Library_Project.Resourses.Windows
                     txtEmail.Text = "";
                     return;
                 }
-                if (Member.Addmember(Info))
+                if (type == typeOfUser.Member)
                 {
-                    MessageBox.Show("با موفقیت ثبت شد");
-                    ImageFill.Source = null;
-                    User.Visibility = Visibility.Visible;
-                    txtEmail.Text = "";
-                    txtPassword.Password = "";
-                    txtPhone.Text = "";
-                    txtuserName.Text = "";
-                    IsImage = false;
-                    Payment pay = new Payment();
-                    pay.Show();
-                    this.Close();
-                }                         
+                    if (Member.Addmember(Info))
+                    {
+                        MessageBox.Show("با موفقیت ثبت شد");
+                        ImageFill.Source = null;
+                        User.Visibility = Visibility.Visible;
+                        txtEmail.Text = "";
+                        txtPassword.Password = "";
+                        txtPhone.Text = "";
+                        txtuserName.Text = "";
+                        IsImage = false;
+                        Payment pay = new Payment(type);
+                        pay.Show();
+                        this.Close();
+                        return;
+                    }
+                }
+                else if (type == typeOfUser.Employee)
+                {
+                    if (Managers.AddEmployee(Info))
+                    {
+                        MessageBox.Show("با موفقیت ثبت شد");
+                        ImageFill.Source = null;
+                        User.Visibility = Visibility.Visible;
+                        txtEmail.Text = "";
+                        txtPassword.Password = "";
+                        txtPhone.Text = "";
+                        txtuserName.Text = "";
+                        IsImage = false;
+                        Payment pay = new Payment(type);
+                        pay.Show();
+                        this.Close();
+                        return;
+                    }
+                }
                 else
                 {
                     MessageBox.Show("اطلاعات نادرست می باشند");
@@ -134,15 +160,23 @@ namespace Library_Project.Resourses.Windows
                     txtuserName.Text = "";
                     txtuserName.Text = "";
                     return;
-                }                                 
+                }
             }
             else
                 MessageBox.Show("عکس خود را انتخاب نمایید");
         }
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow Login = new MainWindow();
-            Login.Show();
+            if (type == typeOfUser.Member)
+            {
+                MainWindow Login = new MainWindow();
+                Login.Show();
+            }
+            else
+            {
+                ManagerDashboard md = new ManagerDashboard();
+                md.Show();
+            }
             this.Close();
         }
     }

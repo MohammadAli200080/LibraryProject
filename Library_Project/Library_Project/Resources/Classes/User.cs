@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Library_Project.Resources.Classes
 {
+    public enum typeOfUser
+    {
+        Employee, Member
+    }
     //the Main classes for User in project
     public class Users
     {

@@ -60,7 +60,7 @@ namespace Library_Project
         }
         private void btnCreat_Click(object sender, RoutedEventArgs e)
         {
-            Register CreatAcount = new Register();
+            Register CreatAcount = new Register(typeOfUser.Member);
             CreatAcount.Show();
             this.Close();
         }
