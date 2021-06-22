@@ -10,126 +10,156 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Title="MainWindow" Height="700" Width="1200" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        
-                <Border Background="White"/>
+        <Border Background="White"/>
+        <Grid>
+            <Border x:Name="HomePan" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                <StackPanel>
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="40" Content=".به بخش اعضا خوش آمدید"/>
+                    <Image Width="660" Height="575" Margin="119,-50,120,0" Source="/Resources/Images/download.png" />
+                </StackPanel>
+            </Border>
+            <Border Name="BookPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
-                    <Border BorderBrush="Black" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
-                        <StackPanel>
-                            <Label Foreground="Black" HorizontalAlignment="Center" Margin="20" FontSize="20">
-                                به بخش کاربری خوش آمدید
-                            </Label>
-                            <Image Width="660" Height="575" Margin="0,-50,20,0" Source="/Resources/Images/download.png" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"/>
+                        <RowDefinition Height="0.8*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,10,20,0" FontWeight="Black" FontSize="30" Content="بخش  کتاب ها"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="AuthorName" Margin="30,0,0,0" Style="{DynamicResource MaterialDesignAccentCheckBox}" Content="نام نویسنده" FontFamily="Georgia" FontSize="20" FontWeight="Bold" Foreground="#DD503BD4"  Checked="Author_Checked" Unchecked="Author_Unchecked"/>
+                            <CheckBox x:Name="BookName" Margin="30,0,0,0" Style="{DynamicResource MaterialDesignAccentCheckBox}" Content="نام کتاب"  
+   FontFamily="Georgia" FontSize="20" FontWeight="Bold" Foreground="#DD503BD4" Checked="BookName_Checked" Unchecked="BookName_Unchecked"/>
+                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="170,10,0,5" FontSize="30" FontWeight="Black" Text="بر چه اساسی می خواهید سرچ کنید:" Height="52" Width="442"/>
                         </StackPanel>
-                    </Border>
-                    <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
-                        <StackPanel Margin="0,0,0,0">
-                            <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو کاربر</Label>
-                            <ListView FontSize="15" Margin="0,80,0,0">
-                                <ListViewItem x:Name="HomePn" Padding="5" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
-                                    <StackPanel Orientation="Horizontal" Height="36">
-                                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
-                                        <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="BooksPn" Padding="5">
-                                    <StackPanel Orientation="Horizontal" Height="36">
-                                        <materialDesign:PackIcon Kind="Books" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
-                                        <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="MyBookPn" Padding="5">
-                                    <StackPanel Orientation="Horizontal" Height="36">
-                                        <materialDesign:PackIcon Kind="BookAccount" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
-                                        <TextBlock Text="کتاب های من" VerticalAlignment="Center" Margin="-123,0,0,0" FontSize="15" FontWeight="Bold"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="WalletPn" Padding="5">
-                                    <StackPanel Orientation="Horizontal" Height="36">
-                                        <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FFC18505"/>
-                                        <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="AccountPn" Padding="5">
-                                    <StackPanel Orientation="Horizontal" Height="36">
-                                        <materialDesign:PackIcon Kind="AccountBox" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF477422"/>
-                                        <TextBlock Text="اشتراک" VerticalAlignment="Center" Margin="-86,0,0,0" FontSize="15" FontWeight="Bold"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                            </ListView>
-
+                        <!--Text will be added by backend based on the checkbox-->
+                        <TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,10,80,5" FontSize="30" FontWeight="Black" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,0" Orientation="Horizontal">
+                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="Search" Click="Search_Click">
+                                <materialDesign:PackIcon Kind="Search" Width="50" Height="50" Foreground="#FF1808B9"/>
+                            </Button>
+                            <!--Text will be added by backend based on the checkbox-->
+                            <TextBox x:Name="SearchBox" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft"/>
+                            <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
-                    </Border>
-                </Grid>
-                <!--<StackPanel O-->
-                <!--rientation="Horizontal">
-            <StackPanel Width="370" Margin="0,70,0,0">
-                <Image  Margin="0,40,30,0" Width="370" Height="370" Stretch="Fill" Source="/download.png"/>
-            </StackPanel>
-
-            <Border Width="820" Margin="0,90,0,0">
-                <Grid>
-                    <TextBlock Text="بخش کاربر" FontSize="25" Foreground="Black" HorizontalAlignment="Right" Margin="30,30,30,0"/>
-
-                    <Border Width="250" Height="100" CornerRadius="20" Background="#FF0077b6"
-                            HorizontalAlignment="Left" Margin="50,115,0,195">
-                        <Grid>
-                            <Button x:Name="btnBook"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
-                                Click="btnBook_Click"/>
-                            <TextBlock Text="کتاب ها" FontSize="20" VerticalAlignment="Top" Margin="170,38,-20,0" Foreground="White"/>
-                            <materialDesign:PackIcon Kind="Books" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <Image Margin="-70,5,70,-5" Height="95"/>
-                        </Grid>
-
-
-                    </Border>
-                    <Border  Width="250" Height="100" CornerRadius="20"   BorderBrush="Black" Background="#FF100538"
-                            HorizontalAlignment="Right" Margin="0,115,10,195">
-                        <Grid>
-                            <Button x:Name="btnMyBook"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
-                                />
-                            <TextBlock Text="کیف پول" FontSize="20" VerticalAlignment="Top" Margin="165,35,-15,0" Foreground="White"/>
-                            <materialDesign:PackIcon Kind="Wallet" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <Image Height="95" Margin="-72,0,72,0" />
-                        </Grid>
-
-
-                    </Border>
-                    <Border  Width="250" Height="100" CornerRadius="20" Background="#FF118CA4"
-                            VerticalAlignment="Bottom" Margin="50,0,300,65">
-                        <Grid>
-                            <Button x:Name="btnBank"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
-                                />
-                            <TextBlock Text="کتاب های من" FontSize="20" VerticalAlignment="Top" Margin="132,38,2,0" Foreground="White"/>
-                            <materialDesign:PackIcon Kind="BookAccount" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <Image Width="90" Height="90" Margin="5,5,155,5"/>
-                        </Grid>
-
-                    </Border>
-                    <Border  Width="250" Height="100" CornerRadius="20" Background="#FF0C3F49"
-                             HorizontalAlignment="Right" Margin="0,185,10,5">
-                        <Grid>
-                            <Button x:Name="btnAccount"  Width="250" Height="100" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="20" BorderBrush="Black"
-                         />
-                            <TextBlock Text="اشتراک" FontSize="20" VerticalAlignment="Top" Margin="180,38,-46,0" Foreground="White"/>
-                            <materialDesign:PackIcon Kind="AccountBox" Width="80" Height="80" Foreground="#FFE8DFDE" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        </Grid>
-                    </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Vertical">
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,5,80,5" FontSize="30" FontWeight="Black" Text="نام کتابی که می خواهید به امانت بگیرید را وارد کنید:" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,0" Orientation="Horizontal">
+                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="Borrow" Click="Borrow_Click">
+                                <materialDesign:PackIcon Kind="BookAdd" Width="50" Height="50" Foreground="#FF1808B9"/>
+                            </Button>
+                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="نام کتاب" FlowDirection="RightToLeft" x:Name="BorrowedName" />
+                            <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </Border>
-
-        </StackPanel>-->
-                <Grid VerticalAlignment="Top" Height="70">
-
-                    <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
-                    <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                    <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
-                    <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
-                    <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
-                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
-                    <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
+            <Border x:Name="MyBooksPan" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.4*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,10,20,0" FontWeight="Black" FontSize="30" Content="بخش  کتاب های من"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Vertical">
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,10,80,5" FontSize="30" FontWeight="Black" Text="نام کتابی که می خواهید پس بدهید را وارد کنید:" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,0" Orientation="Horizontal">
+                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="GiveBack" Click="GiveBack_Click">
+                                <materialDesign:PackIcon Kind="BookMinus" Width="50" Height="50" Foreground="#FF1808B9"/>
+                            </Button>
+                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="نام کتاب" FlowDirection="RightToLeft" x:Name="GiveBackName" />
+                            <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
+            </Border>
+            <Border Name="WalletPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                            بخش کیف پول
+                        </Label>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,80,50" FontSize="30" FontWeight="Black" Text=":مقدار مبلغی که میخواهید به کیف پول بیفزایید را وارد کنید" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
+                            <Button Margin="70,0" Width="122" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Content="پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
+                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                 Width="330" Height="60" Background="#FFE9E8F3" Foreground="#FF424141" FlowDirection="RightToLeft" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="مبلغ" x:Name="addedMoney"/>
+                            <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#FF060F70"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
+                <StackPanel Margin="0,0,0,0">
+                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو کاربر</Label>
+                    <ListView FontSize="15" Margin="0,80,0,0">
+                        <ListViewItem x:Name="HomePn" Padding="5" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
+                                <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem  x:Name="BooksPn" Padding="6" MouseLeftButtonUp="BooksPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="Books" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
+                                <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="MyBooksPn" Padding="6" MouseLeftButtonUp="MyBooksPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="BookAccount" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
+                                <TextBlock Text="کتاب های من" VerticalAlignment="Center" Margin="-123,0,0,0" FontSize="15" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="WalletPn" Padding="6" MouseLeftButtonUp="WalletPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FFC18505"/>
+                                <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="AccountPn" Padding="6" MouseLeftButtonUp="AccountPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="AccountBox" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF477422"/>
+                                <TextBlock Text="اشتراک" VerticalAlignment="Center" Margin="-86,0,0,0" FontSize="15" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid VerticalAlignment="Top" Height="70">
 
-            </Grid>
+            <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+            <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
+            <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
+            <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
+                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+            <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
+        </Grid>
+
+    </Grid>
 </Window>
