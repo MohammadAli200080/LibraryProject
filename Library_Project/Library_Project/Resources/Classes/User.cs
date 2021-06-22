@@ -351,6 +351,12 @@ namespace Library_Project.Resources.Classes
                 return true;
             return false;
         }
+
+        public static string GetMoneyOfEmployee(string username)
+        {
+            var data = DatabaseControl.Select(username);
+            return data.Rows[0]["pocket"].ToString();
+        }
     }
     public class Member : Users
     {
