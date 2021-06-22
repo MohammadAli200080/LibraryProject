@@ -49,7 +49,18 @@ namespace Library_Project.Resources.Windows
             Money = Properties.Settings.Default.Bank;            
 
             InitializeComponent();
-            allBooksData.ItemsSource = AllBooks;
+            if (AllBooks.Count > 0)
+            {
+                allBooksData.Visibility = Visibility.Visible;
+                allBooksData.ItemsSource = AllBooks;
+            }
+                
+            if (AllEmployees.Count > 0)
+            {
+                allEmployeesData.Visibility = Visibility.Visible;
+                allEmployeesData.ItemsSource = AllEmployees;
+            }
+                
             DataContext = this;         
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
@@ -129,7 +140,6 @@ namespace Library_Project.Resources.Windows
             window.Show();
             this.Close();
         }
-
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             Managers.PayManager(Convert.ToDecimal(addedMoney.Text));

@@ -132,9 +132,12 @@ namespace Library_Project.Resourses.Windows
                 }
                 else if (type == typeOfUser.Employee)
                 {
+                    ManagerDashboard md = new ManagerDashboard();
                     if (Managers.AddEmployee(Info))
                     {
                         MessageBox.Show("با موفقیت ثبت شد");
+                        //Update the Employees information after adding new employee
+                        md.allEmployeesData.ItemsSource = md.AllEmployees;
                         ImageFill.Source = null;
                         User.Visibility = Visibility.Visible;
                         txtEmail.Text = "";

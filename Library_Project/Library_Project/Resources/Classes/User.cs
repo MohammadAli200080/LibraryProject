@@ -29,9 +29,9 @@ namespace Library_Project.Resources.Classes
         //this function for add new employee in library
         public static bool AddEmployee(List<string> EmpInfo)
         {
-            if (EmpInfo == null || EmpInfo.Count < 6) return false;
+            if (EmpInfo == null || EmpInfo.Count < 5) return false;
             if (DatabaseControl.Exe("INSERT INTO T_Employees (username,password,email,phoneNumber,imgSrc,pocket) " +
-                "VALUES ('" + EmpInfo[0] + "','" + EmpInfo[1] + "','" + EmpInfo[2] + "','" + EmpInfo[3] + "','" + EmpInfo[4] + "','" + EmpInfo[5] + "')"))
+                "VALUES ('" + EmpInfo[0] + "','" + EmpInfo[1] + "','" + EmpInfo[3] + "','" + EmpInfo[2] + "','" + EmpInfo[4] + "','" + 0 + "')"))
                 return true;
             return false;
         }

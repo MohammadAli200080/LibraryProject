@@ -90,7 +90,7 @@ namespace Library_Project.Resourses.Windows
             }
             else if (type == typeOfUser.Employee)
             {
-                if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
+                if (DatabaseControl.Exe("UPDATE T_Employees SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
                 {
                     MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
                     ManagerDashboard managerDashboard = new ManagerDashboard();

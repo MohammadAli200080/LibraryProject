@@ -16,7 +16,7 @@
         <Grid>
             <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="40" Content=".به بخش مدیر خوش آمدید"/>
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="30" Content=".به بخش مدیر خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/ManagerDashboard.png" />
                 </StackPanel>
             </Border>
@@ -27,17 +27,17 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="Black" Margin="208,35,208,-30" FontSize="40">
+                        <Label Foreground="Black" Margin="268,35,208,-30" FontSize="30">
                             به بخش کتاب ها خوش آمدید
                         </Label>
                         <Button x:Name="AddBook" Height="70" Margin="292.5,65,292.5,0" Click="AddBook_Click">
                             <DockPanel Margin="10,0,0,0">
-                                <materialDesign:PackIcon Kind="BookAdd" Width="60" Height="60" Margin="-20,0,65,0"/>
-                                <Label Content="افزودن کتاب" Foreground="White" Margin="-30,0,0,0" FontSize="30"/>
+                                <materialDesign:PackIcon Kind="BookAdd" Width="50" Height="50" Margin="-20,0,65,0"/>
+                                <Label Content="افزودن کتاب" Foreground="White" Margin="-30,0,0,0" FontSize="25"/>
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5"  
+                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5"  
                         FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف"/>
@@ -84,30 +84,40 @@
                         <RowDefinition Height=".5*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,122" FontSize="40" FontWeight="Black">
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,122" FontSize="30" FontWeight="Black">
                         به بخش کارمندان پنل مدیریریت، خوش آمدید
                     </Label>
                     <DockPanel>
                         <Button x:Name="AddEmployee" Width="220" Height="70" Margin="50,100,30,10" Click="AddEmployee_Click">
                             <DockPanel Margin="5,0,0,0">
-                                <materialDesign:PackIcon Kind="AccountAdd" Width="50" Height="50" Margin="-20,0,65,0"/>
+                                <materialDesign:PackIcon Kind="AccountAdd" Width="40" Height="40" Margin="-20,0,65,0"/>
                                 <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="RemoveEmployee" Width="220" Height="70" Margin="30,100,30,10" Click="RemoveEmployee_Click">
                             <DockPanel Margin="10,0,0,0">
-                                <materialDesign:PackIcon Kind="AccountRemove" Width="50" Height="50" Margin="-20,0,65,0"/>
+                                <materialDesign:PackIcon Kind="AccountRemove" Width="40" Height="40" Margin="-20,0,65,0"/>
                                 <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="SalarayEmployee" Width="220" Height="70" Margin="30,100,50,10" Click="SalarayEmployee_Click">
                             <DockPanel Margin="12,0,0,0">
-                                <materialDesign:PackIcon Kind="Money" Width="50" Height="50" Margin="-20,3,65,0" />
+                                <materialDesign:PackIcon Kind="Money" Width="40" Height="40" Margin="-20,3,65,0" />
                                 <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                     </DockPanel>
-                    <DataGrid x:Name="allEmployeesData" Grid.Row="1" Background="WhiteSmoke">
+                    <DataGrid x:Name="allEmployeesData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5"  
+                        FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
+                            <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
+                            <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                    <!--<DataGrid x:Name="allEmployeesData" Grid.Row="1" Background="WhiteSmoke">
                         <ScrollViewer>
                             <ItemsControl ItemsSource="{Binding AllEmployees, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemTemplate>
@@ -130,7 +140,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </ScrollViewer>
-                    </DataGrid>
+                    </DataGrid>-->
                 </Grid>
             </Border>
             <Border Name="BankPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
@@ -140,16 +150,16 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="30" FontWeight="Black">
                             به بخش بانک پنل مدیریریت، خوش آمدید
                         </Label>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="20" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-700,100,500,50" FontSize="20" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,80,50" FontSize="30" FontWeight="Black" Text=":مقدار مبلغی که میخواهید به بانک پول بیفزایید را وارد  کنید" Height="52" Width="720"/>
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,80,50" FontSize="20" FontWeight="Black" Text=":مقدار مبلغی که میخواهید به بانک پول بیفزایید را وارد  کنید" Height="52" Width="720"/>
                         <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#7400B8"/>
                             <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
