@@ -121,5 +121,14 @@ namespace Library_Project.Resourses.Windows
             Login.Show();
             this.Close();
         }
+
+        private void txMoney_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txMoney.Text != string.Empty)
+            {
+                txMoney.Text = string.Format("{0:N0}", double.Parse(txMoney.Text.Replace(",", "")));
+                txMoney.Select(txMoney.Text.Length, 0);
+            }
+        }
     }
 }

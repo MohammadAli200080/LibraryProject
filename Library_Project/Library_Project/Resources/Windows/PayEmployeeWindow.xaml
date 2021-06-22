@@ -19,11 +19,11 @@
 
                 <materialDesign:PackIcon Margin="96,15" Kind="Payment" Width="Auto" Height="100" Foreground="#FF1F1F64" HorizontalAlignment="Stretch"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="payment" Width="200" Height="40" Margin="10,10,0,10" Background="#FFEDE8F3" Foreground="#FF654474" FontWeight="Bold" TextAlignment="Center"  FontSize="25" HorizontalAlignment="Left" />
+                    <TextBox x:Name="payment" TextChanged="payment_TextChanged" Width="200" Height="40" Margin="10,10,0,10" Background="#FFEDE8F3" Foreground="#FF654474" FontWeight="Bold" TextAlignment="Center"  FontSize="25" HorizontalAlignment="Left" />
                     <TextBlock Width="242" Height="40" Margin="35,10,0,10" Background="#FFEDE8F3" Foreground="#FF654474" FontWeight="Bold" FontSize="24" TextAlignment="Center" Text=":مقدار مبلغ قابل پرداخت" HorizontalAlignment="Right"/>
                 </StackPanel>
                 <StackPanel Margin="0,20" Orientation="Horizontal">
-                    <PasswordBox x:Name="password" Width="155" Height="50" Margin="35,0,30,0" HorizontalAlignment="Left" Background="#FFE6DFEA" materialDesign:HintAssist.Hint="رمز عبور" HorizontalContentAlignment="Right"/>
+                    <PasswordBox x:Name="password" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" Width="155" Height="50" Margin="35,0,30,0" HorizontalAlignment="Left" Background="#FFE6DFEA" materialDesign:HintAssist.Hint="رمز عبور" HorizontalContentAlignment="Right"/>
                     <TextBlock Width="250" Height="40" Margin="15,10,0,10" Background="#FFEDE8F3" Foreground="#FF654474" FontWeight="Bold" FontSize="24" TextAlignment="Center" Text=":رمز عبور خود را وارد کنید" HorizontalAlignment="Right"/>
                 </StackPanel>
                 <StackPanel Margin="0,5" Orientation="Horizontal">

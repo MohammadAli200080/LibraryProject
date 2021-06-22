@@ -73,7 +73,7 @@ namespace Library_Project.Resources.Windows
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
+       
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();

@@ -114,8 +114,17 @@
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
+                            
+                            <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
-                        
+
                     </DataGrid>
                     <!--<DataGrid x:Name="allEmployeesData" Grid.Row="1" Background="WhiteSmoke">
                         <ScrollViewer>
@@ -155,12 +164,12 @@
                         </Label>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="20" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-700,100,500,50" FontSize="20" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-600,100,500,50" FontSize="20" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,80,50" FontSize="20" FontWeight="Black" Text=":مقدار مبلغی که میخواهید به بانک پول بیفزایید را وارد  کنید" Height="52" Width="720"/>
-                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,70,80,50" FontSize="20" FontWeight="Black" Text="مقدار مبلغی که میخواهید به بانک پول بیفزایید را وارد  کنید :" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal" FlowDirection="RightToLeft">
                             <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#7400B8"/>
                             <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                  Width="330" Height="60" Background="#FFEDE8F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="مبلغ" x:Name="addedMoney"/>

@@ -38,6 +38,9 @@ namespace Library_Project.Resources.Classes
         //this function for remove employee in library
         public static bool RemoveEmployee(string UserName)
         {
+            var data = DatabaseControl.Select("SELECT (username) FROM T_Employees WHERE username ='" + UserName + "' ");
+            if (data.Rows.Count == 0)
+                return false;
             if (DatabaseControl.Exe("DELETE FROM T_Employees WHERE username ='" + UserName + "'"))
                 return true;
             return false;
@@ -83,7 +86,8 @@ namespace Library_Project.Resources.Classes
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Employees");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
+            string passWord, Username, email, phoneNumber, pocket;
+            byte[] image;
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
@@ -91,7 +95,7 @@ namespace Library_Project.Resources.Classes
                 Username = data.Rows[i]["username"].ToString();
                 email = data.Rows[i]["email"].ToString();
                 phoneNumber = data.Rows[i]["phoneNumber"].ToString();
-                image = data.Rows[i]["imgSrc"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
                 pocket = data.Rows[i]["pocket"].ToString();
 
                 employeesTmp.Add(new Employees
@@ -111,7 +115,7 @@ namespace Library_Project.Resources.Classes
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
         public decimal Pocket { get; set; }
 
         public static bool date(string d1, string d2)

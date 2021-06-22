@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Library_Project.Resources.Classes;
 using Library_Project.Resources.Windows;
+using System.IO;
+using System.Data.SqlClient;
 
 namespace Library_Project.Resourses.Windows
 {
@@ -26,6 +28,8 @@ namespace Library_Project.Resourses.Windows
         public static List<string> Info = new List<string>();
         bool IsImage = false;
         typeOfUser type;
+
+        string byteOfImage;
         public Register(typeOfUser type)
         {
             this.type = type;
@@ -55,20 +59,43 @@ namespace Library_Project.Resourses.Windows
                 ImageFill.Source = new BitmapImage(new Uri(open.FileName));
                 User.Visibility = System.Windows.Visibility.Hidden;
                 IsImage = true;
+
+                open.OpenFile();
+                FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
+                byteOfImage = ImageToByte(fs);
+                DatabaseControl.Exe("INSERT INTO T_Employees (imgSrc) VALUES ('" + byteOfImage + "')");
             }
+        }
+        public static ImageSource ByteToImage(byte[] imageData)
+        {
+            BitmapImage biImg = new BitmapImage();
+            MemoryStream ms = new MemoryStream(imageData);
+            biImg.BeginInit();
+            biImg.StreamSource = ms;
+            biImg.EndInit();
+
+            ImageSource imgSrc = biImg as ImageSource;
+
+            return imgSrc;
+        }
+        public static string ImageToByte(FileStream fs)
+        {
+            byte[] imgBytes = new byte[fs.Length];
+            fs.Read(imgBytes, 0, Convert.ToInt32(fs.Length));
+            string encodeData = Convert.ToBase64String(imgBytes, Base64FormattingOptions.InsertLineBreaks);
+
+            return encodeData;
         }
         private void btnCreatAcount_Click(object sender, RoutedEventArgs e)
         {
-            string ImagePath;
             Info = new List<string>();
             if (IsImage)
             {
-                ImagePath = open.FileName;
                 Info.Add(txtuserName.Text);
                 Info.Add(txtPassword.Password);
                 Info.Add(txtPhone.Text);
                 Info.Add(txtEmail.Text);
-                Info.Add(ImagePath);
+                Info.Add(byteOfImage);
 
                 if (!Library_Project.Resources.Classes.Validation.IsValidUsername(Info[0]))
                 {

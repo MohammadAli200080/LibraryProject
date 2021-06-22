@@ -83,7 +83,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Width="510" FlowDirection="RightToLeft">
                             <Border BorderBrush="White" BorderThickness="1" Width="450" Margin="30,0,0,0" Height="40">
-                                <TextBox x:Name="txMoney" Margin="10,7,5,0" Foreground="White"
+                                <TextBox x:Name="txMoney" TextChanged="txMoney_TextChanged" Margin="10,7,5,0" Foreground="White"
                                  materialDesign:HintAssist.Hint="مبلغ" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
                             </Border>
                         </StackPanel>

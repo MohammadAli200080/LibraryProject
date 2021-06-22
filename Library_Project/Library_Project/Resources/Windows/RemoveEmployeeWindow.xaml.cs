@@ -28,11 +28,15 @@ namespace Library_Project.Resources.Windows
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             if (Managers.RemoveEmployee(name.Text.Trim()))
+            {
                 MessageBox.Show("کارمند با موفقیت حذف شد");
+                ManagerDashboard md = new ManagerDashboard();
+                md.Show();
+                this.Close();
+            }
+            
             else MessageBox.Show("همچین کاربری موجود نیست");
-            ManagerDashboard md = new ManagerDashboard();
-            md.Show();
-            this.Close();
+            name.Text = "";          
         }
 
         private void Cancle_Click(object sender, RoutedEventArgs e)
