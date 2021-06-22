@@ -12,6 +12,11 @@ namespace Library_Project.Resources.Classes
 {
     public class DatabaseControl
     {
+        /// <summary>
+        /// a method for selectng a specific data from database.
+        /// </summary>
+        /// <param name="inputCmd">command which will later be used for selecting datatable.</param>
+        /// <returns>the data table of specified command.</returns>
         public static DataTable Select(string inputCmd)
         {
             DataTable data = new DataTable();
@@ -55,6 +60,12 @@ namespace Library_Project.Resources.Classes
                 sqlcon.Close();
             }
         }
+        /// <summary>
+        /// it does the same thing as Select Method. with the difference that it takes a SqlConnection as paramter.
+        /// </summary>
+        /// <param name="commandText"></param>
+        /// <param name="connection"></param>
+        /// <returns></returns>
         public static DataTable TableFiller(string commandText, SqlConnection connection)
         {
             if (connection.State == ConnectionState.Closed)
