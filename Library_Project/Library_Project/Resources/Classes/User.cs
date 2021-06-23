@@ -269,7 +269,7 @@ namespace Library_Project.Resources.Classes
             }
             return MembersTmp;
         }
-        public static List<Member> TakeDelayedMemebrsInPayment()
+        public static List<Member> TakeDelayedMembersInPayment()
         {
             List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
@@ -351,16 +351,16 @@ namespace Library_Project.Resources.Classes
         //for remove member from Library
         public static bool RemoveMember(string UserName)
         {
-            if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username = '" + UserName + "'"))
+            if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username='" + UserName + "'"))
                 return true;
             return false;
         }
 
-        public static string GetMoneyOfEmployee(string username)
+        public static decimal GetMoneyOfEmployee(string username)
         {
-            string command = "select * from T_Members where username ='" + username + "'";
+            string command = "SELECT * FROM T_Employees WHERE username='" + username + "'";
             var data = DatabaseControl.Select(command);
-            return data.Rows[0]["pocket"].ToString();
+            return Convert.ToDecimal(data.Rows[0]["pocket"].ToString());
         }
     }
     public class Member : Users
@@ -469,7 +469,7 @@ namespace Library_Project.Resources.Classes
         }
         public static string GetMemberMoney(string username)
         {
-            string command = "select * from T_Members where username ='"+username+"'";
+            string command = "SELECT * FROM T_Members WHERE username='" + username + "'";
             var data = DatabaseControl.Select(command);
             return data.Rows[0]["pocket"].ToString();
         }
