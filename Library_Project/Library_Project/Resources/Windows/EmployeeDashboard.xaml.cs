@@ -238,7 +238,14 @@ namespace Library_Project.Resources.Windows
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                MessageBox.Show("ابتدا نام شخص مورد نظر را وارد کنید.");
+                SearchBox.Clear();
+                return;
+            }
+            SearchedMemberWindow window = new SearchedMemberWindow(SearchBox.Text.Trim());
+            window.Show();
         }
     }
 }

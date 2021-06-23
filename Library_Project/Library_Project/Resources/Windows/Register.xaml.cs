@@ -62,29 +62,9 @@ namespace Library_Project.Resourses.Windows
 
                 open.OpenFile();
                 FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
-                byteOfImage = ImageToByte(fs);
+                byteOfImage = ImageControl.ImageToByte(fs);
                 DatabaseControl.Exe("INSERT INTO T_Employees (imgSrc) VALUES ('" + byteOfImage + "')");
             }
-        }
-        public static ImageSource ByteToImage(byte[] imageData)
-        {
-            BitmapImage biImg = new BitmapImage();
-            MemoryStream ms = new MemoryStream(imageData);
-            biImg.BeginInit();
-            biImg.StreamSource = ms;
-            biImg.EndInit();
-
-            ImageSource imgSrc = biImg as ImageSource;
-
-            return imgSrc;
-        }
-        public static string ImageToByte(FileStream fs)
-        {
-            byte[] imgBytes = new byte[fs.Length];
-            fs.Read(imgBytes, 0, Convert.ToInt32(fs.Length));
-            string encodeData = Convert.ToBase64String(imgBytes, Base64FormattingOptions.InsertLineBreaks);
-
-            return encodeData;
         }
         private void btnCreatAcount_Click(object sender, RoutedEventArgs e)
         {

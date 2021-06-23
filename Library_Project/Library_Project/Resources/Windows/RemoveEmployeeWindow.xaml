@@ -8,18 +8,18 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         mc:Ignorable="d"
-        Height="600" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  WindowStyle="None">
-    <Grid Background="#7400B8">
+        Height="700" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  WindowStyle="None">
+    <Grid Background="#FF0032B8">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="WhiteSmoke" BorderBrush="WhiteSmoke"  VerticalAlignment="Center" BorderThickness="34" CornerRadius="5" Margin="20,14" Height="350">
+        <Border Grid.Row="0" Background="WhiteSmoke" BorderBrush="WhiteSmoke"  VerticalAlignment="Center" BorderThickness="34" CornerRadius="5" Margin="10,58,10,0" Height="409">
             <StackPanel Orientation="Vertical">
                 <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Delete" Margin="15" Width="100" Height="100" Foreground="#FF1F1F64"/>
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Margin="15,35,20,15" Kind="RenameBox" Width="30" Height="30" Foreground="#7400B8"/>
+                    <materialDesign:PackIcon Margin="15,35,20,15" Kind="RenameBox" Width="30" Height="30" Foreground="#FF0032B8"/>
                     <TextBox x:Name="name" Width="280" Height="40" Margin="-15,30,21,10" Background="#FFEDE8F3" Foreground="#FF424141" FontWeight="Bold"
                              Style="{DynamicResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="نام کاربری"/>
                 </StackPanel>
@@ -27,12 +27,10 @@
         </Border>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}"
-                    Width="100" Height="50" Margin="105,44,90,39" Background="#FFC7155E" Click="Cancle_Click" FontWeight="Black" >
+            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Width="150" Height="75" Margin="50,44,120,39" Background="#FFC7155E" Click="Cancle_Click" FontWeight="Black" FontSize="20">
                 انصراف
             </Button>
-            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" 
-                    Width="100" Height="50" Margin="-200,44,-200,39" Background="#FF1F1F64" Click="Delete_Click" FontWeight="Black">
+            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Width="150" Height="75" Margin="-200,44,-200,39" Background="#FF1F1F64" Click="Delete_Click" FontWeight="Black" FontSize="20">
                 حذف کن
             </Button>
         </StackPanel>
