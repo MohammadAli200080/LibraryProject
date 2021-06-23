@@ -166,7 +166,7 @@
 
                     </DataGrid>
                     <StackPanel Grid.Row="2">
-                        <TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,20,80,10" FontSize="30" Text="نام عضوی که می خواهید جستوجو کنید را وارد کنید:" FontWeight="Black" Height="52" Width="720"/>
+                        <TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,20,80,10" FontSize="20" Text="نام عضوی که می خواهید جستوجو کنید را وارد کنید:" FontWeight="Black" Height="52" Width="720"/>
                         <StackPanel Margin="132,0,116,0" Orientation="Horizontal">
                             <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="Search" Click="Search_Click">
                                 <materialDesign:PackIcon Kind="Search" Width="50" Height="50" Foreground="#FF1808B9"/>

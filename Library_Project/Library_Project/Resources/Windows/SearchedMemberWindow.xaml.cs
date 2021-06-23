@@ -23,19 +23,70 @@ namespace Library_Project.Resources.Windows
     {
         public SearchedMemberWindow(string username)
         {
-            var member = Employees.SearchAllMember(username)[0];
-
             InitializeComponent();
+            if (Employees.SearchAllMember(username).Count != 0)
+            {
+                var member = Employees.SearchAllMember(username)[0];
+                image.Source = ImageControl.ByteToImage(member.Image);
+                txtUsername.Text = member.UserName;
+                txtEmail.Text = member.Email;
+                txtPhoneNumber.Text = member.PhoneNumber;
+                txtRegisterDay.Text = member.RegisteryDay;
+                txtsubscription.Text = member.SubsriptionDateRenewal;
 
-            image.Source = ImageControl.ByteToImage(member.Image);
-            txtUsername.Text = member.UserName;
-            txtEmail.Text = member.Email;
-            txtPhoneNumber.Text = member.PhoneNumber;
+                DateTime a = DateTime.Parse(member.SubsriptionDateRenewal);
+                DateTime b = DateTime.Parse(member.SubsriptionDate);
+                TimeSpan result = b - a;
+
+                if (int.Parse(result.TotalDays.ToString()) > 0)
+                {
+                    txtsubscriptionRemain.Background = new SolidColorBrush(Colors.Green);
+                    txtsubscriptionRemain.Foreground = new SolidColorBrush(Colors.Black);
+                    txtsubscriptionRemain.Text = int.Parse(result.TotalDays.ToString()).ToString() + "روز باقی مانده";
+                }
+                else
+                {
+                    txtsubscriptionRemain.Background = new SolidColorBrush(Colors.Red);
+                    txtsubscriptionRemain.Foreground = new SolidColorBrush(Colors.Black);
+                    txtsubscriptionRemain.Text = Math.Abs(int.Parse(result.TotalDays.ToString())) + "روز گذشته است";
+                }
+                if (BorrowedBook.infoBorrowed(username).Count != 0)
+                {
+                    var Borrowed = BorrowedBook.infoBorrowed(username);
+                    BookBorrowed.Visibility = Visibility.Visible;
+                    for(int i=0;i< BorrowedBook.infoBorrowed(username).Count; i++)
+                    {
+                        if (int.Parse(BorrowedBook.infoBorrowed(username)[i].remainDate) > 0)
+                        {
+                            Borrowed[i].remainDate += "روز باقی مانده است";
+                        }
+                        if (int.Parse(BorrowedBook.infoBorrowed(username)[i].remainDate) < 0)
+                        {
+                            Borrowed[i].remainDate += "روز گذشته است";
+                        }
+                    }
+                    BookBorrowed.ItemsSource = Borrowed;
+                }
+                else
+                {
+                    Emty.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                MessageBox.Show("چنین کابری یافت نشد");
+            }
+                
         }
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

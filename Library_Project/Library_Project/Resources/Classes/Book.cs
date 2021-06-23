@@ -9,14 +9,34 @@ using System.IO;
 
 namespace Library_Project.Resources.Classes
 {
+    public class BorrowedBook
+    {
+        public string nameBook { get; set; }
+        public string gotDate { get; set; }
+        public string returnDate { get; set; }
+        public string remainDate { get; set; }
+
+        public static List<BorrowedBook> infoBorrowed(string UserName)
+        {
+            DataTable data = DatabaseControl.Select("SELECT * FROM T_Borrowed INNER JOIN T_Members ON T_Borrowed.username=T_Members.username");
+            List<BorrowedBook> Borrowed = new List<BorrowedBook>();
+            string NameBook, GotDate, ReturnDate;
+            string RemainDate;
+            for(int i = 0; i < data.Rows.Count; i++)
+            {
+                NameBook = data.Rows[i]["bookName"].ToString();
+                GotDate = data.Rows[i]["gotDate"].ToString();
+                ReturnDate = data.Rows[i]["returnDate"].ToString();
+                TimeSpan result = DateTime.Parse(ReturnDate) - DateTime.Parse(GotDate);
+                RemainDate = int.Parse(result.TotalDays.ToString()).ToString();
+
+                Borrowed.Add(new BorrowedBook { nameBook = NameBook, gotDate = GotDate, returnDate = ReturnDate, remainDate = RemainDate });
+            }
+            return Borrowed;
+        }
+    }
     public class Book
     {
-        //public string Name { get; set; }
-        //public string Author { get; set; }
-        //public string Category { get; set; }
-        //public int PublishNumber { get; set; }
-        //public int Quantity { get; set; }
-
         private string _name;
         private string _author;
         private string _category;
@@ -130,7 +150,7 @@ namespace Library_Project.Resources.Classes
 
             return books.ToArray();
         }
-
+        
         // <summary> a method for taking Available books from database. it takes all the books
         // first and then checks wether thay have been borrowed or not. if borrowed, then
         // they will be deleted from the list </summary>

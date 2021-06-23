@@ -11,10 +11,8 @@ namespace Library_Project.Resources.Classes
 {
     class ImageControl
     {
-        public static ImageSource ByteToImage(string imageDataStr)
+        public static ImageSource ByteToImage(byte[] imageData)
         {
-            byte[] imageData = Encoding.ASCII.GetBytes(imageDataStr);
-
             BitmapImage biImg = new BitmapImage();
             MemoryStream ms = new MemoryStream(imageData);
             biImg.BeginInit();

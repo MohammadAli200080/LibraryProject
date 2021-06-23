@@ -26,7 +26,6 @@ namespace Library_Project.Resources.Classes
                     return true;
 
                 table.Clear();
-
                 table = DatabaseControl.TableFiller("select * from T_Members where email = '" + email + "'", connection);
 
                 if (table.Rows.Count == 1)
@@ -57,11 +56,10 @@ namespace Library_Project.Resources.Classes
                     return true;
 
                 table.Clear();
-
                 table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username + "'", connection);
 
                 if (table.Rows.Count == 1)
-                    return true;
+                    return true;        
             }
             catch (Exception)
             {
@@ -82,17 +80,17 @@ namespace Library_Project.Resources.Classes
 
             try
             {
+
                 DataTable table = DatabaseControl.TableFiller("select * from T_Employees where phoneNumber = '" + phoneNumber + "'", connection);
 
-                if (table.Rows.Count == 1)
-                    return true;
+                    if (table.Rows.Count == 1)
+                        return true;
 
                 table.Clear();
-
                 table = DatabaseControl.TableFiller("select * from T_Members where phoneNumber = '" + phoneNumber + "'", connection);
 
-                if (table.Rows.Count == 1)
-                    return true;
+                    if (table.Rows.Count == 1)
+                        return true;              
             }
             catch (Exception)
             {

@@ -245,7 +245,13 @@ namespace Library_Project.Resources.Windows
                 return;
             }
             SearchedMemberWindow window = new SearchedMemberWindow(SearchBox.Text.Trim());
-            window.Show();
+            if (Employees.SearchAllMember(SearchBox.Text).Count != 0)
+            {
+                window.Show();
+                SearchBox.Text = "";
+            }
+            else
+                SearchBox.Text = "";
         }
     }
 }

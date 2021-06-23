@@ -134,18 +134,20 @@ namespace Library_Project.Resources.Classes
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
-            string register, subsriptionDate;
+            string passWord, Username, email, phoneNumber, pocket;
+            string register, subsriptionDate, subsriptionDateRenewal;
+            byte[] image;
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 passWord = data.Rows[i]["password"].ToString();
                 Username = data.Rows[i]["username"].ToString();
                 email = data.Rows[i]["email"].ToString();
                 phoneNumber = data.Rows[i]["phoneNumber"].ToString();
-                image = data.Rows[i]["imgSrc"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
                 pocket = data.Rows[i]["pocket"].ToString();
                 register = data.Rows[i]["registeryDate"].ToString();
                 subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
+                subsriptionDateRenewal = data.Rows[i]["renewaldate"].ToString();
 
                 MembersTmp.Add(new Member
                 {
@@ -156,6 +158,7 @@ namespace Library_Project.Resources.Classes
                     Image = image,
                     RegisteryDay = register,
                     SubsriptionDate = subsriptionDate,
+                    SubsriptionDateRenewal = subsriptionDateRenewal,
                     Balance = decimal.Parse(pocket)
                 });
             }
@@ -168,19 +171,21 @@ namespace Library_Project.Resources.Classes
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + MemberName + "'");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
-            string register, subsriptionDate;
+            string passWord, Username, email, phoneNumber, pocket;
+            string register, subsriptionDate, subsriptionDateRenewal;
+            byte[] image;
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                passWord = data.Rows[0]["password"].ToString();
-                Username = data.Rows[0]["username"].ToString();
-                email = data.Rows[0]["email"].ToString();
-                phoneNumber = data.Rows[0]["phoneNumber"].ToString();
-                image = data.Rows[0]["imgSrc"].ToString();
-                pocket = data.Rows[0]["pocket"].ToString();
-                register = data.Rows[0]["registeryDate"].ToString();
-                subsriptionDate = data.Rows[0]["subscriptionEndingDate"].ToString();
+                passWord = data.Rows[i]["password"].ToString();
+                Username = data.Rows[i]["username"].ToString();
+                email = data.Rows[i]["email"].ToString();
+                phoneNumber = data.Rows[i]["phoneNumber"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
+                pocket = data.Rows[i]["pocket"].ToString();
+                register = data.Rows[i]["registeryDate"].ToString();
+                subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
+                subsriptionDateRenewal = data.Rows[i]["renewaldate"].ToString();
 
                 MembersTmp.Add(new Member
                 {
@@ -191,6 +196,7 @@ namespace Library_Project.Resources.Classes
                     Image = image,
                     RegisteryDay = register,
                     SubsriptionDate = subsriptionDate,
+                    SubsriptionDateRenewal=subsriptionDateRenewal,
                     Balance = decimal.Parse(pocket)
                 });
             }
@@ -203,8 +209,9 @@ namespace Library_Project.Resources.Classes
             data = DatabaseControl.Select("SELECT T_Members.username,T_Members.password,T_Members.email,T_Members.phoneNumber,T_Members.imgSrc,T_Members.pocket,T_Members.registeryDate,T_Members.subscriptionEndingDate,T_Borrowed.returnDate FROM T_Members INNER " +
                 "JOIN T_Borrowed ON T_Borrowed.username = T_Members.username");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
+            string passWord, Username, email, phoneNumber, pocket;
             string register, subsriptionDate;
+            byte[] image;
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 if (date(DateTime.Now.ToShortDateString().ToString(), data.Rows[i].ItemArray[8].ToString()))
@@ -213,7 +220,7 @@ namespace Library_Project.Resources.Classes
                     Username = data.Rows[i]["username"].ToString();
                     email = data.Rows[i]["email"].ToString();
                     phoneNumber = data.Rows[i]["phoneNumber"].ToString();
-                    image = data.Rows[i]["imgSrc"].ToString();
+                    image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
                     register = data.Rows[i]["registeryDate"].ToString();
                     subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
                     pocket = data.Rows[i]["pocket"].ToString();
@@ -241,19 +248,20 @@ namespace Library_Project.Resources.Classes
             data = DatabaseControl.Select("SELECT T_Members.username,T_Members.password,T_Members.email,T_Members.phoneNumber,T_Members.imgSrc,T_Members.pocket,T_Members.registeryDate,T_Members.subscriptionEndingDate,T_Borrowed.returnDate FROM T_Members INNER " +
                 "JOIN T_Borrowed ON T_Borrowed.username = T_Members.username AND T_Members.username='" + MemberName + "'");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
+            string passWord, Username, email, phoneNumber, pocket;
             string register, subsriptionDate;
+            byte[] image;
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                passWord = data.Rows[0]["password"].ToString();
-                Username = data.Rows[0]["username"].ToString();
-                email = data.Rows[0]["email"].ToString();
-                phoneNumber = data.Rows[0]["phoneNumber"].ToString();
-                image = data.Rows[0]["imgSrc"].ToString();
-                pocket = data.Rows[0]["pocket"].ToString();
-                register = data.Rows[0]["registeryDate"].ToString();
-                subsriptionDate = data.Rows[0]["subscriptionEndingDate"].ToString();
+                passWord = data.Rows[i]["password"].ToString();
+                Username = data.Rows[i]["username"].ToString();
+                email = data.Rows[i]["email"].ToString();
+                phoneNumber = data.Rows[i]["phoneNumber"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
+                pocket = data.Rows[i]["pocket"].ToString();
+                register = data.Rows[i]["registeryDate"].ToString();
+                subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
 
                 MembersTmp.Add(new Member
                 {
@@ -275,8 +283,9 @@ namespace Library_Project.Resources.Classes
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
+            string passWord, Username, email, phoneNumber, pocket;
             string register, subsriptionDate;
+            byte[] image;
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 if (date(DateTime.Now.ToShortDateString().ToString(), data.Rows[i].ItemArray[7].ToString()))
@@ -285,7 +294,7 @@ namespace Library_Project.Resources.Classes
                     Username = data.Rows[i]["username"].ToString();
                     email = data.Rows[i]["email"].ToString();
                     phoneNumber = data.Rows[i]["phoneNumber"].ToString();
-                    image = data.Rows[i]["imgSrc"].ToString();
+                    image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
                     register = data.Rows[i]["registeryDate"].ToString();
                     subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
                     pocket = data.Rows[i]["pocket"].ToString();
@@ -311,19 +320,20 @@ namespace Library_Project.Resources.Classes
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + MemberName + "'");
 
-            string passWord, Username, email, phoneNumber, image, pocket;
+            string passWord, Username, email, phoneNumber, pocket;
             string register, subsriptionDate;
+            byte[] image;
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                passWord = data.Rows[0]["password"].ToString();
-                Username = data.Rows[0]["username"].ToString();
-                email = data.Rows[0]["email"].ToString();
-                phoneNumber = data.Rows[0]["phoneNumber"].ToString();
-                image = data.Rows[0]["imgSrc"].ToString();
-                pocket = data.Rows[0]["pocket"].ToString();
-                register = data.Rows[0]["registeryDate"].ToString();
-                subsriptionDate = data.Rows[0]["subscriptionEndingDate"].ToString();
+                passWord = data.Rows[i]["password"].ToString();
+                Username = data.Rows[i]["username"].ToString();
+                email = data.Rows[i]["email"].ToString();
+                phoneNumber = data.Rows[i]["phoneNumber"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
+                pocket = data.Rows[i]["pocket"].ToString();
+                register = data.Rows[i]["registeryDate"].ToString();
+                subsriptionDate = data.Rows[i]["subscriptionEndingDate"].ToString();
 
                 MembersTmp.Add(new Member
                 {
@@ -351,6 +361,9 @@ namespace Library_Project.Resources.Classes
         //for remove member from Library
         public static bool RemoveMember(string UserName)
         {
+            var data = DatabaseControl.Select("SELECT (username) FROM T_Members WHERE username ='" + UserName + "' ");
+            if (data.Rows.Count == 0)
+                return false;
             if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username='" + UserName + "'"))
                 return true;
             return false;
@@ -367,9 +380,10 @@ namespace Library_Project.Resources.Classes
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
         public string RegisteryDay { get; set; }
         public string SubsriptionDate { get; set; }
+        public string SubsriptionDateRenewal { get; set; }
         public decimal Balance { get; set; }
 
         public static bool date2(string d1, string d2)
@@ -458,7 +472,7 @@ namespace Library_Project.Resources.Classes
             try
             {
                 if (DatabaseControl.Exe("INSERT INTO T_Members VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "'," +
-                       "'" + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "')"))
+                       "'" + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "','" + DateTime.Now.ToShortDateString() + "')"))
                     return true;
             }
             catch
