@@ -21,9 +21,9 @@ namespace Library_Project.Resources.Windows
     /// </summary>
     public partial class MemberDashboard : Window
     {
-        public string Username { get; set; }
+        private string Username { get; set; }
         public MemberDashboard(string username)
-        {
+        {   
             InitializeComponent();
             DataContext = this;
 
@@ -43,6 +43,35 @@ namespace Library_Project.Resources.Windows
         private void HomePn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             HomePan.Visibility = Visibility.Visible;
+            BookPan.Visibility = Visibility.Collapsed;
+            MyBooksPan.Visibility = Visibility.Collapsed;
+            WalletPan.Visibility = Visibility.Collapsed;
+        }
+        private void BooksPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            HomePan.Visibility = Visibility.Collapsed;
+            BookPan.Visibility = Visibility.Visible;
+            MyBooksPan.Visibility = Visibility.Collapsed;
+            WalletPan.Visibility = Visibility.Collapsed;
+        }
+        private void MyBooksPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            HomePan.Visibility = Visibility.Collapsed;
+            BookPan.Visibility = Visibility.Collapsed;
+            MyBooksPan.Visibility = Visibility.Visible;
+            WalletPan.Visibility = Visibility.Collapsed;
+        }
+        private void WalletPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            HomePan.Visibility = Visibility.Collapsed;
+            BookPan.Visibility = Visibility.Collapsed;
+            MyBooksPan.Visibility = Visibility.Collapsed;
+            WalletPan.Visibility = Visibility.Visible;
+        }
+
+        private void AccountPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            HomePan.Visibility = Visibility.Collapsed;
             BookPan.Visibility = Visibility.Collapsed;
             MyBooksPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Collapsed;
@@ -80,6 +109,21 @@ namespace Library_Project.Resources.Windows
         }
 
         private void Pay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Borrow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GiveBack_Click(object sender, RoutedEventArgs e)
         {
 
         }
