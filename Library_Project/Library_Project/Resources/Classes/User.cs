@@ -355,6 +355,13 @@ namespace Library_Project.Resources.Classes
                 return true;
             return false;
         }
+
+        public static string GetMoneyOfEmployee(string username)
+        {
+            string command = "select * from T_Members where username ='" + username + "'";
+            var data = DatabaseControl.Select(command);
+            return data.Rows[0]["pocket"].ToString();
+        }
     }
     public class Member : Users
     {
@@ -459,6 +466,12 @@ namespace Library_Project.Resources.Classes
 
             }
             return false;
+        }
+        public static string GetMemberMoney(string username)
+        {
+            string command = "select * from T_Members where username ='"+username+"'";
+            var data = DatabaseControl.Select(command);
+            return data.Rows[0]["pocket"].ToString();
         }
     }
 }
