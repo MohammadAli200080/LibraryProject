@@ -22,9 +22,10 @@ namespace Library_Project.Resourses.Windows
     /// </summary>
     public partial class Payment : Window
     {
-        typeOfUser type;
+        private typeOfUser Type { get; set; } 
         public Payment(typeOfUser type)
         {
+            this.Type = type;
             InitializeComponent();
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -78,7 +79,7 @@ namespace Library_Project.Resourses.Windows
                 return;
             }
 
-            if (type == typeOfUser.Member)
+            if (Type == typeOfUser.Member)
             {
                 if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
                 {
@@ -88,7 +89,7 @@ namespace Library_Project.Resourses.Windows
                     this.Close();
                 }
             }
-            else if (type == typeOfUser.Employee)
+            else if (Type == typeOfUser.Employee)
             {
                 if (DatabaseControl.Exe("UPDATE T_Employees SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
                 {
