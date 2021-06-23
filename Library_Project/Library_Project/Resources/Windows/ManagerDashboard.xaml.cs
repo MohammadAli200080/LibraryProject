@@ -64,6 +64,7 @@ namespace Library_Project.Resources.Windows
             DataContext = this;         
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged(String info)

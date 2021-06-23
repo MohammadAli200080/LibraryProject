@@ -37,8 +37,7 @@
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5"  
-                        FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -47,34 +46,6 @@
                             <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}"/>
                             <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
                         </DataGrid.Columns>
-                        <!--<ScrollViewer>--><!--
-                        <ItemsControl FlowDirection="RightToLeft" ItemsSource="{Binding AllBooks, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock Grid.Column="0" Margin="30, 5, 10, 5" TextAlignment="Center" Text="{Binding Name}"                   Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                        <TextBlock Grid.Column="1" Margin="10, 5, 10, 5" Text="{Binding Author}" TextAlignment="Center"                 Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                        <TextBlock Grid.Column="2" Margin="10, 5, 10, 5" Text="{Binding Category}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                        <TextBlock Grid.Column="3" Margin="10, 5, 10, 5" Text="{Binding PublishNumber}" TextAlignment="Center"          Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                        <TextBlock Grid.Column="4" Margin="10, 5, 30, 5" Text="{Binding Quantity}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-                                    </Grid>
-
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        --><!--</ScrollViewer>-->
                     </DataGrid>
                 </Grid>
             </Border>
@@ -114,7 +85,7 @@
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
-                            
+
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -126,30 +97,6 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <!--<DataGrid x:Name="allEmployeesData" Grid.Row="1" Background="WhiteSmoke">
-                        <ScrollViewer>
-                            <ItemsControl ItemsSource="{Binding AllEmployees, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0" Margin="60, 5, 10, 5" TextAlignment="Center" Text="{Binding UserName}"                   Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                            <TextBlock Grid.Column="1" Margin="10, 5, 10, 5" Text="{Binding Email}" TextAlignment="Center"                 Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-
-                                            <TextBlock Grid.Column="2" Margin="10, 5, 60, 5" Text="{Binding PhoneNumber}" TextAlignment="Center"               Foreground="#FF64079B" FontSize="20" FontWeight="Bold"/>
-                                        </Grid>
-
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </DataGrid>-->
                 </Grid>
             </Border>
             <Border Name="BankPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
