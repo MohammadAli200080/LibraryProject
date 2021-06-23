@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,16 +21,130 @@ namespace Library_Project.Resources.Windows
     /// <summary>
     /// Interaction logic for Employee.xaml
     /// </summary>
-    public partial class EmployeeDashboard : Window
+
+    public partial class EmployeeDashboard : Window, INotifyPropertyChanged
     {
+        private decimal Money { get; set; }
+
+        private List<Book> _allBooks;
+        public List<Book> AllBooks
+        {
+            get { return _allBooks; }
+            set { _allBooks = value; NotifyPropertyChanged("AllBooks"); }
+        }
+
+        private List<Book> _borrowedBooks;
+        public List<Book> BorrowedBooks
+        {
+            get { return _borrowedBooks; }
+            set { _borrowedBooks = value; NotifyPropertyChanged("BorrowedBooks"); }
+        }
+
+        private List<Book> _availableBoos;
+        public List<Book> AvailableBooks
+        {
+            get { return _availableBoos; }
+            set { _availableBoos = value; NotifyPropertyChanged("AvailableBooks"); }
+        }
+
+        private List<Member> _allMembers;
+        public List<Member> AllMembers
+        {
+            get { return _allMembers; }
+            set { _allMembers = value; NotifyPropertyChanged("AllMembers"); }
+        }
+
+        private List<Member> _delayedMembersInReturning;
+        public List<Member> DelayedMembersInReturning
+        {
+            get { return _delayedMembersInReturning; }
+            set { _delayedMembersInReturning = value; NotifyPropertyChanged("DelayedMembersInReturning"); }
+        }
+
+        private List<Member> _delayedMembersInPayment;
+        public List<Member> DelayedMembersInPayment
+        {
+            get { return _delayedMembersInPayment; }
+            set { _delayedMembersInPayment = value; NotifyPropertyChanged("DelayedMembersInPayment"); }
+        }
+
         public string Username { get; set; }
         public EmployeeDashboard(string username)
         {
+            Money = Employees.GetMoneyOfEmployee(username);
+
+            if (Book.TakeAllBooks() != null)
+                AllBooks = Book.TakeAllBooks().ToList();
+            else AllBooks = new List<Book>();
+
+            if (Book.TakeBorrowedBooks() != null)
+                BorrowedBooks = Book.TakeBorrowedBooks().ToList();
+            else BorrowedBooks = new List<Book>();
+
+            if (Book.TakeAvailableBooks() != null)
+                AvailableBooks = Book.TakeAvailableBooks().ToList();
+            else AvailableBooks = new List<Book>();
+
+            if (Employees.TakeAllMember() != null)
+                AllMembers = Employees.TakeAllMember().ToList();
+            else AllMembers = new List<Member>();
+
+            if (Employees.TakeDelayedMembersInPayment() != null)
+                DelayedMembersInPayment = Employees.TakeDelayedMembersInPayment().ToList();
+            else DelayedMembersInPayment = new List<Member>();
+
+            if (Employees.TakeDelayedMemebrsInReturn() != null)
+                DelayedMembersInReturning = Employees.TakeDelayedMemebrsInReturn().ToList();
+            else DelayedMembersInReturning = new List<Member>();
+
             InitializeComponent();
+
+            if (AllBooks.Count > 0)
+            {
+                allBooksData.ItemsSource = AllBooks;
+            }
+
+            if (BorrowedBooks.Count > 0)
+            {
+                borrowedBooksData.Visibility = Visibility.Visible;
+                borrowedBooksData.ItemsSource = BorrowedBooks;
+            }
+
+            if (AvailableBooks.Count > 0)
+            {
+                availableBooksData.ItemsSource = AvailableBooks;
+            }
+
+            if (AllMembers.Count > 0)
+            {
+                allMembersData.ItemsSource = AllMembers;
+            }
+
+            if (DelayedMembersInPayment.Count > 0)
+            {
+                delayedMembersInPaymentData.ItemsSource = DelayedMembersInPayment;
+            }
+
+            if (DelayedMembersInReturning.Count > 0)
+            {
+                borrowedBooksData.Visibility = Visibility.Visible;
+                delayedMembersInReturningData.ItemsSource = DelayedMembersInReturning;
+            }
+
             DataContext = this;
 
             Username = username;
-            money.Text = Employees.GetMoneyOfEmployee(Username) + " تومان";
+            money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -74,30 +190,53 @@ namespace Library_Project.Resources.Windows
 
         private void ShowALlBooks_Click(object sender, RoutedEventArgs e)
         {
-
+            if (AllBooks.Count > 0)
+                allBooksData.Visibility = Visibility.Visible;
+            borrowedBooksData.Visibility = Visibility.Collapsed;
+            availableBooksData.Visibility = Visibility.Collapsed;
         }
 
         private void BorrowedBooks_Click(object sender, RoutedEventArgs e)
         {
-
+            allBooksData.Visibility = Visibility.Collapsed;
+            if (BorrowedBooks.Count > 0)
+                borrowedBooksData.Visibility = Visibility.Visible;
+            availableBooksData.Visibility = Visibility.Collapsed;
         }
 
         private void AvailableBooks_Click(object sender, RoutedEventArgs e)
         {
-
+            allBooksData.Visibility = Visibility.Collapsed;
+            borrowedBooksData.Visibility = Visibility.Collapsed;
+            if (AvailableBooks.Count > 0)
+                availableBooksData.Visibility = Visibility.Visible;
         }
 
         private void ShowALlMembers_Click(object sender, RoutedEventArgs e)
         {
-
+            if (AllMembers.Count > 0)
+                allMembersData.Visibility = Visibility.Visible;
+            delayedMembersInPaymentData.Visibility = Visibility.Collapsed;
+            delayedMembersInReturningData.Visibility = Visibility.Collapsed;
         }
 
         private void DelayedMembersInReturning_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DelayedMembersInReturning.Count > 0)
+                delayedMembersInReturningData.Visibility = Visibility.Visible;
+            delayedMembersInPaymentData.Visibility = Visibility.Collapsed;
+            allMembersData.Visibility = Visibility.Collapsed;
         }
 
         private void DelayedMembersInPayment_Click(object sender, RoutedEventArgs e)
+        {
+            if (DelayedMembersInPayment.Count > 0)
+                delayedMembersInPaymentData.Visibility = Visibility.Visible;
+            delayedMembersInReturningData.Visibility = Visibility.Collapsed;
+            allMembersData.Visibility = Visibility.Collapsed;
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
 
         }

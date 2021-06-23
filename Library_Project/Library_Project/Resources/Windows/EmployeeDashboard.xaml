@@ -12,7 +12,7 @@
     <Grid>
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
                     <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="40" Content=".به بخش کارمندان خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/—Pngtree—cartoon employee discussing work_4538195.png" />
@@ -27,13 +27,13 @@
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,30,20,0" FontWeight="Black" FontSize="35" Content=".به بخش کتاب های صفحۀ کارمندان خوش آمدید"/>
                         <StackPanel Orientation="Horizontal" Margin="0,-60">
-                            <Button x:Name="AvailableBooks" Width="240" Height="70" Margin="30,100,30,10" Click="AvailableBooks_Click">
+                            <Button x:Name="AvailableBooksButton" Width="240" Height="70" Margin="30,100,30,10" Click="AvailableBooks_Click">
                                 <DockPanel Margin="5,0,0,0">
                                     <materialDesign:PackIcon Kind="BookSecure" Width="50" Height="50" Margin="-20,0,65,0"/>
                                     <Label Content="کتاب های موجود " Foreground="White" Margin="-60,0,0,0" FontSize="23.4" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
-                            <Button x:Name="BorrowedBooks" Width="240" Height="70" Margin="30,100,30,10" Click="BorrowedBooks_Click">
+                            <Button x:Name="BorrowedBooksButton" Width="240" Height="70" Margin="30,100,30,10" Click="BorrowedBooks_Click">
                                 <DockPanel Margin="10,0,0,0">
                                     <materialDesign:PackIcon Kind="BookAlert" Width="50" Height="50" Margin="-20,0,65,0"/>
                                     <Label Content="کتاب های امانتی" VerticalContentAlignment="Bottom" Foreground="White" Margin="-60,0,0,8" FontSize="23" FontWeight="Black"/>
@@ -47,27 +47,57 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
+                    <DataGrid Grid.Row="1" x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
+                            <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
+                            <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
+                            <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}"/>
+                            <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Grid.Row="1" x:Name="borrowedBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
+                            <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
+                            <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
+                            <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}"/>
+                            <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Grid.Row="1" x:Name="availableBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
+                            <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
+                            <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
+                            <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}"/>
+                            <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </Border>
-            <Border Name="MembersPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="MembersPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.5*"/>
                         <RowDefinition/>
-                        <RowDefinition Height="0.4*"/>
+                        <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <StackPanel>
-                            <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="30" Content="بخش اعضای کتابخانه"/>
+                            <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,10" FontWeight="Black" FontSize="30" Content="بخش اعضای کتابخانه"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,-60">
-                            <Button x:Name="DelayedMembersInPayment" Width="260" Height="70" Margin="20,100,10,10" Click="DelayedMembersInPayment_Click">
+                        <StackPanel Orientation="Horizontal" Margin="0,-100">
+                            <Button x:Name="DelayedMembersInPaymentButton" Width="260" Height="70" Margin="20,100,10,10" Click="DelayedMembersInPayment_Click">
                                 <DockPanel Margin="5,0,0,0">
                                     <materialDesign:PackIcon Kind="BadgeAccountAlert" Width="50" Height="50" Margin="-20,0,65,0"/>
                                     <Label Content="اعضای متاخر در پرداخت" VerticalContentAlignment="Bottom"  Foreground="White" Margin="-60,-10,10,10" FontSize="17.5" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
-                            <Button x:Name="DelayedMembersInReturning" Width="260" Height="70" Margin="30,100,10,10" Click="DelayedMembersInReturning_Click">
+                            <Button x:Name="DelayedMembersInReturningButton" Width="260" Height="70" Margin="30,100,10,10" Click="DelayedMembersInReturning_Click">
                                 <DockPanel Margin="10,0,0,0">
                                     <materialDesign:PackIcon Kind="AccountAlert" Width="50" Height="50" Margin="-25,0,65,0"/>
                                     <Label Content="اعضای متاخر در امانت" VerticalContentAlignment="Bottom" Foreground="White" Margin="-57,0,0,10" FontSize="17.5" FontWeight="Black"/>
@@ -79,6 +109,72 @@
                                     <Label Content="تمام اعضا" VerticalContentAlignment="Bottom" Foreground="White" Margin="-20,0,0,7" FontSize="27" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" x:Name="allMembersData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
+                            <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
+                            <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
+
+                            <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
+                            <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
+                            <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
+
+                            <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInPaymentData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
+                            <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
+                            <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
+
+                            <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,20,80,10" FontSize="30" Text="نام عضوی که می خواهید جستوجو کنید را وارد کنید:" FontWeight="Black" Height="52" Width="720"/>
+                        <StackPanel Margin="132,0,116,0" Orientation="Horizontal">
+                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="Search" Click="Search_Click">
+                                <materialDesign:PackIcon Kind="Search" Width="50" Height="50" Foreground="#FF1808B9"/>
+                            </Button>
+                            <!--Text will be added by backend based on the checkbox-->
+                            <TextBox x:Name="SearchBox" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft"/>
+                            <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -115,7 +211,7 @@
                                 <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="MemberspPn" Padding="6" MouseLeftButtonUp = "MemberspPn_MouseLeftButtonUp">
+                        <ListViewItem x:Name="MemberspPn" Padding="6" MouseLeftButtonUp = "MembersPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="AccountBoxMultiple" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
                                 <TextBlock Text="اعضای کتابخانه" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="15" FontWeight="Bold"/>
