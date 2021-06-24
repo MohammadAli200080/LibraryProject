@@ -34,7 +34,7 @@ namespace Library_Project.Resources.Windows
                 txtRegisterDay.Text = member.RegisteryDay;
                 txtsubscription.Text = member.SubsriptionDateRenewal;
 
-                DateTime a = DateTime.Parse(member.SubsriptionDateRenewal);
+                DateTime a = DateTime.Parse(DateTime.Now.ToShortDateString());
                 DateTime b = DateTime.Parse(member.SubsriptionDate);
                 TimeSpan result = b - a;
 

@@ -27,7 +27,7 @@ namespace Library_Project.Resources.Classes
                 NameBook = data.Rows[i]["bookName"].ToString();
                 GotDate = data.Rows[i]["gotDate"].ToString();
                 ReturnDate = data.Rows[i]["returnDate"].ToString();
-                TimeSpan result = DateTime.Parse(ReturnDate) - DateTime.Parse(GotDate);
+                TimeSpan result = DateTime.Parse(ReturnDate) - DateTime.Parse(DateTime.Now.ToShortDateString());
                 RemainDate = int.Parse(result.TotalDays.ToString()).ToString();
 
                 Borrowed.Add(new BorrowedBook { nameBook = NameBook, gotDate = GotDate, returnDate = ReturnDate, remainDate = RemainDate });
