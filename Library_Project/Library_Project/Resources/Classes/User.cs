@@ -196,7 +196,7 @@ namespace Library_Project.Resources.Classes
                     Image = image,
                     RegisteryDay = register,
                     SubsriptionDate = subsriptionDate,
-                    SubsriptionDateRenewal=subsriptionDateRenewal,
+                    SubsriptionDateRenewal = subsriptionDateRenewal,
                     Balance = decimal.Parse(pocket)
                 });
             }
@@ -486,6 +486,31 @@ namespace Library_Project.Resources.Classes
             string command = "SELECT * FROM T_Members WHERE username='" + username + "'";
             var data = DatabaseControl.Select(command);
             return data.Rows[0]["pocket"].ToString();
+        }
+
+        /// <summary>
+        /// adds money to a member in T_Members after paying to system
+        /// </summary>
+        /// <param name="username">username of member you want to add money to</param>
+        /// <param name="money">amount of money that's gonna be added to the pocket of member</param>
+        /// <returns>if operation is successful return true else returns false</returns>
+
+        public static bool AddMoney(string username, decimal money)
+        {
+            if (money <= 0)
+                return false;
+
+            string command = "SELECT * FROM T_Members WHERE username='" + username + "'";
+            var data = DatabaseControl.Select(command);
+
+            if (data.Rows.Count == 0)
+                return false;
+
+            var pocket = Convert.ToDecimal(data.Rows[0]["pocket"].ToString()) + money;
+
+            command = "UPDATE T_Members SET pocket = @pocket WHERE username = @username";
+
+            return DatabaseControl.Exe(command);
         }
     }
 }
