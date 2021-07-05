@@ -95,6 +95,9 @@
     <Compile Include="Resources\Windows\RemoveEmployeeWindow.xaml.cs">
       <DependentUpon>RemoveEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Windows\SearchedBookWindow.xaml.cs">
+      <DependentUpon>SearchedBookWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Windows\SearchedMemberWindow.xaml.cs">
       <DependentUpon>SearchedMemberWindow.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Windows\RemoveEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Windows\SearchedBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

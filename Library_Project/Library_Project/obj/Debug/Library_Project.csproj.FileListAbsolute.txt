@@ -110,3 +110,5 @@ C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\RemoveEmployeeWindow.baml
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.g.cs
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.baml
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.g.cs
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.baml
