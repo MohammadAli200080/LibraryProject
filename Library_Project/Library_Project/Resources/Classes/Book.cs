@@ -193,21 +193,43 @@ namespace Library_Project.Resources.Classes
             return book;
         }
 
-        // <summary> a method for searching the book by author </summary>
-        // <returns> a Book.</returns>
-        // <Exceptions> 
-        //      ArgumentNullException : if there are no books added to database. 
-        //      ArgumentNullException : if no book with this name can be found in the database. 
-        // </Exceptions>
+        /// <summary> a method for searching an available book by name </summary>
+        /// <returns> a Book </returns>
+        /// <Exceptions> 
+        ///     ArgumentNullException : if there are no books added to database. 
+        ///     ArgumentNullException : if no book with this name can be found in the database. 
+        /// </Exceptions>
 
-        public static Book SearchBookByAuthor(string author)
+        public static Book[] SearchAvailableBooksByName(string name)
         {
-            var books = TakeAllBooks();
+            var books = TakeAvailableBooks();
 
             if (books == null)
-                throw new ArgumentNullException("Books", "No books have been added.");
+                throw new ArgumentNullException("Books", "No book is available.");
 
-            Book book = Array.Find(books, b => b.Author == author);
+            var book = Array.FindAll(books, b => b.Name == name);
+
+            if (book == null)
+                throw new ArgumentNullException("Book", "Book can not be found.");
+
+            return book;
+        }
+
+        /// <summary> a method for searching an available book by author </summary>
+        /// <returns> a Book </returns>
+        /// <Exceptions> 
+        ///     ArgumentNullException : if there are no books added to database. 
+        ///     ArgumentNullException : if no book with this author can be found in the database. 
+        /// </Exceptions>
+
+        public static Book[] SearchAvailableBooksByAuthor(string author)
+        {
+            var books = TakeAvailableBooks();
+
+            if (books == null)
+                throw new ArgumentNullException("Books", "No book is available.");
+
+            var book = Array.FindAll(books, b => b.Author == author);
 
             if (book == null)
                 throw new ArgumentNullException("Book", "Book can not be found.");
