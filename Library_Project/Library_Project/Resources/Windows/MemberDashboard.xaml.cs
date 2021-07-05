@@ -43,7 +43,7 @@ namespace Library_Project.Resources.Windows
 
         public MemberDashboard(string username)
         {
-            Money = Employees.GetMoneyOfEmployee(username);
+            Money = Member.GetMemberMoney(username);
 
             InitializeComponent();
             DataContext = this;

@@ -371,7 +371,7 @@ namespace Library_Project.Resources.Classes
 
         public static decimal GetMoneyOfEmployee(string username)
         {
-            string command = "SELECT * FROM T_Employees WHERE username='" + username + "'";
+            string command = "SELECT * FROM T_Employees WHERE username='" + username.Trim() + "'";
             var data = DatabaseControl.Select(command);
             return Convert.ToDecimal(data.Rows[0]["pocket"].ToString());
         }
@@ -481,11 +481,11 @@ namespace Library_Project.Resources.Classes
             }
             return false;
         }
-        public static string GetMemberMoney(string username)
+        public static decimal GetMemberMoney(string username)
         {
-            string command = "SELECT * FROM T_Members WHERE username='" + username + "'";
+            string command = "SELECT * FROM T_Members WHERE username='" + username.Trim() + "'";
             var data = DatabaseControl.Select(command);
-            return data.Rows[0]["pocket"].ToString();
+            return Convert.ToDecimal(data.Rows[0]["pocket"].ToString());
         }
 
         /// <summary>
