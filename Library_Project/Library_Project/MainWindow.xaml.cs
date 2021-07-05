@@ -45,12 +45,12 @@ namespace Library_Project
             {
                 if (window == "Employee")
                 {
-                    EmployeeDashboard employee = new EmployeeDashboard(txtuserName.Text.ToString().Trim());
+                    EmployeeDashboard employee = new EmployeeDashboard(txtuserName.Text.Trim());
                     employee.Show();
                 }
                 else 
                 {
-                    MemberDashboard member = new MemberDashboard(txtuserName.Text.ToString().Trim());
+                    MemberDashboard member = new MemberDashboard(txtuserName.Text.Trim());
                     member.Show();
                 }
                 this.Close();
