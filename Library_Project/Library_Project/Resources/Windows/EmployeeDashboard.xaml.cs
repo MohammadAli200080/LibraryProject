@@ -68,7 +68,7 @@ namespace Library_Project.Resources.Windows
             set { _delayedMembersInPayment = value; NotifyPropertyChanged("DelayedMembersInPayment"); }
         }
 
-        public string Username { get; set; }
+        public static string Username { get; set; }
         public EmployeeDashboard(string username)
         {
             Money = Employees.GetMoneyOfEmployee(username);
@@ -106,7 +106,6 @@ namespace Library_Project.Resources.Windows
 
             if (BorrowedBooks.Count > 0)
             {
-                borrowedBooksData.Visibility = Visibility.Visible;
                 borrowedBooksData.ItemsSource = BorrowedBooks;
             }
 
@@ -127,14 +126,13 @@ namespace Library_Project.Resources.Windows
 
             if (DelayedMembersInReturning.Count > 0)
             {
-                borrowedBooksData.Visibility = Visibility.Visible;
                 delayedMembersInReturningData.ItemsSource = DelayedMembersInReturning;
             }
 
             DataContext = this;
 
             Username = username;
-            money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+            money.Content = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -187,7 +185,12 @@ namespace Library_Project.Resources.Windows
             MembersPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Visible;
         }
-
+        private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow Login = new MainWindow();
+            Login.Show();
+            this.Close();
+        }
         private void ShowALlBooks_Click(object sender, RoutedEventArgs e)
         {
             if (AllBooks.Count > 0)
@@ -252,6 +255,11 @@ namespace Library_Project.Resources.Windows
             }
             else
                 SearchBox.Text = "";
+        }
+        private void btnSeting_Click(object sender, RoutedEventArgs e)
+        {
+            CheckEmployeePass check = new CheckEmployeePass(Username, "Employee");
+            check.Show();           
         }
     }
 }

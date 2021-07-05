@@ -21,9 +21,11 @@ namespace Library_Project.Resources.Windows
     /// </summary>
     public partial class SearchedMemberWindow : Window
     {
+        string UserName = "";
         public SearchedMemberWindow(string username)
         {
             InitializeComponent();
+            UserName = username;
             if (Employees.SearchAllMember(username).Count != 0)
             {
                 var member = Employees.SearchAllMember(username)[0];
@@ -86,7 +88,8 @@ namespace Library_Project.Resources.Windows
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            CheckEmployeePass Check = new CheckEmployeePass(EmployeeDashboard.Username, "Remove");
+            Check.Show();
         }
     }
 }

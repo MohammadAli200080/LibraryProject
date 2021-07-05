@@ -74,8 +74,14 @@
     <Compile Include="Resources\Windows\AddBookWindow.xaml.cs">
       <DependentUpon>AddBookWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Windows\CheckEmployeePass.xaml.cs">
+      <DependentUpon>CheckEmployeePass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Windows\EmployeeDashboard.xaml.cs">
       <DependentUpon>EmployeeDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Windows\EmployeeInformation.xaml.cs">
+      <DependentUpon>EmployeeInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Windows\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
@@ -117,9 +123,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Windows\CheckEmployeePass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Windows\EmployeeDashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Windows\EmployeeInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Windows\ManagerDashboard.xaml">
       <SubType>Designer</SubType>
@@ -201,6 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\ManagerDashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Windows\Wallet.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
