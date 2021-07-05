@@ -182,11 +182,12 @@ namespace Library_Project.Resourses.Windows
                 MainWindow Login = new MainWindow();
                 Login.Show();
             }
-            else
+            else if(type == typeOfUser.Employee)
             {
                 ManagerDashboard md = new ManagerDashboard();
                 md.Show();
             }
+
             this.Close();
         }
     }
