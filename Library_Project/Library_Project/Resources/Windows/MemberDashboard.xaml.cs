@@ -53,6 +53,7 @@ namespace Library_Project.Resources.Windows
         public MemberDashboard(string username)
         {
             Money = Member.GetMemberMoney(username);
+            Username = username;
 
             InitializeComponent();
             DataContext = this;
@@ -61,7 +62,6 @@ namespace Library_Project.Resources.Windows
             UpdateMyBooksData();
             NameCollection = Book.GetAllNames(Username).ToList();
 
-            Username = username;
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
 
@@ -161,11 +161,9 @@ namespace Library_Project.Resources.Windows
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
-            Payment payment = new Payment(typeOfUser.Member);
+            Payment payment = new Payment(typeOfUser.MemberFromMemberWindow, Username);
             payment.Show();
-            Money = Convert.ToDecimal(Member.GetMemberMoney(Username));
-            money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
-            MessageBox.Show(".با موفقیت مقدار حساب شما شارژ شد");
+            this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)

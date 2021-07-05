@@ -96,7 +96,9 @@ namespace Library_Project.Resourses.Windows
             {
                 if (Member.AddMoney(username, Convert.ToDecimal(txMoney.Text)))
                 {
-                    MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                    MessageBox.Show(".با موجودی حساب افزایش یافت\nموجودی حساب :  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                    MemberDashboard md = new MemberDashboard(username);
+                    md.Show();
                     this.Close();
                 }
             }
