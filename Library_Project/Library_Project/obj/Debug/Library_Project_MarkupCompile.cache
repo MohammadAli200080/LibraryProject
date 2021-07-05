@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\
 Library_Project
 none
 false
 DEBUG;TRACE
-C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\App.xaml
-13-1663218607
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\App.xaml
+11960171688
 
-22-24523653
-161723262030
-MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\CheckEmployeePass.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\EmployeeInformation.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\PayEmployeeWindow.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;Resources\Windows\RemoveEmployeeWindow.xaml;Resources\Windows\SearchedBookWindow.xaml;Resources\Windows\SearchedMemberWindow.xaml;
+20-1880293886
+16-1121036899
+MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\PayEmployeeWindow.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;Resources\Windows\RemoveEmployeeWindow.xaml;Resources\Windows\SearchedBookWindow.xaml;Resources\Windows\SearchedMemberWindow.xaml;
 
 False
 

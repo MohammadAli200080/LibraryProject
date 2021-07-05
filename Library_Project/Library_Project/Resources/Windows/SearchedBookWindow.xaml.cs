@@ -41,6 +41,9 @@ namespace Library_Project.Resources.Windows
                 return;
             }
 
+            if (SearchedAvailableBooks == null)
+                return;
+
             BooksSearchData.ItemsSource = SearchedAvailableBooks;
 
             InitializeComponent();

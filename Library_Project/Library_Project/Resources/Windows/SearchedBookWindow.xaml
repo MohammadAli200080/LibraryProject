@@ -27,6 +27,7 @@
                 <DataGridTextColumn Header="نویسنده" Binding="{Binding Author}"/>
                 <DataGridTextColumn Header="ژانر" Binding="{Binding Category}"/>
                 <DataGridTextColumn Header="شماره نشر" Binding="{Binding PublishNumber}"/>
+                <DataGridTextColumn Header="تعداد" Binding="{Binding Quantity}"/>
                 <!--<DataGridTextColumn Header="تاریخ امانت" Binding="{Binding gotDate}"/>-->
                 <!--<DataGridTextColumn Header="تاریخ برگشت" Binding="{Binding returnDate}"/>-->
                 <!--<DataGridTextColumn Header="روزهای باقیمانده" Binding="{Binding remainDate}"/>-->

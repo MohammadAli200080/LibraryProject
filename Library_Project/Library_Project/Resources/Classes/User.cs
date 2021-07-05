@@ -9,7 +9,7 @@ namespace Library_Project.Resources.Classes
 {
     public enum typeOfUser
     {
-        Employee, Member
+        Employee, Member, MemberFromMemberWindow
     }
     //the Main classes for User in project
     public class Users
@@ -406,33 +406,37 @@ namespace Library_Project.Resources.Classes
         }
         public static bool CheckAbleToGetBook(string UserName)
         {
-            DataTable data = new DataTable();
-            data = DatabaseControl.Select("SELECT COUNT (*) as count from T_Borrowed where username='" + UserName + "'");
+            var data = DatabaseControl.Select("SELECT COUNT (*) as count from T_Borrowed where username='" + UserName + "'");
             if (int.Parse(data.Rows[0]["count"].ToString()) > 5) return false;
 
-            data = new DataTable();
             data = DatabaseControl.Select("SELECT subscriptionEndingDate FROM T_Members WHERE username='" + UserName + "'");
             if (!date(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["subscriptionEndingDate"].ToString()))
                 return false;
-            data = new DataTable();
+
             data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE username='" + UserName + "'");
-            if (date2(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["returnDate"].ToString()))
-                return false;
+            if (data.Rows.Count != 0)
+                if (date2(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["returnDate"].ToString()))
+                    return false;
 
             return true;
         }
-        public static bool AbleToReturnBook(string BookName)
+        public static bool AbleToReturnBook(string BookName, out decimal money)
         {
+            money = 0;
             DataTable data = new DataTable();
             DataTable data2 = new DataTable();
             data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE bookName='" + BookName + "'");
             if (date2(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["returnDate"].ToString()))
             {
-                data = new DataTable();
                 data = DatabaseControl.Select("SELECT username FROM T_Borrowed WHERE bookName = '" + BookName + "'");
                 data2 = DatabaseControl.Select("SELECT pocket FROM T_Members WHERE username='" + data.Rows[0]["username"].ToString() + "'");
 
-                if (decimal.Parse(data2.Rows[0]["pocket"].ToString()) < 10000) return false;
+                DateTime a = DateTime.Parse(DateTime.Now.ToShortDateString().ToString());
+                DateTime b = DateTime.Parse(data.Rows[0]["returnDate"].ToString());
+
+                TimeSpan result = b - a;
+                money = Convert.ToInt32(result) * 10000 - decimal.Parse(data2.Rows[0]["pocket"].ToString());
+                if (money > 0) return false;
             }
 
             return true;
@@ -441,29 +445,30 @@ namespace Library_Project.Resources.Classes
         {
             DataTable data = new DataTable();
             data = DatabaseControl.Select("SELECT quantity FROM T_Books WHERE bookName = '" + Name + "'");
+            if (data.Rows.Count == 0) return false;
             if (data.Rows[0]["quantity"].ToString() == "0") return false;
 
-            return false;
+            return true;
         }
         static DataTable Data = new DataTable();
-        public static bool GetBook(string BookName, string UserName)
+        public static bool GetBook(string BookName, string Username)
         {
             if (!CheckExistBook(BookName)) return false;
-            if (!CheckAbleToGetBook(UserName)) return false;
+            if (!CheckAbleToGetBook(Username)) return false;
             Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + BookName + "'");
-            if (!DatabaseControl.Exe("DELETE FROM T_Books WHERE bookName='" + BookName + "'")) return false;
-            if (!DatabaseControl.Exe("INSERT INTO T_Borrowed VALUES ('" + BookName.Trim() + "','" + UserName.Trim() + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "')"))
+            var quantity = Convert.ToInt32(Data.Rows[0]["quantity"].ToString()) - 1;
+            if (!DatabaseControl.Exe("INSERT INTO T_Borrowed (bookName,username,gotDate,returnDate) VALUES ('" + BookName.Trim() + "','" + Username.Trim() + "','" + DateTime.Now.ToLongDateString() + "','" + DateTime.Now.AddDays(14).ToLongDateString() + "')"))
                 return false;
+            if (!DatabaseControl.Exe("UPDATE T_Books SET quantity = '" + quantity + "' WHERE bookName = '" + BookName.Trim() + "'")) return false;
 
             return true;
         }
         public static bool ReturnBook(string BookName, string UserName)
         {
-            if (!AbleToReturnBook(BookName)) return false;
+            Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + BookName + "'");
+            var quantity = Convert.ToInt32(Data.Rows[0]["quantity"].ToString()) + 1;
+            if (!DatabaseControl.Exe("UPDATE T_Books SET quantity = '" + quantity + "' WHERE bookName = '" + BookName.Trim() + "'")) return false;
             if (!DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE bookName='" + BookName + "'")) return false;
-            if (!DatabaseControl.Exe("INSERT INTO T_Books VALUES ('" + Data.Rows[0]["bookName"].ToString() + "','" + int.Parse(Data.Rows[0]["publishNumber"].ToString()) + "'," +
-                "'" + int.Parse(Data.Rows[0]["quantity"].ToString()) + "','" + Data.Rows[0]["author"].ToString() + "','" + Data.Rows[0]["category"].ToString() + "')"))
-                return false;
 
             return true;
         }
@@ -471,8 +476,11 @@ namespace Library_Project.Resources.Classes
         {
             try
             {
-                if (DatabaseControl.Exe("INSERT INTO T_Members VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "'," +
-                       "'" + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "','" + DateTime.Now.ToShortDateString() + "')"))
+                //if (DatabaseControl.Exe("INSERT INTO T_Members VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','"
+                //    + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "','" + DateTime.Now.ToShortDateString() + "')"))
+                if (DatabaseControl.Exe("INSERT INTO T_Members (username,password,email,phoneNumber,imgSrc,pocket,registeryDate,subscriptionEndingDate,renewaldate) " +
+                "VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','" + Information[3].Trim() + "','" + Information[2].Trim() + "','" +
+                Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToLongDateString() + "','" + DateTime.Now.AddDays(14).ToLongDateString() + "','" + DateTime.Now.ToLongDateString() + "')"))
                     return true;
             }
             catch
@@ -508,7 +516,7 @@ namespace Library_Project.Resources.Classes
 
             var pocket = Convert.ToDecimal(data.Rows[0]["pocket"].ToString()) + money;
 
-            command = "UPDATE T_Members SET pocket = @pocket WHERE username = @username";
+            command = "UPDATE T_Members SET pocket='" + pocket + "' WHERE username='" + username + "'";
 
             return DatabaseControl.Exe(command);
         }

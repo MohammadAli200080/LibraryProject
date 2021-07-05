@@ -22,7 +22,7 @@ namespace Library_Project.Resources.Classes
             List<BorrowedBook> Borrowed = new List<BorrowedBook>();
             string NameBook, GotDate, ReturnDate;
             string RemainDate;
-            for(int i = 0; i < data.Rows.Count; i++)
+            for (int i = 0; i < data.Rows.Count; i++)
             {
                 NameBook = data.Rows[i]["bookName"].ToString();
                 GotDate = data.Rows[i]["gotDate"].ToString();
@@ -150,7 +150,7 @@ namespace Library_Project.Resources.Classes
 
             return books.ToArray();
         }
-        
+
         // <summary> a method for taking Available books from database. it takes all the books
         // first and then checks wether thay have been borrowed or not. if borrowed, then
         // they will be deleted from the list </summary>
@@ -278,6 +278,18 @@ namespace Library_Project.Resources.Classes
         {
             string command = "insert into T_Books (bookName,publishNumber,quantity,author,category) VALUES('" + Name + "','" + PublishNumber + "','" + Quantity + "','" + Author + "','" + Category + "')";
             DatabaseControl.Exe(command);
+        }
+
+        public static string[] GetAllNames(string username)
+        {
+            string command = "SELECT * FROM T_Borrowed WHERE username='" + username + "'";
+            var data = DatabaseControl.Select(command);
+
+            var nameCollection = new List<string>();
+            for (int i = 0; i < data.Rows.Count; i++)
+                nameCollection.Add(data.Rows[i]["bookName"].ToString());
+
+            return nameCollection.ToArray();
         }
     }
 }

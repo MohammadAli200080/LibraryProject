@@ -114,7 +114,5 @@ C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.baml
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedBookWindow.g.cs
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedBookWindow.baml
-C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.g.cs
-C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.baml
-C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckEmployeePass.g.cs
-C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckEmployeePass.baml
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedBookWindow.g.cs
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedBookWindow.baml

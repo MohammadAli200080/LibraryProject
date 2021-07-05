@@ -23,8 +23,11 @@ namespace Library_Project.Resourses.Windows
     public partial class Payment : Window
     {
         private typeOfUser Type { get; set; } 
-        public Payment(typeOfUser type)
+        private string username { get; set; }
+
+        public Payment(typeOfUser type, string username = "")
         {
+            this.username = username;
             this.Type = type;
             InitializeComponent();
         }
@@ -86,6 +89,14 @@ namespace Library_Project.Resourses.Windows
                     MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
                     MainWindow Login = new MainWindow();
                     Login.Show();
+                    this.Close();
+                }
+            }
+            else if (Type == typeOfUser.MemberFromMemberWindow)
+            {
+                if (Member.AddMoney(username, Convert.ToDecimal(txMoney.Text)))
+                {
+                    MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
                     this.Close();
                 }
             }

@@ -23,8 +23,11 @@ namespace Library_Project.Resources.Windows
     /// </summary>
     public partial class MemberDashboard : Window, INotifyPropertyChanged
     {
+        public string SearchBoxText { get; set; }
+
         private List<Book> _availableBooks;
         private List<BorrowedBook> _borrowedBooks;
+        private List<string> _nameCollection;
 
         public List<Book> AvailableBooks
         {
@@ -36,6 +39,12 @@ namespace Library_Project.Resources.Windows
         {
             get { return _borrowedBooks; }
             set { _borrowedBooks = value; NotifyPropertyChanged("BorrowedBooks"); }
+        }
+
+        public List<string> NameCollection
+        {
+            get => _nameCollection;
+            set { _nameCollection = value; NotifyPropertyChanged("NameCollection"); }
         }
 
         private string Username { get; set; }
@@ -50,7 +59,8 @@ namespace Library_Project.Resources.Windows
 
             UpdateAvailableBoosData();
             UpdateMyBooksData();
-            
+            NameCollection = Book.GetAllNames(Username).ToList();
+
             Username = username;
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
@@ -115,13 +125,15 @@ namespace Library_Project.Resources.Windows
         private void BookName_Checked(object sender, RoutedEventArgs e)
         {
             //TextOfSearch.Text = "نام کتابی که می خواهید بر اساس آن جستوجو کنید را وارد کنید.";
-            SearchBox.Text = "نام کتاب";
+            SearchBoxText = "نام کتاب";
+            AuthorName.IsChecked = false;
         }
 
         private void Author_Checked(object sender, RoutedEventArgs e)
         {
             //TextOfSearch.Text = "نام نویسنده ای که می خواهید بر اساس آن جستوجو کنید را وارد کنید.";
-            SearchBox.Text = "نام نویسنده";
+            SearchBoxText = "نام نویسنده";
+            BookName.IsChecked = false;
         }
 
         private void BookName_Unchecked(object sender, RoutedEventArgs e)
@@ -149,10 +161,10 @@ namespace Library_Project.Resources.Windows
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
-            Member.AddMoney(Username, Convert.ToDecimal(addedMoney.Text));
+            Payment payment = new Payment(typeOfUser.Member);
+            payment.Show();
             Money = Convert.ToDecimal(Member.GetMemberMoney(Username));
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
-            addedMoney.Clear();
             MessageBox.Show(".با موفقیت مقدار حساب شما شارژ شد");
         }
 
@@ -160,9 +172,14 @@ namespace Library_Project.Resources.Windows
         {
             string kindOfSearch;
 
-            if (AuthorName.IsChecked == true)
-                kindOfSearch = "name";
-            else kindOfSearch = "author";
+            if (AuthorName.IsChecked == false && BookName.IsChecked == false)
+            {
+                MessageBox.Show(".لطفا ابتدا یکی از دو مورد داخل چک باکس را انتخاب کنید");
+                return;
+            }
+            else if (AuthorName.IsChecked == true)
+                kindOfSearch = "author";
+            else kindOfSearch = "name";
 
             SearchedBookWindow window = new SearchedBookWindow(Username, kindOfSearch, SearchBox.Text);
             window.Show();
@@ -178,10 +195,11 @@ namespace Library_Project.Resources.Windows
 
             if (Member.GetBook(BorrowedName.Text, Username))
             {
-                MessageBox.Show(".کتاب با موفقیت به امانت گرفته شد");
                 UpdateAvailableBoosData();
                 UpdateMyBooksData();
+                NameCollection = Book.GetAllNames(Username).ToList();
                 BorrowedName.Clear();
+                MessageBox.Show(".کتاب با موفقیت به امانت گرفته شد");
                 return;
             }
 
@@ -228,11 +246,21 @@ namespace Library_Project.Resources.Windows
                 return;
             }
 
-            if (Member.ReturnBook(book.nameBook, Username))
+            decimal money;
+            if (Member.AbleToReturnBook(book.nameBook, out money))
             {
-                MessageBox.Show(".کتاب با موفقیت پس داده شد");
-                UpdateAvailableBoosData();
-                UpdateMyBooksData();
+                if (Member.ReturnBook(book.nameBook, Username))
+                {
+                    UpdateAvailableBoosData();
+                    UpdateMyBooksData();
+                    NameCollection = Book.GetAllNames(Username).ToList();
+                    MessageBox.Show(".کتاب با موفقیت پس داده شد");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show($".را به حساب خود واریز کنید و سپس کتاب را پس دهید {money} لطفا در ابتدا مبلغ");
                 return;
             }
         }
@@ -273,9 +301,9 @@ namespace Library_Project.Resources.Windows
             if (listOfBooks.Count > 0)
             {
                 myBooksData.ItemsSource = listOfBooks;
-                availableBooksData.Visibility = Visibility.Visible;
+                myBooksData.Visibility = Visibility.Visible;
             }
-            else availableBooksData.Visibility = Visibility.Collapsed;
+            else myBooksData.Visibility = Visibility.Collapsed;
         }
     }
 }
