@@ -457,7 +457,7 @@ namespace Library_Project.Resources.Classes
             if (!CheckAbleToGetBook(Username)) return false;
             Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + BookName + "'");
             var quantity = Convert.ToInt32(Data.Rows[0]["quantity"].ToString()) - 1;
-            if (!DatabaseControl.Exe("INSERT INTO T_Borrowed (bookName,username,gotDate,returnDate) VALUES ('" + BookName.Trim() + "','" + Username.Trim() + "','" + DateTime.Now.ToLongDateString() + "','" + DateTime.Now.AddDays(14).ToLongDateString() + "')"))
+            if (!DatabaseControl.Exe("INSERT INTO T_Borrowed (bookName,username,gotDate,returnDate) VALUES ('" + BookName.Trim() + "','" + Username.Trim() + "','" + DateTime.Now.Date + "','" + DateTime.Now.AddDays(14).Date + "')"))
                 return false;
             if (!DatabaseControl.Exe("UPDATE T_Books SET quantity = '" + quantity + "' WHERE bookName = '" + BookName.Trim() + "'")) return false;
 
@@ -480,7 +480,7 @@ namespace Library_Project.Resources.Classes
                 //    + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "','" + DateTime.Now.ToShortDateString() + "')"))
                 if (DatabaseControl.Exe("INSERT INTO T_Members (username,password,email,phoneNumber,imgSrc,pocket,registeryDate,subscriptionEndingDate,renewaldate) " +
                 "VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','" + Information[3].Trim() + "','" + Information[2].Trim() + "','" +
-                Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToLongDateString() + "','" + DateTime.Now.AddDays(14).ToLongDateString() + "','" + DateTime.Now.ToLongDateString() + "')"))
+                Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.Date + "','" + DateTime.Now.AddDays(14).Date + "','" + DateTime.Now.Date + "')"))
                     return true;
             }
             catch

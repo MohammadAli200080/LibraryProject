@@ -20,7 +20,7 @@ namespace Library_Project.Resources.Windows
     /// Interaction logic for CheckEmployeePass.xaml
     /// </summary>
     public partial class CheckEmployeePass : Window
-    {
+    {        
         string UserName = "";
         string Window = "";
         DataTable data = new DataTable();
@@ -29,7 +29,10 @@ namespace Library_Project.Resources.Windows
             InitializeComponent();
             Window = WindNam;
             UserName = userName;
-            data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + UserName.Trim() + "'");
+            if (WindNam == "Employee" || WindNam == "Remove")
+                data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + UserName.Trim() + "'");
+            else
+                data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + UserName.Trim() + "'");
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +45,11 @@ namespace Library_Project.Resources.Windows
                 }
                 if (Window == "Remove")
                 {
+                    BorrowedBook.RemoveBook(SearchedMemberWindow.UserName); 
                     MessageBox.Show("حذف کاربر با موفقیت انجام شد");
+                    EmployeeDashboard employee = new EmployeeDashboard(UserName);
+                    this.Close();
+                    return;
                 }
                 this.Close();
             }

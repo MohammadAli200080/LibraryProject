@@ -82,7 +82,7 @@ namespace Library_Project.Resourses.Windows
                 return;
             }
 
-            if (Type == typeOfUser.Member)
+            if (Type == typeOfUser.Member && username == "")
             {
                 if (DatabaseControl.Exe("UPDATE T_Members SET pocket='" + decimal.Parse(txMoney.Text) + "' WHERE username='" + Register.Info[0] + "'"))
                 {
@@ -96,7 +96,7 @@ namespace Library_Project.Resourses.Windows
             {
                 if (Member.AddMoney(username, Convert.ToDecimal(txMoney.Text)))
                 {
-                    MessageBox.Show(".با موجودی حساب افزایش یافت\nموجودی حساب :  " + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                    MessageBox.Show("موجودی حساب افزایش یافت" + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
                     MemberDashboard md = new MemberDashboard(username);
                     md.Show();
                     this.Close();
@@ -129,11 +129,19 @@ namespace Library_Project.Resourses.Windows
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("ثبت نام انجام نشد");
-            DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='" + Register.Info[0] + "'");
-            MainWindow Login = new MainWindow();
-            Login.Show();
-            this.Close();
+            if (username == "")
+            {
+                MessageBox.Show("ثبت نام انجام نشد");
+                DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='" + Register.Info[0] + "'");
+                MainWindow Login = new MainWindow();
+                Login.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("موجودی افزایش نیافت");
+                this.Close();
+            }
         }
 
         private void txMoney_TextChanged(object sender, TextChangedEventArgs e)

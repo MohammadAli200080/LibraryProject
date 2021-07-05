@@ -34,6 +34,15 @@ namespace Library_Project.Resources.Classes
             }
             return Borrowed;
         }
+        public static void RemoveBook(string UserName)
+        {
+            DataTable data = DatabaseControl.Select("SELECT * FROM T_Books INNER JOIN T_Borrowed ON T_Books.bookName = T_Borrowed.bookName");
+            DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE username='" + UserName + "'");
+            for(int i = 0; i < data.Rows.Count; i++)
+            {
+                DatabaseControl.Exe("UPDATE T_Books SET quantity='" + int.Parse(data.Rows[i]["quantity"].ToString()) + 1 + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");
+            }            
+        }
     }
     public class Book
     {
@@ -209,7 +218,7 @@ namespace Library_Project.Resources.Classes
 
             var book = Array.FindAll(books, b => b.Name == name);
 
-            if (book == null)
+            if (book.Length == 0)
                 throw new ArgumentNullException("Book", "Book can not be found.");
 
             return book;
@@ -231,7 +240,7 @@ namespace Library_Project.Resources.Classes
 
             var book = Array.FindAll(books, b => b.Author == author);
 
-            if (book == null)
+            if (book.Length == 0)
                 throw new ArgumentNullException("Book", "Book can not be found.");
 
             return book;

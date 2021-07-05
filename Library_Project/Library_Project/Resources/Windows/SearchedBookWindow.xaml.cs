@@ -23,32 +23,43 @@ namespace Library_Project.Resources.Windows
         private List<Book> SearchedAvailableBooks { get; set; }
         //private List<BorrowedBook> BorrowedBooks { get; set; }
         private string Username { get; set; }
+        private string KindOfSearch { get; set; }
+        private string Search { get; set; }
 
         public SearchedBookWindow(string username, string kindOfSearch, string search)
         {
             Username = username;
-
+            this.KindOfSearch = kindOfSearch;
+            this.Search = search;
+            
+            InitializeComponent();
+        }
+        public bool ShowBook()
+        {
             try
             {
-                if (kindOfSearch == "author")
-                    SearchedAvailableBooks = Book.SearchAvailableBooksByAuthor(search).ToList();
-                else SearchedAvailableBooks = Book.SearchAvailableBooksByName(search).ToList();
+                if (KindOfSearch == "author")
+                {
+                    SearchedAvailableBooks = Book.SearchAvailableBooksByAuthor(Search).ToList();
+                }
+                else
+                {
+                    SearchedAvailableBooks = Book.SearchAvailableBooksByName(Search).ToList();
+                }
             }
             catch
             {
                 MessageBox.Show(".کتاب مورد نظر یافت نشد");
-                this.Close();
-                return;
+                return false;
             }
 
-            if (SearchedAvailableBooks == null)
-                return;
+            if (SearchedAvailableBooks.Count == 0)
+                return false;
 
             BooksSearchData.ItemsSource = SearchedAvailableBooks;
-
-            InitializeComponent();
+            BooksSearchData.Visibility = Visibility.Visible;
+            return true;
         }
-
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

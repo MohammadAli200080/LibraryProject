@@ -21,7 +21,7 @@ namespace Library_Project.Resources.Windows
     /// </summary>
     public partial class SearchedMemberWindow : Window
     {
-        string UserName = "";
+        public static string UserName = "";
         public SearchedMemberWindow(string username)
         {
             InitializeComponent();
@@ -85,11 +85,11 @@ namespace Library_Project.Resources.Windows
         {
             this.Close();
         }
-
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             CheckEmployeePass Check = new CheckEmployeePass(EmployeeDashboard.Username, "Remove");
             Check.Show();
+            this.Close();
         }
     }
 }

@@ -163,7 +163,6 @@ namespace Library_Project.Resources.Windows
         {
             Payment payment = new Payment(typeOfUser.MemberFromMemberWindow, Username);
             payment.Show();
-            this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -180,7 +179,8 @@ namespace Library_Project.Resources.Windows
             else kindOfSearch = "name";
 
             SearchedBookWindow window = new SearchedBookWindow(Username, kindOfSearch, SearchBox.Text);
-            window.Show();
+            if (window.ShowBook())
+                window.Show();
         }
 
         private void Borrow_Click(object sender, RoutedEventArgs e)
