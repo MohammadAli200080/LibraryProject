@@ -12,7 +12,7 @@
     <Grid>
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="HomePan" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border x:Name="HomePan" Visibility="Visible" BorderBrush="Black" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
                     <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="40" Content=".به بخش اعضا خوش آمدید"/>
                     <Image Width="660" Height="575" Margin="119,-50,120,0" Source="/Resources/Images/download.png" />
@@ -111,7 +111,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            <Border Name="WalletPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="WalletPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
