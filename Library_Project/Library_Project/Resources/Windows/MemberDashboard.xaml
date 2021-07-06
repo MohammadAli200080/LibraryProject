@@ -174,6 +174,12 @@
                                 <TextBlock Text="اشتراک" VerticalAlignment="Center" Margin="-86,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
+                        <ListViewItem x:Name="LoginPn" Padding="6" MouseLeftButtonUp="LoginPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="Login" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF491006"/>
+                                <TextBlock Text="صفحه ورود" VerticalAlignment="Center" Margin="-109,0,0,0" FontSize="15" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
                     </ListView>
                 </StackPanel>
             </Border>
@@ -187,7 +193,7 @@
                          BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
             <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
             <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
-                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+                         BorderBrush="Black" VerticalAlignment="Top" Click="btnSeting_Click" HorizontalAlignment="Left" Margin="10,10,0,0"/>
             <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
         </Grid>
 
