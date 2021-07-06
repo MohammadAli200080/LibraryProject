@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,14 +82,19 @@ namespace Library_Project.Resources.Windows
                 
         }
 
-        private void Return_Click(object sender, RoutedEventArgs e)
+        public void Return_Click(object sender, RoutedEventArgs e)
         {
+            EmployeeDashboard employee = new EmployeeDashboard(EmployeeDashboard.Username.Trim());
             this.Close();
+            employee.Show();
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            DataTable data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + EmployeeDashboard.Username.Trim() + "'");
             CheckEmployeePass Check = new CheckEmployeePass(EmployeeDashboard.Username, "Remove");
+
             Check.Show();
+            this.Close();
         }
     }
 }

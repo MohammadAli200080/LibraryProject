@@ -38,7 +38,8 @@ namespace Library_Project.Resources.Windows
         {
             if (txtPassword.Password == data.Rows[0]["password"].ToString())
             {
-                if(Window == "Employee")
+                
+                if (Window == "Employee")
                 {
                     EmployeeInformation changeInfo = new EmployeeInformation(UserName);
                     changeInfo.Show();
@@ -47,17 +48,23 @@ namespace Library_Project.Resources.Windows
                 {
                     BorrowedBook.RemoveBook(SearchedMemberWindow.UserName); 
                     MessageBox.Show("حذف کاربر با موفقیت انجام شد");
-                    this.Close();
-                    EmployeeDashboard employee = new EmployeeDashboard(UserName);                  
-                    SearchedMemberWindow searched = new SearchedMemberWindow(UserName);
-                    searched.BookBorrowed.ItemsSource = BorrowedBook.infoBorrowed(UserName);
-                    return;
+                    EmployeeDashboard employee = new EmployeeDashboard(UserName);
+                    employee.Show();
+                    this.Close(); 
                 }
                 this.Close();
             }
             else
             {
-                MessageBox.Show("رمز نادرست است");
+                if (Window == "Remove")
+                {
+                    MessageBox.Show("رمز نادرست است\nحذف کاربر انجام نشد");
+                    SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
+                    searched.Show();
+                    this.Close();
+                }                    
+                else
+                    MessageBox.Show("رمز نادرست است");
                 txtPassword.Password = "";
             }
         }

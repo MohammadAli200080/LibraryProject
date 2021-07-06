@@ -476,11 +476,13 @@ namespace Library_Project.Resources.Classes
         {
             try
             {
+                DateTime now = DateTime.Now;
+                now = new DateTime(now.Year, now.Month, now.Day, 00, 00, 00);
                 //if (DatabaseControl.Exe("INSERT INTO T_Members VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','"
                 //    + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "','" + DateTime.Now.ToShortDateString() + "')"))
                 if (DatabaseControl.Exe("INSERT INTO T_Members (username,password,email,phoneNumber,imgSrc,pocket,registeryDate,subscriptionEndingDate,renewaldate) " +
                 "VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','" + Information[3].Trim() + "','" + Information[2].Trim() + "','" +
-                Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.Date + "','" + DateTime.Now.AddDays(14).Date + "','" + DateTime.Now.Date + "')"))
+                Information[4].Trim() + "','" + 0 + "','" + now + "','" + now.AddDays(14) + "','" + now + "')"))
                     return true;
             }
             catch

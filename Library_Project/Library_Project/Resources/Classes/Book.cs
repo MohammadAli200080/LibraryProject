@@ -38,6 +38,7 @@ namespace Library_Project.Resources.Classes
         {
             DataTable data = DatabaseControl.Select("SELECT * FROM T_Books INNER JOIN T_Borrowed ON T_Books.bookName = T_Borrowed.bookName");
             DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE username='" + UserName + "'");
+            DatabaseControl.Exe("DELETE FROM T_Members WHERE username='" + UserName + "'");
             for(int i = 0; i < data.Rows.Count; i++)
             {
                 DatabaseControl.Exe("UPDATE T_Books SET quantity='" + int.Parse(data.Rows[i]["quantity"].ToString()) + 1 + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");

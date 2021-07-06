@@ -252,6 +252,7 @@ namespace Library_Project.Resources.Windows
             {
                 window.Show();
                 SearchBox.Text = "";
+                this.Close();
             }
             else
                 SearchBox.Text = "";
