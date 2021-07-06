@@ -24,17 +24,21 @@ namespace Library_Project.Resources.Windows
     public partial class EmployeeInformation : Window
     {
         DataTable data = new DataTable();
-        string userName = "";
+        string userName = "", Window = "";
         OpenFileDialog open = new OpenFileDialog();
         public static List<string> Info = new List<string>();
         bool IsImage = false;
 
         string byteOfImage;
-        public EmployeeInformation(string UserName)
+        public EmployeeInformation(string UserName,string Window)
         {           
             InitializeComponent();
-            userName = UserName;            
-            data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + userName.Trim() + "'");
+            userName = UserName;
+            this.Window = Window;
+            if (Window == "Employee")
+                data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + userName.Trim() + "'");
+            else
+                data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + userName.Trim() + "'");
 
             ImageFill.Source = ImageControl.ByteToImage(Convert.FromBase64String(data.Rows[0]["imgSrc"].ToString()));
             txtuserName.Text = data.Rows[0]["username"].ToString();
@@ -58,7 +62,11 @@ namespace Library_Project.Resources.Windows
                 FileStream fs = new FileStream(open.FileName, FileMode.Open, FileAccess.Read);
                 byteOfImage = ImageControl.ImageToByte(fs);
 
-                DatabaseControl.Exe("UPDATE T_Employees SET imgSrc ='" + byteOfImage + "' WHERE username='" + userName.Trim() + "' ");
+                if (Window == "Employee")
+                    DatabaseControl.Exe("UPDATE T_Employees SET imgSrc ='" + byteOfImage + "' WHERE username='" + userName.Trim() + "' ");
+                else
+                    DatabaseControl.Exe("UPDATE T_Members SET imgSrc ='" + byteOfImage + "' WHERE username='" + userName.Trim() + "' ");
+
             }
         }
 
@@ -111,7 +119,10 @@ namespace Library_Project.Resources.Windows
                 return;
             }
 
-            DatabaseControl.Exe("UPDATE T_Employees SET password='" + Info[0] + "',email='" + Info[2] + "',phoneNumber='" + Info[1] + "' WHERE username='" + userName.Trim() + "' ");
+            if (Window == "Employee")
+                DatabaseControl.Exe("UPDATE T_Employees SET password='" + Info[0] + "',email='" + Info[2] + "',phoneNumber='" + Info[1] + "' WHERE username='" + userName.Trim() + "' ");
+            else
+                DatabaseControl.Exe("UPDATE T_Members SET password='" + Info[0] + "',email='" + Info[2] + "',phoneNumber='" + Info[1] + "' WHERE username='" + userName.Trim() + "' ");
 
             MessageBox.Show("تغییرات اعمال شد");
             ImageFill.Source = null;

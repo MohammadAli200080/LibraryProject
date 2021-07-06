@@ -153,6 +153,12 @@
                                 <TextBlock VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="بانک پول"/></TextBlock>
                             </StackPanel>
                         </ListViewItem>
+                        <ListViewItem x:Name="LoginPn" Padding="6" MouseLeftButtonUp="LoginPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="Login" Width="30" Height="30" Margin="247,0,0,6" Foreground="#FF551401" VerticalAlignment="Bottom"/>
+                                <TextBlock VerticalAlignment="Center" Margin="-109,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="صفحه ورود"/></TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
                         <ListViewItem x:Name="AccountPn" Padding="5">
                         </ListViewItem>
                     </ListView>

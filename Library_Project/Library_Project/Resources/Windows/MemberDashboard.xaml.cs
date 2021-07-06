@@ -121,7 +121,12 @@ namespace Library_Project.Resources.Windows
             MyBooksPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Collapsed;
         }
-
+        private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
         private void BookName_Checked(object sender, RoutedEventArgs e)
         {
             //TextOfSearch.Text = "نام کتابی که می خواهید بر اساس آن جستوجو کنید را وارد کنید.";
@@ -303,5 +308,12 @@ namespace Library_Project.Resources.Windows
             }
             else myBooksData.Visibility = Visibility.Collapsed;
         }
+
+        private void btnSeting_Click(object sender, RoutedEventArgs e)
+        {
+            CheckEmployeePass check = new CheckEmployeePass(Username, "Member");
+            check.Show();
+        }
+       
     }
 }

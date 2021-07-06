@@ -115,6 +115,12 @@ namespace Library_Project.Resources.Windows
             BankPan.Visibility = Visibility.Collapsed;
         }
 
+        private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
             AddBookWindow window = new AddBookWindow(this);
@@ -149,5 +155,6 @@ namespace Library_Project.Resources.Windows
             addedMoney.Clear();
             MessageBox.Show(".با موفقیت مقدار حساب شما شارژ شد");
         }
+
     }
 }

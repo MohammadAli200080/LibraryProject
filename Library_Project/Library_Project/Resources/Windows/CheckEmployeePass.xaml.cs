@@ -41,7 +41,7 @@ namespace Library_Project.Resources.Windows
                 
                 if (Window == "Employee")
                 {
-                    EmployeeInformation changeInfo = new EmployeeInformation(UserName);
+                    EmployeeInformation changeInfo = new EmployeeInformation(UserName, "Employee");
                     changeInfo.Show();
                 }
                 if (Window == "Remove")
@@ -51,6 +51,11 @@ namespace Library_Project.Resources.Windows
                     EmployeeDashboard employee = new EmployeeDashboard(UserName);
                     employee.Show();
                     this.Close(); 
+                }
+                if (Window == "Member")
+                {
+                    EmployeeInformation changeInfo = new EmployeeInformation(UserName, "Member");
+                    changeInfo.Show();
                 }
                 this.Close();
             }
