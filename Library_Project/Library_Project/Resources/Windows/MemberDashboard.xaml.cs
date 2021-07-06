@@ -142,9 +142,8 @@ namespace Library_Project.Resources.Windows
         }
         private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            LogOutWindow lw = new LogOutWindow(this);
+            lw.Show();
         }
         private void BookName_Checked(object sender, RoutedEventArgs e)
         {

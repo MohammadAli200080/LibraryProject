@@ -10,21 +10,28 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Title="CheckEmployeePass" Height="200" Width="350" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Border Background="#110E17"/>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                <GradientStop Color="#FF2A36AA" Offset="1"/>
+                <GradientStop Color="#FF030617" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border CornerRadius="0,0,0,100" Background="#110E17" Margin="0,0,0,34"/>
         <Grid Height="100" VerticalAlignment="Top" Margin="0,10,0,0">
-            <TextBlock Text="رمز خود را وارد نمایید" Margin="40,40,0,0" Foreground="WhiteSmoke" TextAlignment="Center" FontSize="15"
-                           Height="50" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock Text="رمز خود را وارد نمایید" Margin="48,40,0,0" Foreground="WhiteSmoke" TextAlignment="Center" FontSize="15"
+                           Height="50" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Left" Width="254"/>
 
         </Grid>
-        <StackPanel Orientation="Horizontal" Margin="10,80,20,50" FlowDirection="RightToLeft" Height="30">
+        <StackPanel Orientation="Horizontal" Margin="50,100,50,70" FlowDirection="RightToLeft" Height="30">
             <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
-            <PasswordBox x:Name="txtPassword" Margin="0,0,-160,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="Black"
-                                     Width="144" BorderBrush="Black" Background="#FFE8E9F3" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="13"/>
+            <PasswordBox x:Name="txtPassword" Margin="0,0,10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="Black"
+                                     Width="217" BorderBrush="Black" Background="#FFE8E9F3" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="13"/>
         </StackPanel>
         <StackPanel>
             <DockPanel Margin="0,140,0,0" Height="50">
-                <Button x:Name="Cancel" Width="70" Click="Cancel_Click" Height="25" Background="{x:Null}" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Content="انصراف" FontSize="10" Margin="120,0,0,0"/>
-                <Button x:Name="Login" Width="60" Click="Login_Click" Height="25" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Content="تایید" FontSize="13" Margin="-50,0,0,0"/>
+                <Button x:Name="Cancel" Width="70" Click="Cancel_Click" Height="25" Background="#FFD94800" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Content="انصراف" FontSize="10" Margin="85,12,0,12" BorderBrush="{x:Null}"/>
+                <Button x:Name="Login" Width="70" Click="Login_Click" Height="25" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Content="تایید" FontSize="13" Margin="-50,0,0,0" BorderBrush="{x:Null}" Background="#FF43AD03"/>
             </DockPanel>
         </StackPanel>
     </Grid>

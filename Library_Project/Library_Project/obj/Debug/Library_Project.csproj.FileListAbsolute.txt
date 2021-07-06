@@ -124,3 +124,5 @@ C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckEmployeePass.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.baml
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.g.cs
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.baml

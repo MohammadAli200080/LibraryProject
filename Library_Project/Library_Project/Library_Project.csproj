@@ -84,6 +84,9 @@
     <Compile Include="Resources\Windows\EmployeeInformation.xaml.cs">
       <DependentUpon>EmployeeInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Windows\LogOutWindow.xaml.cs">
+      <DependentUpon>LogOutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Windows\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Windows\EmployeeInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Windows\LogOutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

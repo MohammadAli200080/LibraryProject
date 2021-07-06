@@ -117,10 +117,10 @@ namespace Library_Project.Resources.Windows
 
         private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            LogOutWindow Logout = new LogOutWindow(null,null, this);
+            Logout.Show();
         }
+
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
             AddBookWindow window = new AddBookWindow(this);
