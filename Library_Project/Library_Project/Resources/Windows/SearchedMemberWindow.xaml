@@ -43,7 +43,7 @@
                     <TextBlock x:Name="txtsubscriptionRemain" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="SortDateAscending" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
-                <DataGrid x:Name="BookBorrowed" Height="170" Margin="14,20,14,0" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma">
+                <DataGrid x:Name="BookBorrowed" Height="170" IsReadOnly="True" Margin="14,20,14,0" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ردیف"/>
                         <DataGridTextColumn Header="نام کتاب" Binding="{Binding nameBook}"/>
