@@ -89,7 +89,6 @@ namespace Library_Project.Resources.Windows
         {
             CheckEmployeePass Check = new CheckEmployeePass(EmployeeDashboard.Username, "Remove");
             Check.Show();
-            this.Close();
         }
     }
 }

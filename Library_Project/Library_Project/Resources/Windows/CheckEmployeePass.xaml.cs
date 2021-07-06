@@ -47,8 +47,10 @@ namespace Library_Project.Resources.Windows
                 {
                     BorrowedBook.RemoveBook(SearchedMemberWindow.UserName); 
                     MessageBox.Show("حذف کاربر با موفقیت انجام شد");
-                    EmployeeDashboard employee = new EmployeeDashboard(UserName);
                     this.Close();
+                    EmployeeDashboard employee = new EmployeeDashboard(UserName);                  
+                    SearchedMemberWindow searched = new SearchedMemberWindow(UserName);
+                    searched.BookBorrowed.ItemsSource = BorrowedBook.infoBorrowed(UserName);
                     return;
                 }
                 this.Close();
