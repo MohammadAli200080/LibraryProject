@@ -28,6 +28,8 @@ namespace Library_Project.Resources.Windows
         private List<Book> _availableBooks;
         private List<BorrowedBook> _borrowedBooks;
         private List<string> _nameCollection;
+        private List<string> _subscriptionCollectionNames;
+        private string _moneyTxt;
 
         public List<Book> AvailableBooks
         {
@@ -46,6 +48,16 @@ namespace Library_Project.Resources.Windows
             get => _nameCollection;
             set { _nameCollection = value; NotifyPropertyChanged("NameCollection"); }
         }
+        public List<string> SubscriptionCollectionNames
+        {
+            get => _subscriptionCollectionNames;
+            set { _subscriptionCollectionNames = value; NotifyPropertyChanged("SubscriptionCollectionNames"); }
+        }
+        public string MoneyTxt
+        {
+            get => _moneyTxt;
+            set { _moneyTxt = value; NotifyPropertyChanged("MoneyTxt"); }
+        }
 
         private string Username { get; set; }
         private decimal Money { get; set; }
@@ -58,13 +70,14 @@ namespace Library_Project.Resources.Windows
             InitializeComponent();
             DataContext = this;
 
+            SubscriptionCollectionNames = KindOfSubscription.Instance.GetNames().ToList();
+            InitializeTextOfSubsription();
             UpdateAvailableBoosData();
             UpdateMyBooksData();
             NameCollection = Book.GetAllNames(Username).ToList();
 
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -91,6 +104,7 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Collapsed;
             MyBooksPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Collapsed;
+            SubscriptionPan.Visibility = Visibility.Collapsed;
         }
         private void BooksPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -98,6 +112,7 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Visible;
             MyBooksPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Collapsed;
+            SubscriptionPan.Visibility = Visibility.Collapsed;
         }
         private void MyBooksPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -105,6 +120,7 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Collapsed;
             MyBooksPan.Visibility = Visibility.Visible;
             WalletPan.Visibility = Visibility.Collapsed;
+            SubscriptionPan.Visibility = Visibility.Collapsed;
         }
         private void WalletPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -112,6 +128,7 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Collapsed;
             MyBooksPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Visible;
+            SubscriptionPan.Visibility = Visibility.Collapsed;
         }
 
         private void AccountPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -120,6 +137,7 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Collapsed;
             MyBooksPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Collapsed;
+            SubscriptionPan.Visibility = Visibility.Visible;
         }
 
         private void BookName_Checked(object sender, RoutedEventArgs e)
@@ -223,14 +241,21 @@ namespace Library_Project.Resources.Windows
                 return false;
             }
 
-            for (int i = 0; i < BorrowedBook.infoBorrowed(Username).Count; i++)
+            for (int i = 0; i < BorrowedBooks.Count; i++)
             {
-                if (int.Parse(BorrowedBook.infoBorrowed(Username)[i].remainDate) < 0)
+                if (int.Parse(BorrowedBooks[i].remainDate) < 0)
                 {
                     MessageBox.Show(".لطفا ابتدا به باز پس دادن کتاب هایی که در اختیار دارید اقدام کنید و سپس این عملیات را تکرار کنید");
                     return false;
                 }
+
+                if (BorrowedBooks[i].nameBook == BorrowedName.Text)
+                {
+                    MessageBox.Show(".شما یک کتاب با همین نام دارید، لطفا ابتدا به باز پس دادن آن اقدام کنید و سپس این عملیات را تکرار کنید");
+                    return false;
+                }
             }
+
             return true;
         }
 
@@ -262,6 +287,73 @@ namespace Library_Project.Resources.Windows
                 return;
             }
         }
+
+        private void KindOfSubsciptionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (KindOfSubsciptionComboBox.SelectedIndex < 0)
+                return;
+
+            string selected = KindOfSubsciptionComboBox.SelectedItem.ToString();
+            var cost = KindOfSubscription.Instance.GetCost(selected);
+            MoneyTxt = cost.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+        }
+
+        private void Extend_Click(object sender, RoutedEventArgs e)
+        {
+            if (KindOfSubsciptionComboBox.SelectedIndex < 0)
+            {
+                MessageBox.Show(".ابتدا آیتم مورد نظر را انتخاب کنید"); 
+                return;
+            }
+            string selected = KindOfSubsciptionComboBox.SelectedItem.ToString();
+            var cost = KindOfSubscription.Instance.GetCost(selected);
+            if (cost < 0)
+            {
+                MessageBox.Show(".ابتدا آیتم مورد نظر را انتخاب کنید");
+                return;
+            }
+            if (cost > Member.GetMemberMoney(Username))
+            {
+                MessageBox.Show(".لطفا ابتدا کیف پول خود را شارژ کنید و سپس این علیات را تکرار کنید");
+                return;
+            }
+            if (Member.UpdateMoneyOfMember(Username, (-1) * cost))
+            {
+                KindOfSubsciptionComboBox.SelectedIndex = -1;
+                MoneyTxt = "";
+                Money = Member.GetMemberMoney(Username);
+                money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+                MessageBox.Show("    با موفقیت اشتراک شما شارژ شد، موجودی جدید شما     " + Member.GetMemberMoney(Username).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                return;
+            }
+        }
+
+        /// <summary>
+        /// a method for initializing the text of remained subscription. if the number of remained days is less than number of zero then
+        /// background will be red. else it will be green.
+        /// </summary>
+
+        private void InitializeTextOfSubsription()
+        {
+            var member = Employees.SearchAllMember(Username)[0];
+            DateTime a = DateTime.Parse(DateTime.Now.ToShortDateString());
+            DateTime b = DateTime.Parse(member.SubsriptionDate);
+            TimeSpan result = b - a;
+
+            if (int.Parse(result.TotalDays.ToString()) > 0)
+            {
+                txtsubscriptionRemain.Background = new SolidColorBrush(Colors.Green);
+                txtsubscriptionRemain.Foreground = new SolidColorBrush(Colors.Black);
+                txtsubscriptionRemain.Text = int.Parse(result.TotalDays.ToString()).ToString() + "روز باقی مانده است";
+            }
+            else
+            {
+                txtsubscriptionRemain.Background = new SolidColorBrush(Colors.Red);
+                txtsubscriptionRemain.Foreground = new SolidColorBrush(Colors.Black);
+                txtsubscriptionRemain.Text = Math.Abs(int.Parse(result.TotalDays.ToString())) + "روز گذشته است";
+            }
+        }
+
 
         private void UpdateAvailableBoosData()
         {
@@ -303,5 +395,6 @@ namespace Library_Project.Resources.Windows
             }
             else myBooksData.Visibility = Visibility.Collapsed;
         }
+
     }
 }

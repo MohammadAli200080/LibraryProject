@@ -69,6 +69,7 @@
     <Compile Include="Resources\Classes\Book.cs" />
     <Compile Include="Resources\Classes\DatabaseControl.cs" />
     <Compile Include="Resources\Classes\ImageControl.cs" />
+    <Compile Include="Resources\Classes\KindOfSubscription.cs" />
     <Compile Include="Resources\Classes\User.cs" />
     <Compile Include="Resources\Classes\Validation.cs" />
     <Compile Include="Resources\Windows\AddBookWindow.xaml.cs">

@@ -94,7 +94,7 @@ namespace Library_Project.Resourses.Windows
             }
             else if (Type == typeOfUser.MemberFromMemberWindow)
             {
-                if (Member.AddMoney(username, Convert.ToDecimal(txMoney.Text)))
+                if (Member.UpdateMoneyOfMember(username, Convert.ToDecimal(txMoney.Text)))
                 {
                     MessageBox.Show("موجودی حساب افزایش یافت" + (decimal.Parse(txMoney.Text)).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
                     MemberDashboard md = new MemberDashboard(username);

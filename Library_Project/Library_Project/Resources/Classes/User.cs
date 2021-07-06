@@ -453,11 +453,13 @@ namespace Library_Project.Resources.Classes
         static DataTable Data = new DataTable();
         public static bool GetBook(string BookName, string Username)
         {
+            DateTime now = DateTime.Now;
+            now = new DateTime(now.Year, now.Month, now.Day, 00, 00, 00);
             if (!CheckExistBook(BookName)) return false;
             if (!CheckAbleToGetBook(Username)) return false;
             Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + BookName + "'");
             var quantity = Convert.ToInt32(Data.Rows[0]["quantity"].ToString()) - 1;
-            if (!DatabaseControl.Exe("INSERT INTO T_Borrowed (bookName,username,gotDate,returnDate) VALUES ('" + BookName.Trim() + "','" + Username.Trim() + "','" + DateTime.Now.Date + "','" + DateTime.Now.AddDays(14).Date + "')"))
+            if (!DatabaseControl.Exe("INSERT INTO T_Borrowed (bookName,username,gotDate,returnDate) VALUES ('" + BookName.Trim() + "','" + Username.Trim() + "','" + now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + now.AddDays(14).ToString("yyyy-MM-dd HH:mm:ss") + "')"))
                 return false;
             if (!DatabaseControl.Exe("UPDATE T_Books SET quantity = '" + quantity + "' WHERE bookName = '" + BookName.Trim() + "'")) return false;
 
@@ -478,11 +480,9 @@ namespace Library_Project.Resources.Classes
             {
                 DateTime now = DateTime.Now;
                 now = new DateTime(now.Year, now.Month, now.Day, 00, 00, 00);
-                //if (DatabaseControl.Exe("INSERT INTO T_Members VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','"
-                //    + Information[3].Trim() + "','" + Information[2].Trim() + "','" + Information[4].Trim() + "','" + 0 + "','" + DateTime.Now.ToShortDateString() + "','" + DateTime.Now.AddDays(14).ToShortDateString() + "','" + DateTime.Now.ToShortDateString() + "')"))
                 if (DatabaseControl.Exe("INSERT INTO T_Members (username,password,email,phoneNumber,imgSrc,pocket,registeryDate,subscriptionEndingDate,renewaldate) " +
                 "VALUES ('" + Information[0].Trim() + "','" + Information[1].Trim() + "','" + Information[3].Trim() + "','" + Information[2].Trim() + "','" +
-                Information[4].Trim() + "','" + 0 + "','" + now + "','" + now.AddDays(14) + "','" + now + "')"))
+                Information[4].Trim() + "','" + 0 + "','" + now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + now.AddDays(14).ToString("yyyy-MM-dd HH:mm:ss") + "','" + now.ToString("yyyy-MM-dd HH:mm:ss") + "')"))
                     return true;
             }
             catch
@@ -505,11 +505,8 @@ namespace Library_Project.Resources.Classes
         /// <param name="money">amount of money that's gonna be added to the pocket of member</param>
         /// <returns>if operation is successful return true else returns false</returns>
 
-        public static bool AddMoney(string username, decimal money)
+        public static bool UpdateMoneyOfMember(string username, decimal money)
         {
-            if (money <= 0)
-                return false;
-
             string command = "SELECT * FROM T_Members WHERE username='" + username + "'";
             var data = DatabaseControl.Select(command);
 
