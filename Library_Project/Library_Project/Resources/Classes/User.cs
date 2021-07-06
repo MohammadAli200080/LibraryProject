@@ -457,8 +457,9 @@ namespace Library_Project.Resources.Classes
             now = new DateTime(now.Year, now.Month, now.Day, 00, 00, 00);
             if (!CheckExistBook(BookName)) return false;
             if (!CheckAbleToGetBook(Username)) return false;
-            Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + BookName + "'");
+            Data = DatabaseControl.Select("SELECT * FROM T_Books WHERE LOWER(bookName)='" + BookName.ToLower() + "'");
             var quantity = Convert.ToInt32(Data.Rows[0]["quantity"].ToString()) - 1;
+            BookName = Data.Rows[0]["bookName"].ToString();
             if (!DatabaseControl.Exe("INSERT INTO T_Borrowed (bookName,username,gotDate,returnDate) VALUES ('" + BookName.Trim() + "','" + Username.Trim() + "','" + now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + now.AddDays(14).ToString("yyyy-MM-dd HH:mm:ss") + "')"))
                 return false;
             if (!DatabaseControl.Exe("UPDATE T_Books SET quantity = '" + quantity + "' WHERE bookName = '" + BookName.Trim() + "'")) return false;
@@ -517,6 +518,34 @@ namespace Library_Project.Resources.Classes
 
             command = "UPDATE T_Members SET pocket='" + pocket + "' WHERE username='" + username + "'";
 
+            return DatabaseControl.Exe(command);
+        }
+
+        public static bool UpdateSubscriptionOfmember(string username, string duration)
+        {
+            string command = "SELECT * FROM T_Members WHERE username='" + username + "'";
+            var data = DatabaseControl.Select(command);
+
+            if (data.Rows.Count == 0)
+                return false;
+
+            var date = Convert.ToDateTime(data.Rows[0]["subscriptionEndingDate"]);
+
+            var kinds = KindOfSubscription.Instance.GetSubsriptions();
+            var newDate = new DateTime();
+            for (int i = 0; i < kinds.Length; i++)
+            {
+                if (kinds[i].Name == duration)
+                {
+                    double days = kinds[i].Duration;
+                    newDate = date.AddDays(days);
+                    break;
+                }
+            }
+
+            DateTime now = DateTime.Now;
+            now = new DateTime(now.Year, now.Month, now.Day, 00, 00, 00);
+            command = "UPDATE T_Members SET subscriptionEndingDate='" + newDate.ToString("yyyy-MM-dd HH:mm:ss") + "',renewaldate='" + now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE username='" + username + "'";
             return DatabaseControl.Exe(command);
         }
     }

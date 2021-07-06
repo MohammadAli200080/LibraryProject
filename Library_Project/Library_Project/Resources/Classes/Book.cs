@@ -217,7 +217,7 @@ namespace Library_Project.Resources.Classes
             if (books == null)
                 throw new ArgumentNullException("Books", "No book is available.");
 
-            var book = Array.FindAll(books, b => b.Name == name);
+            var book = Array.FindAll(books, b => b.Name.ToLower() == name.ToLower());
 
             if (book.Length == 0)
                 throw new ArgumentNullException("Book", "Book can not be found.");
@@ -239,7 +239,7 @@ namespace Library_Project.Resources.Classes
             if (books == null)
                 throw new ArgumentNullException("Books", "No book is available.");
 
-            var book = Array.FindAll(books, b => b.Author == author);
+            var book = Array.FindAll(books, b => b.Author.ToLower() == author.ToLower());
 
             if (book.Length == 0)
                 throw new ArgumentNullException("Book", "Book can not be found.");

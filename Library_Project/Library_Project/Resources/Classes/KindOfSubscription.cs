@@ -24,6 +24,7 @@ namespace Library_Project.Resources.Classes
 
         public string Name { get; set; }
         public decimal Cost { get; set; }
+        public double Duration { get; set; }
 
         /// <summary>
         /// a method for initizalizing a collection of different kinds of subscriptions
@@ -31,12 +32,12 @@ namespace Library_Project.Resources.Classes
         /// <returns>an array of KindOfSubscription</returns>
         public KindOfSubscription[] GetSubsriptions()
         {
-            var kind1 = new KindOfSubscription { Name = "یک روزه", Cost = 5000 };
-            var kind2 = new KindOfSubscription{ Name = "یک هفته", Cost = 20000};
-            var kind3 = new KindOfSubscription { Name = "یک ماهه", Cost = 70000 };
-            var kind4 = new KindOfSubscription { Name = "سه ماهه", Cost = 200000 };
-            var kind5 = new KindOfSubscription { Name = "شش ماهه", Cost = 350000 };
-            var kind6 = new KindOfSubscription { Name = "یک ساله", Cost = 600000 };
+            var kind1 = new KindOfSubscription { Name = "یک روزه", Cost = 5000, Duration = 1 };
+            var kind2 = new KindOfSubscription{ Name = "یک هفته", Cost = 20000, Duration = 7};
+            var kind3 = new KindOfSubscription { Name = "یک ماهه", Cost = 70000, Duration = 30};
+            var kind4 = new KindOfSubscription { Name = "سه ماهه", Cost = 200000, Duration = 90 };
+            var kind5 = new KindOfSubscription { Name = "شش ماهه", Cost = 350000, Duration = 180};
+            var kind6 = new KindOfSubscription { Name = "یک ساله", Cost = 600000, Duration = 360};
 
             var kinds = new KindOfSubscription[6] { kind1, kind2, kind3, kind4, kind5, kind6 };
             return kinds;

@@ -254,6 +254,12 @@ namespace Library_Project.Resources.Windows
                     MessageBox.Show(".لطفا ابتدا به باز پس دادن کتاب هایی که در اختیار دارید اقدام کنید و سپس این عملیات را تکرار کنید");
                     return false;
                 }
+
+                if (BorrowedBooks[i].nameBook == BorrowedName.Text)
+                {
+                    MessageBox.Show(".شما یک کتاب با همین نام دارید، لطفا ابتدا به باز پس دادن آن اقدام کنید و سپس این عملیات را تکرار کنید");
+                    return false;
+                }
             }
             return true;
         }
@@ -318,12 +324,16 @@ namespace Library_Project.Resources.Windows
             }
             if (Member.UpdateMoneyOfMember(Username, (-1) * cost))
             {
-                KindOfSubsciptionComboBox.SelectedIndex = -1;
-                MoneyTxt = "";
-                Money = Member.GetMemberMoney(Username);
-                money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
-                MessageBox.Show("    با موفقیت اشتراک شما شارژ شد، موجودی جدید شما     " + Member.GetMemberMoney(Username).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
-                return;
+                if (Member.UpdateSubscriptionOfmember(Username, selected))
+                {
+                    KindOfSubsciptionComboBox.SelectedIndex = -1;
+                    MoneyTxt = "";
+                    Money = Member.GetMemberMoney(Username);
+                    InitializeTextOfSubsription();
+                    money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+                    MessageBox.Show("    با موفقیت اشتراک شما شارژ شد، موجودی جدید شما     " + Member.GetMemberMoney(Username).ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                    return;
+                }
             }
         }
 
@@ -399,6 +409,6 @@ namespace Library_Project.Resources.Windows
             CheckEmployeePass check = new CheckEmployeePass(Username, "Member");
             check.Show();
         }
-       
+
     }
 }
