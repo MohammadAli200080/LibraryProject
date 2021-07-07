@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -394,6 +395,19 @@ namespace Library_Project.Resources.Windows
                                                   returnDate = borrowedBook.returnDate,
                                                   remainDate = borrowedBook.remainDate
                                               }).ToList();
+
+            //DataTable data = new DataTable();
+            //DataTable data2 = new DataTable();
+
+            //data = DatabaseControl.Select("SELECT * " +
+            //    "FROM T_Borrowed " +
+            //    "WHERE username='" + Username + "'" +
+            //    "INNER JOIN T_Members " +
+            //    "ON  T_Borrowed.username=T_Members.username");
+            //for(int i = 0; i < data.Rows.Count; i++)
+            //{
+            //    data2 = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + data.Rows[i]["bookName"] + "'");
+            //}
 
             if (listOfBooks.Count > 0)
             {

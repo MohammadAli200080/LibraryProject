@@ -18,7 +18,7 @@ namespace Library_Project.Resources.Classes
 
         public static List<BorrowedBook> infoBorrowed(string UserName)
         {
-            DataTable data = DatabaseControl.Select("SELECT * FROM T_Borrowed INNER JOIN T_Members ON T_Borrowed.username=T_Members.username");
+            DataTable data = DatabaseControl.Select("SELECT * FROM T_Borrowed WHERE username='" + UserName + "'");
             List<BorrowedBook> Borrowed = new List<BorrowedBook>();
             string NameBook, GotDate, ReturnDate;
             string RemainDate;
