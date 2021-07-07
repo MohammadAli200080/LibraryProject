@@ -66,12 +66,9 @@
         <Grid Height="100" VerticalAlignment="Top">
             <TextBlock Text="صفحه ثبت نام" Margin="0,22" Foreground="White" TextAlignment="Center" FontSize="25"
                            Height="50" VerticalAlignment="Top" />
-            <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
-            <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
-            <materialDesign:PackIcon Kind="WindowMinimize" Foreground="White" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
+                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
+            <materialDesign:PackIcon Kind="WindowMinimize" Foreground="White" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,10,0"/>
 
         </Grid>
         <Grid Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,140,40">
