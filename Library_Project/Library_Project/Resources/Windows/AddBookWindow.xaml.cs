@@ -43,8 +43,14 @@ namespace Library_Project.Resources.Windows
 
         private void BtnAddBook_Click(object sender, RoutedEventArgs e)
         {
-            Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, "1");
+            if (txtName.Text == "" || txtAuthor.Text == "" || txtCategory.Text == "" || txtPublishNumber.Text == "")
+            {
+                MessageBox.Show("ابتدا فیلد هارا به طور کامل پرکنید");
+                return;
+            }
 
+            Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, "1");
+           
             try
             {
                 if (Book.BookExists(book.Name))
