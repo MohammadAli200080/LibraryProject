@@ -33,8 +33,7 @@ namespace Library_Project.Resources.Windows
             set { _allEmployees = value; NotifyPropertyChanged("AllEmployees"); } }
 
         private decimal _money;
-        public decimal Money { get { return _money; } 
-            set { _money = value; NotifyPropertyChanged("Money"); } }
+        public decimal Money { get { return _money; } set { _money = value; NotifyPropertyChanged("Money"); } }
 
         public ManagerDashboard()
         {          
@@ -46,7 +45,6 @@ namespace Library_Project.Resources.Windows
                 AllEmployees = Managers.TakeAllEmployee().ToList();
             else AllEmployees = new List<Employees>();
 
-            Money = Properties.Settings.Default.Bank;            
 
             InitializeComponent();
             if (AllBooks.Count > 0)
@@ -61,8 +59,8 @@ namespace Library_Project.Resources.Windows
                 allEmployeesData.ItemsSource = AllEmployees;
             }
                 
-            DataContext = this;         
-            money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+            DataContext = this;
+            BankUpdate();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -143,18 +141,21 @@ namespace Library_Project.Resources.Windows
 
         private void SalarayEmployee_Click(object sender, RoutedEventArgs e)
         {
-            PayEmployeeWindow window = new PayEmployeeWindow();
+            CheckPassWindow window = new CheckPassWindow("admin","Manager", this);
             window.Show();
-            this.Close();
         }
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        
+        public void BankUpdate()
         {
-            Managers.PayManager(Convert.ToDecimal(addedMoney.Text));
-            Money += Convert.ToDecimal(addedMoney.Text);
+            Money = Properties.Settings.Default.Bank;
             money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
-            addedMoney.Clear();
-            MessageBox.Show(".با موفقیت مقدار حساب شما شارژ شد");
         }
 
+        private void Pay_Click(object sender, RoutedEventArgs e)
+        {
+            Payment payment = new Payment(typeOfUser.Manager, "admin");
+            payment.Show();
+            this.Close();
+        }
     }
 }

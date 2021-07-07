@@ -258,7 +258,7 @@ namespace Library_Project.Resources.Windows
         }
         private void btnSeting_Click(object sender, RoutedEventArgs e)
         {
-            CheckEmployeePass check = new CheckEmployeePass(Username, "Employee");
+            CheckPassWindow check = new CheckPassWindow(Username, "Employee");
             check.Show();           
         }
     }

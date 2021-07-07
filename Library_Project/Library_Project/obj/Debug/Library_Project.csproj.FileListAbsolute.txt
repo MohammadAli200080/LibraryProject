@@ -98,7 +98,6 @@ C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\AddBookWindow.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeDashboard.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\MemberDashboard.g.cs
-C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\PayEmployeeWindow.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\RemoveEmployeeWindow.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\bin\Debug\System.Data.SqlClient.dll
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\bin\Debug\System.Data.SqlClient.xml
@@ -106,7 +105,6 @@ C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\AddBookWindow.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeDashboard.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\MemberDashboard.baml
-C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\PayEmployeeWindow.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\RemoveEmployeeWindow.baml
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.g.cs
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\SearchedMemberWindow.baml
@@ -120,11 +118,11 @@ C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.g.cs
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckEmployeePass.baml
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.baml
-C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckEmployeePass.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.g.cs
-C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckEmployeePass.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\EmployeeInformation.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.baml
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.g.cs
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.baml
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckPassWindow.g.cs
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckPassWindow.baml

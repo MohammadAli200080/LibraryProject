@@ -419,7 +419,7 @@ namespace Library_Project.Resources.Windows
 
         private void btnSeting_Click(object sender, RoutedEventArgs e)
         {
-            CheckEmployeePass check = new CheckEmployeePass(Username, "Member");
+            CheckPassWindow check = new CheckPassWindow(Username, "Member");
             check.Show();
         }
 

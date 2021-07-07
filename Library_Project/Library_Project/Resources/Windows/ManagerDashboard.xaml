@@ -27,8 +27,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="Black" Margin="268,35,208,-30" FontSize="30">
-                            به بخش کتاب ها خوش آمدید
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                            بخش کتاب ها
                         </Label>
                         <Button x:Name="AddBook" Height="70" Margin="292.5,65,292.5,0" Click="AddBook_Click">
                             <DockPanel Margin="10,0,0,0">
@@ -37,7 +37,7 @@
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -55,8 +55,8 @@
                         <RowDefinition Height=".5*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,122" FontSize="30" FontWeight="Black">
-                        به بخش کارمندان پنل مدیریریت، خوش آمدید
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                        بخش کارمندان
                     </Label>
                     <DockPanel>
                         <Button x:Name="AddEmployee" Width="220" Height="70" Margin="50,100,30,10" Click="AddEmployee_Click">
@@ -78,8 +78,7 @@
                             </DockPanel>
                         </Button>
                     </DockPanel>
-                    <DataGrid x:Name="allEmployeesData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5"  
-                        FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid x:Name="allEmployeesData" Visibility="Collapsed" Margin="10" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
@@ -106,21 +105,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="30" FontWeight="Black">
-                            به بخش بانک پنل مدیریریت، خوش آمدید
+                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                            بخش کیف پول
                         </Label>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="20" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-600,100,500,50" FontSize="20" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,70,80,50" FontSize="20" FontWeight="Black" Text="مقدار مبلغی که میخواهید به بانک پول بیفزایید را وارد  کنید :" Height="52" Width="720"/>
-                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal" FlowDirection="RightToLeft">
-                            <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#7400B8"/>
-                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                 Width="330" Height="60" Background="#FFEDE8F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="مبلغ" x:Name="addedMoney"/>
-                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Content="ثبت" Foreground="#7400B8" x:Name="submit" Click="Submit_Click"/>
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,40,60" FontSize="30" FontWeight="Black" Text=":برای اضافه کردن پول به کیف پول خود بر روی دکمۀ زیر کلیک کنید" Height="52" Width="808"/>
+                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
+                            <Button Margin="70,0" Width="450" Height="56" FontWeight="Black" FontSize="25" Background="AliceBlue" Content="صفحۀ پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
+                            <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#FF060F70"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
