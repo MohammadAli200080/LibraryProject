@@ -47,6 +47,7 @@ namespace Library_Project.Resources.Windows
                 if (!(mainPass == txtPassword.Password))
                 {
                     MessageBox.Show(".رمز عبور وارد شده نادرست است");
+                    txtPassword.Password = "";
                     return;
                 }
                 if (!Managers.AbleToPay(600000))
@@ -61,6 +62,23 @@ namespace Library_Project.Resources.Windows
                 }
                 managerDashboard.BankUpdate();
                 MessageBox.Show($"{Properties.Settings.Default.Bank} : مقدار موجودی جدید بانک پول\n.عملیات با موفقیت به اتمام رسید");
+                txtPassword.Password = "";
+                this.Close();
+            }
+            else if (Window == "RemoveEmployee")
+            {
+                var mainPass = Properties.Settings.Default.PassWord;
+                if (!(mainPass == txtPassword.Password))
+                {
+                    MessageBox.Show(".رمز عبور وارد شده نادرست است");
+                    txtPassword.Password = "";
+                    return;
+                }
+                if (Managers.RemoveEmployee(UserName))
+                {
+                    MessageBox.Show("کارمند با موفقیت حذف شد");
+                }
+                managerDashboard.UpdateEmployeeGrid();
                 txtPassword.Password = "";
                 this.Close();
             }

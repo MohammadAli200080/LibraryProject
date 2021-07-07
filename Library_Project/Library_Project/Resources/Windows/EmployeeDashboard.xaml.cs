@@ -71,68 +71,17 @@ namespace Library_Project.Resources.Windows
         public static string Username { get; set; }
         public EmployeeDashboard(string username)
         {
-            Money = Employees.GetMoneyOfEmployee(username);
-
-            if (Book.TakeAllBooks() != null)
-                AllBooks = Book.TakeAllBooks().ToList();
-            else AllBooks = new List<Book>();
-
-            if (Book.TakeBorrowedBooks() != null)
-                BorrowedBooks = Book.TakeBorrowedBooks().ToList();
-            else BorrowedBooks = new List<Book>();
-
-            if (Book.TakeAvailableBooks() != null)
-                AvailableBooks = Book.TakeAvailableBooks().ToList();
-            else AvailableBooks = new List<Book>();
-
-            if (Employees.TakeAllMember() != null)
-                AllMembers = Employees.TakeAllMember().ToList();
-            else AllMembers = new List<Member>();
-
-            if (Employees.TakeDelayedMembersInPayment() != null)
-                DelayedMembersInPayment = Employees.TakeDelayedMembersInPayment().ToList();
-            else DelayedMembersInPayment = new List<Member>();
-
-            if (Employees.TakeDelayedMemebrsInReturn() != null)
-                DelayedMembersInReturning = Employees.TakeDelayedMemebrsInReturn().ToList();
-            else DelayedMembersInReturning = new List<Member>();
-
             InitializeComponent();
-
-            if (AllBooks.Count > 0)
-            {
-                allBooksData.ItemsSource = AllBooks;
-            }
-
-            if (BorrowedBooks.Count > 0)
-            {
-                borrowedBooksData.ItemsSource = BorrowedBooks;
-            }
-
-            if (AvailableBooks.Count > 0)
-            {
-                availableBooksData.ItemsSource = AvailableBooks;
-            }
-
-            if (AllMembers.Count > 0)
-            {
-                allMembersData.ItemsSource = AllMembers;
-            }
-
-            if (DelayedMembersInPayment.Count > 0)
-            {
-                delayedMembersInPaymentData.ItemsSource = DelayedMembersInPayment;
-            }
-
-            if (DelayedMembersInReturning.Count > 0)
-            {
-                delayedMembersInReturningData.ItemsSource = DelayedMembersInReturning;
-            }
-
             DataContext = this;
 
+            InitializeAllBooks();
+            InitializeBorrowedBooks();
+            InitializeAvailableBooks();
+            InitializeAllMembers();
+            InitializeDelayedMembersInPayment();
+            InitializeDelayedMembersInReturn();
             Username = username;
-            money.Content = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+            InitializeMoney();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -260,6 +209,84 @@ namespace Library_Project.Resources.Windows
         {
             CheckPassWindow check = new CheckPassWindow(Username, "Employee");
             check.Show();           
+        }
+
+        private void InitializeMoney()
+        {
+            Money = Employees.GetMoneyOfEmployee(Username);
+            money.Content = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
+        }
+
+        private void InitializeDelayedMembersInReturn()
+        {
+            if (Employees.TakeDelayedMemebrsInReturn() != null)
+                DelayedMembersInReturning = Employees.TakeDelayedMemebrsInReturn().ToList();
+            else DelayedMembersInReturning = new List<Member>();
+
+            if (DelayedMembersInReturning.Count > 0)
+            {
+                delayedMembersInReturningData.ItemsSource = DelayedMembersInReturning;
+            }
+        }
+
+        private void InitializeDelayedMembersInPayment()
+        {
+            if (Employees.TakeDelayedMembersInPayment() != null)
+                DelayedMembersInPayment = Employees.TakeDelayedMembersInPayment().ToList();
+            else DelayedMembersInPayment = new List<Member>();
+
+            if (DelayedMembersInPayment.Count > 0)
+            {
+                delayedMembersInPaymentData.ItemsSource = DelayedMembersInPayment;
+            }
+        }
+
+        private void InitializeAllMembers()
+        {
+            if (Employees.TakeAllMember() != null)
+                AllMembers = Employees.TakeAllMember().ToList();
+            else AllMembers = new List<Member>();
+
+            if (AllMembers.Count > 0)
+            {
+                allMembersData.ItemsSource = AllMembers;
+            }
+        }
+
+        private void InitializeAvailableBooks()
+        {
+            if (Book.TakeAvailableBooks() != null)
+                AvailableBooks = Book.TakeAvailableBooks().ToList();
+            else AvailableBooks = new List<Book>();
+
+            if (AvailableBooks.Count > 0)
+            {
+                availableBooksData.ItemsSource = AvailableBooks;
+            }
+        }
+
+        private void InitializeBorrowedBooks()
+        {
+            if (Book.TakeBorrowedBooks() != null)
+                BorrowedBooks = Book.TakeBorrowedBooks().ToList();
+            else BorrowedBooks = new List<Book>();
+
+            if (BorrowedBooks.Count > 0)
+            {
+                borrowedBooksData.ItemsSource = BorrowedBooks;
+            }
+        }
+
+        private void InitializeAllBooks()
+        {
+            if (Book.TakeAllBooks() != null)
+                AllBooks = Book.TakeAllBooks().ToList();
+            else AllBooks = new List<Book>();
+
+            if (AllBooks.Count > 0)
+            {
+                allBooksData.ItemsSource = AllBooks;
+            }
         }
     }
 }

@@ -129,11 +129,8 @@ namespace Library_Project.Resources.Windows
         
         private void ExecuteDeleteCommand(Employees parameter)
         {
-            if (Managers.RemoveEmployee(parameter.UserName))
-            {
-                MessageBox.Show("کارمند با موفقیت حذف شد");
-                UpdateEmployeeGrid();
-            }
+            CheckPassWindow checkPassWindow = new CheckPassWindow(parameter.UserName, "RemoveEmployee", this);
+            checkPassWindow.Show();
         }
 
         private void SalarayEmployee_Click(object sender, RoutedEventArgs e)
@@ -161,9 +158,9 @@ namespace Library_Project.Resources.Windows
         /// <summary>
         /// a method for updating employeegrid
         /// </summary>
-        private void UpdateEmployeeGrid()
+        public  void UpdateEmployeeGrid()
         {
-            if (Managers.TakeAllEmployee() != null)
+            if (Managers.TakeAllEmployee().Count != 0)
                 AllEmployees = Managers.TakeAllEmployee().ToList();
             else AllEmployees = new List<Employees>();
 
@@ -172,6 +169,10 @@ namespace Library_Project.Resources.Windows
                 allEmployeesData.Visibility = Visibility.Visible;
                 allEmployeesData.ItemsSource = AllEmployees;
             }
+            else
+            {
+                allEmployeesData.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
@@ -179,7 +180,7 @@ namespace Library_Project.Resources.Windows
         /// </summary>
         private void UpdateBookGrid()
         {
-            if (Book.TakeAllBooks() != null)
+            if (Book.TakeAllBooks().Length != 0)
                 AllBooks = Book.TakeAllBooks().ToList();
             else AllBooks = new List<Book>();
 
@@ -187,6 +188,10 @@ namespace Library_Project.Resources.Windows
             {
                 allBooksData.Visibility = Visibility.Visible;
                 allBooksData.ItemsSource = AllBooks;
+            }
+            else
+            {
+                allBooksData.Visibility = Visibility.Collapsed;
             }
         }
 
