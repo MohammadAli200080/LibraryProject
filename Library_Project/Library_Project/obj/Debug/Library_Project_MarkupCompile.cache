@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\
+C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\
 Library_Project
 none
 false
 DEBUG;TRACE
-C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\App.xaml
+C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\App.xaml
 141084675449
 
 24-1691893331
-16-1121036899
+161723262030
 MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\CheckEmployeePass.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\EmployeeInformation.xaml;Resources\Windows\LogOutWindow.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\PayEmployeeWindow.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;Resources\Windows\RemoveEmployeeWindow.xaml;Resources\Windows\SearchedBookWindow.xaml;Resources\Windows\SearchedMemberWindow.xaml;
 
 False

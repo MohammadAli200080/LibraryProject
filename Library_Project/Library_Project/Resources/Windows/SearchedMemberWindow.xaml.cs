@@ -85,8 +85,8 @@ namespace Library_Project.Resources.Windows
         public void Return_Click(object sender, RoutedEventArgs e)
         {
             EmployeeDashboard employee = new EmployeeDashboard(EmployeeDashboard.Username.Trim());
-            this.Close();
             employee.Show();
+            this.Close();           
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {

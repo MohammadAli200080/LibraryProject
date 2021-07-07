@@ -77,6 +77,8 @@ namespace Library_Project.Resources.Windows
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             txtPassword.Password = "";
+            SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
+            searched.Show();
             this.Close();
         }
     }
