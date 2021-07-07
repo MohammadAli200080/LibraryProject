@@ -175,18 +175,9 @@ namespace Library_Project.Resources.Classes
 
             List<Book> allBooks = TakeAllBooks().ToList();
 
-            if (TakeBorrowedBooks() == null)
-                return allBooks.ToArray();
+            var availableBooks = allBooks.Where(x => x.Quantity != 0).ToList();
 
-            Book[] borrowedBooks = TakeBorrowedBooks();
-
-            for (int i = 0; i < borrowedBooks.Length; i++)
-            {
-                Book book = SearchBookByName(borrowedBooks[i].Name);
-                allBooks.Remove(book);
-            }
-
-            return allBooks.ToArray();
+            return availableBooks.ToArray();
         }
 
         // <summary> a method for searching the book by name </summary>

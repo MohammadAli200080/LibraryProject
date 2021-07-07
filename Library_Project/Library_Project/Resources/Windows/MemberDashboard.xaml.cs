@@ -196,6 +196,7 @@ namespace Library_Project.Resources.Windows
             if (AuthorName.IsChecked == false && BookName.IsChecked == false)
             {
                 MessageBox.Show(".لطفا ابتدا یکی از دو مورد داخل چک باکس را انتخاب کنید");
+                SearchBox.Clear();
                 return;
             }
             else if (AuthorName.IsChecked == true)
@@ -203,8 +204,8 @@ namespace Library_Project.Resources.Windows
             else kindOfSearch = "name";
 
             SearchedBookWindow window = new SearchedBookWindow(Username, kindOfSearch, SearchBox.Text);
-            if (window.ShowBook())
-                window.Show();
+            if (window.ShowBook()) window.Show();
+            else SearchBox.Clear();
         }
 
         private void Borrow_Click(object sender, RoutedEventArgs e)
@@ -225,7 +226,8 @@ namespace Library_Project.Resources.Windows
                 return;
             }
 
-            MessageBox.Show(".امکان به امانت گرفتن این کتاب موجود نیست");
+            MessageBox.Show(".کتابی با این نام موجود نمی باشد");
+            BorrowedName.Clear();
         }
 
         private bool AbleToBorrow()
@@ -382,7 +384,9 @@ namespace Library_Project.Resources.Windows
                 BorrowedBooks = BorrowedBook.infoBorrowed(Username);
             else BorrowedBooks = new List<BorrowedBook>();
 
-            var listOfBooks = BorrowedBooks.Join(AvailableBooks,
+            var allBooks = Book.TakeAllBooks();
+
+            var listOfBooks = BorrowedBooks.Join(allBooks,
                                               borrowedBook => borrowedBook.nameBook,
                                               searchedBook => searchedBook.Name,
                                               (borrowedBook, searchedBook) => new
@@ -395,19 +399,6 @@ namespace Library_Project.Resources.Windows
                                                   returnDate = borrowedBook.returnDate,
                                                   remainDate = borrowedBook.remainDate
                                               }).ToList();
-
-            //DataTable data = new DataTable();
-            //DataTable data2 = new DataTable();
-
-            //data = DatabaseControl.Select("SELECT * " +
-            //    "FROM T_Borrowed " +
-            //    "WHERE username='" + Username + "'" +
-            //    "INNER JOIN T_Members " +
-            //    "ON  T_Borrowed.username=T_Members.username");
-            //for(int i = 0; i < data.Rows.Count; i++)
-            //{
-            //    data2 = DatabaseControl.Select("SELECT * FROM T_Books WHERE bookName='" + data.Rows[i]["bookName"] + "'");
-            //}
 
             if (listOfBooks.Count > 0)
             {
