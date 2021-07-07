@@ -12,9 +12,15 @@ DEBUG;TRACE
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\App.xaml
 141084675449
 
+<<<<<<< Updated upstream
 24-1691893331
 161723262030
 MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\CheckEmployeePass.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\EmployeeInformation.xaml;Resources\Windows\LogOutWindow.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\PayEmployeeWindow.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;Resources\Windows\RemoveEmployeeWindow.xaml;Resources\Windows\SearchedBookWindow.xaml;Resources\Windows\SearchedMemberWindow.xaml;
+=======
+24-453468400
+17939579789
+MainWindow.xaml;Resources\Windows\AddBookWindow.xaml;Resources\Windows\CheckPassWindow.xaml;Resources\Windows\EmployeeDashboard.xaml;Resources\Windows\EmployeeInformation.xaml;Resources\Windows\LogOutWindow.xaml;Resources\Windows\ManagerDashboard.xaml;Resources\Windows\MemberDashboard.xaml;Resources\Windows\Payment.xaml;Resources\Windows\Register.xaml;Resources\Windows\RemoveEmployeeWindow.xaml;Resources\Windows\SearchedBookWindow.xaml;Resources\Windows\SearchedMemberWindow.xaml;
+>>>>>>> Stashed changes
 
-False
+True
 
