@@ -63,6 +63,37 @@ namespace Library_Project.Resources.Windows
         private string Username { get; set; }
         private decimal Money { get; set; }
 
+        private CheckPassWindow _checkPassWindow;
+        private LogOutWindow _logOutWindow;
+        private Payment _paymentWindow;
+        private CheckPassWindow CheckPass
+        {
+            get => _checkPassWindow;
+            set
+            {
+                if (value == null) _checkPassWindow = value;
+                else if (_checkPassWindow == null) _checkPassWindow = value;
+            }
+        }
+        private LogOutWindow LogOut
+        {
+            get => _logOutWindow;
+            set
+            {
+                if (value == null) _logOutWindow = value;
+                else if (_logOutWindow == null) _logOutWindow = value;
+            }
+        }
+        private Payment PaymentWindow
+        {
+            get => _paymentWindow;
+            set
+            {
+                if (value == null) _paymentWindow = value;
+                else if (_paymentWindow == null) _paymentWindow = value;
+            }
+        }
+
         public MemberDashboard(string username)
         {
             Money = Member.GetMemberMoney(username);
@@ -143,8 +174,12 @@ namespace Library_Project.Resources.Windows
         }
         private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            LogOutWindow lw = new LogOutWindow(this);
-            lw.Show();
+            if (LogOut == null)
+            {
+                LogOut = new LogOutWindow(this);
+                LogOut.Closed += (s, _) => LogOut = null;
+                LogOut.Show();
+            }
         }
         private void BookName_Checked(object sender, RoutedEventArgs e)
         {
@@ -185,8 +220,12 @@ namespace Library_Project.Resources.Windows
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
-            Payment payment = new Payment(typeOfUser.MemberFromMemberWindow, Username);
-            payment.Show();
+            if (PaymentWindow == null)
+            {
+                PaymentWindow = new Payment(typeOfUser.MemberFromMemberWindow, Username);
+                PaymentWindow.Closed += (s, _) => PaymentWindow = null;
+                PaymentWindow.Show();
+            }
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -410,8 +449,12 @@ namespace Library_Project.Resources.Windows
 
         private void btnSeting_Click(object sender, RoutedEventArgs e)
         {
-            CheckPassWindow check = new CheckPassWindow(Username, "Member");
-            check.Show();
+            if (CheckPass == null)
+            {
+                CheckPass = new CheckPassWindow(Username, "Member");
+                CheckPass.Closed += (s, _) => CheckPass = null;
+                CheckPass.Show();
+            }
         }
 
     }

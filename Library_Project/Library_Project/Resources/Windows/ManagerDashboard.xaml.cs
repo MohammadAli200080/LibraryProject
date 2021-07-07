@@ -42,6 +42,37 @@ namespace Library_Project.Resources.Windows
         private decimal _money;
         public decimal Money { get { return _money; } set { _money = value; NotifyPropertyChanged("Money"); } }
 
+        private CheckPassWindow _checkPassWindow;
+        private LogOutWindow _logOutWindow;
+        private Payment _paymentWindow;
+        private CheckPassWindow CheckPass
+        {
+            get => _checkPassWindow;
+            set
+            {
+                if (value == null) _checkPassWindow = value;
+                else if (_checkPassWindow == null) _checkPassWindow = value;
+            }
+        }
+        private LogOutWindow LogOut
+        {
+            get => _logOutWindow;
+            set
+            {
+                if (value == null) _logOutWindow = value;
+                else if (_logOutWindow == null) _logOutWindow = value;
+            }
+        }
+        private Payment PaymentWindow
+        {
+            get => _paymentWindow;
+            set
+            {
+                if (value == null) _paymentWindow = value;
+                else if (_paymentWindow == null) _paymentWindow = value;
+            }
+        }
+
         public ManagerDashboard()
         {
             InitializeComponent();
@@ -104,8 +135,12 @@ namespace Library_Project.Resources.Windows
 
         private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            LogOutWindow Logout = new LogOutWindow(null, null, this);
-            Logout.Show();
+            if (LogOut == null)
+            {
+                LogOut = new LogOutWindow(null, null, this);
+                LogOut.Closed += (s, _) => LogOut = null;
+                LogOut.Show();
+            }
         }
 
         private void AddBook_Click(object sender, RoutedEventArgs e)
@@ -125,24 +160,35 @@ namespace Library_Project.Resources.Windows
         /// </summary>
         private DelegateCommand<Employees> _deleteCommand;
         public DelegateCommand<Employees> DeleteCommand => _deleteCommand ?? (_deleteCommand = new DelegateCommand<Employees>(ExecuteDeleteCommand));
-        
+
         private void ExecuteDeleteCommand(Employees parameter)
         {
-            CheckPassWindow checkPassWindow = new CheckPassWindow(parameter.UserName, "RemoveEmployee", this);
-            checkPassWindow.Show();
+            if (CheckPass == null)
+            {
+                CheckPass = new CheckPassWindow(parameter.UserName, "RemoveEmployee", this);
+                CheckPass.Closed += (s, _) => CheckPass = null;
+                CheckPass.Show();
+            }
         }
 
         private void SalarayEmployee_Click(object sender, RoutedEventArgs e)
         {
-            CheckPassWindow window = new CheckPassWindow("admin", "Manager", this);
-            window.Show();
+            if (CheckPass == null)
+            {
+                CheckPass = new CheckPassWindow("admin", "Manager", this);
+                CheckPass.Closed += (s, _) => CheckPass = null;
+                CheckPass.Show();
+            }
         }
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
-            Payment payment = new Payment(typeOfUser.Manager, "admin");
-            payment.Show();
-            this.Close();
+            if (PaymentWindow == null)
+            {
+                PaymentWindow = new Payment(typeOfUser.Manager, "admin", this);
+                PaymentWindow.Closed += (s, _) => PaymentWindow = null;
+                PaymentWindow.Show();
+            }
         }
         /// <summary>
         /// Updates Bank of library
@@ -156,7 +202,7 @@ namespace Library_Project.Resources.Windows
         /// <summary>
         /// a method for updating employeegrid
         /// </summary>
-        public  void UpdateEmployeeGrid()
+        public void UpdateEmployeeGrid()
         {
             if (Managers.TakeAllEmployee().Count != 0)
                 AllEmployees = Managers.TakeAllEmployee().ToList();

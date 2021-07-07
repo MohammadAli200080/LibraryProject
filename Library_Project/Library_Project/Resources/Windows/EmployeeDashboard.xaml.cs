@@ -69,6 +69,39 @@ namespace Library_Project.Resources.Windows
         }
 
         public static string Username { get; set; }
+
+
+        private CheckPassWindow _checkPassWindow;
+        private LogOutWindow _logOutWindow;
+        private Payment _paymentWindow;
+        private CheckPassWindow CheckPass
+        {
+            get => _checkPassWindow;
+            set
+            {
+                if (value == null) _checkPassWindow = value;
+                else if (_checkPassWindow == null) _checkPassWindow = value;
+            }
+        }
+        private LogOutWindow LogOut
+        {
+            get => _logOutWindow;
+            set
+            {
+                if (value == null) _logOutWindow = value;
+                else if (_logOutWindow == null) _logOutWindow = value;
+            }
+        }
+        private Payment PaymentWindow
+        {
+            get => _paymentWindow;
+            set
+            {
+                if (value == null) _paymentWindow = value;
+                else if (_paymentWindow == null) _paymentWindow = value;
+            }
+        }
+
         public EmployeeDashboard(string username)
         {
             InitializeComponent();
@@ -136,8 +169,12 @@ namespace Library_Project.Resources.Windows
         }
         private void LoginPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            LogOutWindow Logout = new LogOutWindow(null,this);
-            Logout.Show();
+            if (LogOut == null)
+            {
+                LogOut = new LogOutWindow(null, this);
+                LogOut.Closed += (s, _) => LogOut = null;
+                LogOut.Show();
+            }
         }
         private void ShowALlBooks_Click(object sender, RoutedEventArgs e)
         {
@@ -207,8 +244,12 @@ namespace Library_Project.Resources.Windows
         }
         private void btnSeting_Click(object sender, RoutedEventArgs e)
         {
-            CheckPassWindow check = new CheckPassWindow(Username, "Employee");
-            check.Show();           
+            if (CheckPass == null)
+            {
+                CheckPass = new CheckPassWindow(Username, "Employee");
+                CheckPass.Closed += (s, _) => CheckPass = null;
+                CheckPass.Show();
+            }
         }
 
         private void InitializeMoney()

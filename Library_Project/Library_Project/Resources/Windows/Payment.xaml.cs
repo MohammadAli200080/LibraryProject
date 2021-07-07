@@ -24,9 +24,10 @@ namespace Library_Project.Resourses.Windows
     {
         private typeOfUser Type { get; set; } 
         private string username { get; set; }
-
-        public Payment(typeOfUser type, string username = "")
+        private ManagerDashboard md;
+        public Payment(typeOfUser type, string username = "", ManagerDashboard managerDashboard = null)
         {
+            md = managerDashboard;
             this.username = username;
             this.Type = type;
             InitializeComponent();
@@ -113,9 +114,8 @@ namespace Library_Project.Resourses.Windows
                 Properties.Settings.Default.Bank += decimal.Parse(txMoney.Text);
                 var bank = Properties.Settings.Default.Bank;
                 Properties.Settings.Default.Save();
+                md.BankUpdate();
                 MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + bank.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
-                ManagerDashboard managerDashboard = new ManagerDashboard();
-                managerDashboard.Show();
                 this.Close();
             }
             else
