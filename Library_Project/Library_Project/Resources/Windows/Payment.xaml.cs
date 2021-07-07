@@ -112,6 +112,16 @@ namespace Library_Project.Resourses.Windows
                     this.Close();
                 }
             }
+            else if (Type == typeOfUser.Manager)
+            {
+                Properties.Settings.Default.Bank += decimal.Parse(txMoney.Text);
+                var bank = Properties.Settings.Default.Bank;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("با موفقیت ثبت نام شد\nموجودی حساب  " + bank.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir")));
+                ManagerDashboard managerDashboard = new ManagerDashboard();
+                managerDashboard.Show();
+                this.Close();
+            }
             else
             {
                 MessageBox.Show("اطلاعات نادرست می باشد");
@@ -135,6 +145,13 @@ namespace Library_Project.Resourses.Windows
                 DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='" + Register.Info[0] + "'");
                 MainWindow Login = new MainWindow();
                 Login.Show();
+                this.Close();
+            }
+            else if (typeOfUser.Manager == Type)
+            {
+                MessageBox.Show("موجودی افزایش نیافت");
+                ManagerDashboard managerDashboard = new ManagerDashboard();
+                managerDashboard.Show();
                 this.Close();
             }
             else

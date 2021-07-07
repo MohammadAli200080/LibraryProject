@@ -9,7 +9,7 @@ namespace Library_Project.Resources.Classes
 {
     public enum typeOfUser
     {
-        Employee, Member, MemberFromMemberWindow
+        Employee, Member, MemberFromMemberWindow, Manager
     }
     //the Main classes for User in project
     public class Users
@@ -51,6 +51,12 @@ namespace Library_Project.Resources.Classes
             Properties.Settings.Default.Bank += PayMent;
             Properties.Settings.Default.Save();
         }
+
+        /// <summary>
+        /// a method for calculating salary of employees
+        /// </summary>
+        /// <param name="payment">amount of money payed to employess</param>
+        /// <returns>whole salary of all employees</returns>
         public static decimal CalculatePayment(decimal payment)
         {
             var data = DatabaseControl.Select("SELECT * FROM T_Employees ");
@@ -58,23 +64,33 @@ namespace Library_Project.Resources.Classes
             decimal salary = count * payment;
             return salary;
         }
+        /// <summary>
+        /// a method to check whether manager is able to pay all employees or not
+        /// </summary>
+        /// <param name="payment"> amount of payment of an employee</param>
+        /// <returns>a boolean. if able to pay, returns true else returns fasle</returns>
         public static bool AbleToPay(decimal payment)
         {
             if (Properties.Settings.Default.Bank < CalculatePayment(payment)) return false;
             return true;
         }
-        //this function for Increase Employee inventory
-        public static bool PayEmployees(decimal PayMent)
+        /// <summary>
+        /// a method for increasing packet of all employees
+        /// </summary>
+        /// <param name="Payment">amount of payment of an employee</param>
+        /// <returns>a boolean. if able to pay, returns true else returns fasle</returns>
+        public static bool PayEmployees(decimal Payment)
         {
             var data = DatabaseControl.Select("SELECT * FROM T_Employees");
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                decimal pay = Convert.ToDecimal(data.Rows[i]["pocket"].ToString()) + PayMent;
+                decimal pay = Convert.ToDecimal(data.Rows[i]["pocket"].ToString()) + Payment;
                 if (DatabaseControl.Exe("UPDATE T_Employees SET pocket='" + pay + "' WHERE username = '" + data.Rows[i]["username"] + "'"))
                 {
-                    Properties.Settings.Default.Bank -= PayMent;
+                    Properties.Settings.Default.Bank -= Payment;
                     Properties.Settings.Default.Save();
-                    return true;
+                    if (i == data.Rows.Count - 1)
+                        return true;
                 }
             }
             return false;

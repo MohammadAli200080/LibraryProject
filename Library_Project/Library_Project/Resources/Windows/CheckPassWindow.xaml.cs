@@ -17,18 +17,23 @@ using System.Windows.Shapes;
 namespace Library_Project.Resources.Windows
 {
     /// <summary>
-    /// Interaction logic for CheckEmployeePass.xaml
+    /// this window is to check password of member, employee, manager; in order to perform the operation.
     /// </summary>
-    public partial class CheckEmployeePass : Window
-    {        
+    /// <param name="userName">username of user</param>
+    /// <param name="WindNam">from which window this window has been called.</param>
+    /// <param name="md">if the calling class is ManagerDashboard then it will send itself as one of the params</param>
+    public partial class CheckPassWindow : Window
+    {
         string UserName = "";
         string Window = "";
+        ManagerDashboard managerDashboard = null;
         DataTable data = new DataTable();
-        public CheckEmployeePass(string userName,string WindNam)
+        public CheckPassWindow(string userName, string WindNam, ManagerDashboard md = null)
         {
             InitializeComponent();
             Window = WindNam;
             UserName = userName;
+            managerDashboard = md;
             if (WindNam == "Employee" || WindNam == "Remove")
                 data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + UserName.Trim() + "'");
             else
@@ -36,9 +41,34 @@ namespace Library_Project.Resources.Windows
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            if (txtPassword.Password == data.Rows[0]["password"].ToString())
+            if (Window == "Manager")
             {
-                
+                var mainPass = Properties.Settings.Default.PassWord;
+                if (!(mainPass == txtPassword.Password))
+                {
+                    MessageBox.Show(".رمز عبور وارد شده نادرست است");
+                    return;
+                }
+                if (!Managers.AbleToPay(600000))
+                {
+                    MessageBox.Show(".مقدار پول شما کافی نمی باشد");
+                    return;
+                }
+                if (!Managers.PayEmployees(600000))
+                {
+                    MessageBox.Show("Unknown error.");
+                    return;
+                }
+                managerDashboard.BankUpdate();
+                MessageBox.Show($"{Properties.Settings.Default.Bank} : مقدار موجودی جدید بانک پول\n.عملیات با موفقیت به اتمام رسید");
+                txtPassword.Password = "";
+                this.Close();
+            }
+            else if (txtPassword.Password == data.Rows[0]["password"].ToString())
+            {
+
+                txtPassword.Password = "";
+
                 if (Window == "Employee")
                 {
                     EmployeeInformation changeInfo = new EmployeeInformation(UserName, "Employee");
@@ -46,17 +76,18 @@ namespace Library_Project.Resources.Windows
                 }
                 if (Window == "Remove")
                 {
-                    BorrowedBook.RemoveBook(SearchedMemberWindow.UserName); 
+                    BorrowedBook.RemoveBook(SearchedMemberWindow.UserName);
                     MessageBox.Show("حذف کاربر با موفقیت انجام شد");
                     EmployeeDashboard employee = new EmployeeDashboard(UserName);
                     employee.Show();
-                    this.Close(); 
+                    this.Close();
                 }
                 if (Window == "Member")
                 {
                     EmployeeInformation changeInfo = new EmployeeInformation(UserName, "Member");
                     changeInfo.Show();
                 }
+
                 this.Close();
             }
             else
@@ -67,7 +98,7 @@ namespace Library_Project.Resources.Windows
                     SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
                     searched.Show();
                     this.Close();
-                }                    
+                }
                 else
                     MessageBox.Show("رمز نادرست است");
                 txtPassword.Password = "";
@@ -77,8 +108,11 @@ namespace Library_Project.Resources.Windows
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             txtPassword.Password = "";
-            SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
-            searched.Show();
+            if (Window == "Remove")
+            {
+                SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
+                searched.Show();
+            }
             this.Close();
         }
     }

@@ -43,6 +43,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.0.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -75,8 +78,8 @@
     <Compile Include="Resources\Windows\AddBookWindow.xaml.cs">
       <DependentUpon>AddBookWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Windows\CheckEmployeePass.xaml.cs">
-      <DependentUpon>CheckEmployeePass.xaml</DependentUpon>
+    <Compile Include="Resources\Windows\CheckPassWindow.xaml.cs">
+      <DependentUpon>CheckPassWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Windows\EmployeeDashboard.xaml.cs">
       <DependentUpon>EmployeeDashboard.xaml</DependentUpon>
@@ -92,9 +95,6 @@
     </Compile>
     <Compile Include="Resources\Windows\MemberDashboard.xaml.cs">
       <DependentUpon>MemberDashboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Windows\PayEmployeeWindow.xaml.cs">
-      <DependentUpon>PayEmployeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Windows\Payment.xaml.cs">
       <DependentUpon>Payment.xaml</DependentUpon>
@@ -127,7 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Windows\CheckEmployeePass.xaml">
+    <Page Include="Resources\Windows\CheckPassWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,10 +150,6 @@
     <Page Include="Resources\Windows\MemberDashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Windows\PayEmployeeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Windows\Payment.xaml">
       <SubType>Designer</SubType>

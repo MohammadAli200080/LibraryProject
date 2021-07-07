@@ -91,7 +91,7 @@ namespace Library_Project.Resources.Windows
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             DataTable data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + EmployeeDashboard.Username.Trim() + "'");
-            CheckEmployeePass Check = new CheckEmployeePass(EmployeeDashboard.Username, "Remove");
+            CheckPassWindow Check = new CheckPassWindow(EmployeeDashboard.Username, "Remove");
 
             Check.Show();
             this.Close();
