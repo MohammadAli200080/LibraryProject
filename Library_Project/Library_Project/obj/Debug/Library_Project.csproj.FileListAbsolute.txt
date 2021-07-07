@@ -126,3 +126,6 @@ C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\LogOutWindow.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckPassWindow.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\CheckPassWindow.baml
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\bin\Debug\Prism.dll
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\bin\Debug\Prism.pdb
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\bin\Debug\Prism.xml

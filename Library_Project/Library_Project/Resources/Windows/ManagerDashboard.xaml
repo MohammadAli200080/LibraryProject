@@ -9,18 +9,19 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Title="MainWindow" Height="700" Width="1200" ResizeMode="NoResize" WindowStyle="None"  
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        x:Name="_managerDashboard">
     <Grid>
 
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border x:Name="HomePan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
                     <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="30" Content=".به بخش مدیر خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/ManagerDashboard.png" />
                 </StackPanel>
             </Border>
-            <Border Name="BookPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="BookPan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.5*"/>
@@ -30,7 +31,7 @@
                         <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
                             بخش کتاب ها
                         </Label>
-                        <Button x:Name="AddBook" Height="70" Margin="292.5,65,292.5,0" Click="AddBook_Click">
+                        <Button x:Name="AddBook" Height="70" Margin="292.5,10,292.5,0" Click="AddBook_Click">
                             <DockPanel Margin="10,0,0,0">
                                 <materialDesign:PackIcon Kind="BookAdd" Width="50" Height="50" Margin="-20,0,65,0"/>
                                 <Label Content="افزودن کتاب" Foreground="White" Margin="-30,0,0,0" FontSize="25"/>
@@ -52,34 +53,46 @@
             <Border Name="EmployeesPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="0.5*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="329,10,329,100" FontSize="40" FontWeight="Black">
                         بخش کارمندان
                     </Label>
                     <DockPanel>
-                        <Button x:Name="AddEmployee" Width="220" Height="70" Margin="50,100,30,10" Click="AddEmployee_Click">
+                        <Button x:Name="AddEmployee" Width="250" Height="70" Margin="120,90,30,11" Click="AddEmployee_Click">
                             <DockPanel Margin="5,0,0,0">
                                 <materialDesign:PackIcon Kind="AccountAdd" Width="40" Height="40" Margin="-20,0,65,0"/>
                                 <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
-                        <Button x:Name="RemoveEmployee" Width="220" Height="70" Margin="30,100,30,10" Click="RemoveEmployee_Click">
-                            <DockPanel Margin="10,0,0,0">
-                                <materialDesign:PackIcon Kind="AccountRemove" Width="40" Height="40" Margin="-20,0,65,0"/>
-                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
-                            </DockPanel>
-                        </Button>
-                        <Button x:Name="SalarayEmployee" Width="220" Height="70" Margin="30,100,50,10" Click="SalarayEmployee_Click">
+                        <Button x:Name="SalarayEmployee" Width="250" Height="70" Margin="30,90,50,10" Click="SalarayEmployee_Click">
                             <DockPanel Margin="12,0,0,0">
                                 <materialDesign:PackIcon Kind="Money" Width="40" Height="40" Margin="-20,3,65,0" />
                                 <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                     </DockPanel>
+                    <!--<Button x:Name="SalarayEmployee" Width="150" Height="50" Margin="30,90,50,10" Click="SalarayEmployee_Click">
+                        <DockPanel Margin="12,0,0,0">
+                            <materialDesign:PackIcon Kind="Money" Width="30" Height="30" Margin="-25,7,65,0" />
+                            <Label Content="واریز حقوق" Foreground="White" Margin="-60,6,0,0" FontSize="15" FontWeight="Black"/>
+                        </DockPanel>
+                    </Button>-->
                     <DataGrid x:Name="allEmployeesData" Visibility="Collapsed" Margin="10" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma" IsReadOnly="True">
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="حذف کاربر" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding DeleteCommand, ElementName=_managerDashboard}" CommandParameter="{Binding}" Width="150" Height="50" Margin="10">
+                                            <DockPanel Margin="10,0,0,0">
+                                                <materialDesign:PackIcon Kind="AccountRemove" Width="30" Height="30" Margin="-25,7,65,0"/>
+                                                <Label Content="حذف کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="15"  FontWeight="Black"/>
+                                            </DockPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="ردیف"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
@@ -94,7 +107,6 @@
                             </DataGridTemplateColumn>
 
                         </DataGrid.Columns>
-
                     </DataGrid>
                 </Grid>
             </Border>
