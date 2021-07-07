@@ -254,7 +254,7 @@ namespace Library_Project.Resources.Windows
                     return false;
                 }
 
-                if (BorrowedBooks[i].nameBook == BorrowedName.Text)
+                if (BorrowedBooks[i].nameBook.ToLower() == BorrowedName.Text.ToLower())
                 {
                     MessageBox.Show(".شما یک کتاب با همین نام دارید، لطفا ابتدا به باز پس دادن آن اقدام کنید و سپس این عملیات را تکرار کنید");
                     return false;
