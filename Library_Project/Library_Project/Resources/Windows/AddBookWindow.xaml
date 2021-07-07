@@ -23,19 +23,24 @@
                         <TextBox x:Name="txtName" Margin="10,0" materialDesign:HintAssist.Hint="نام کتاب" Foreground="White"
                                  Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Pen" Width="25" Height="25" Foreground="White"/>
                         <TextBox x:Name="txtAuthor" Margin="10,0" materialDesign:HintAssist.Hint="نویسنده" Foreground="White"
                                      Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Book" Width="25" Height="25" Foreground="White"/>
                         <TextBox x:Name="txtCategory" Margin="10,0" materialDesign:HintAssist.Hint="ژانر" Foreground="White"
                                  Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Typewriter" Width="25" Height="25" Foreground="White"/>
                         <TextBox x:Name="txtPublishNumber" Margin="10,0" materialDesign:HintAssist.Hint="شماره چاپ کتاب" Foreground="White"
+                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
+                        <materialDesign:PackIcon Kind="Counter" Width="25" Height="25" Foreground="White"/>
+                        <TextBox x:Name="txtBookNumber" Margin="10,0" materialDesign:HintAssist.Hint="تعداد کتاب" Foreground="White"
                                  Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
                     </StackPanel>
                 </StackPanel>

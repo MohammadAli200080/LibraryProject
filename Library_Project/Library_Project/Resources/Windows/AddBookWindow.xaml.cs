@@ -49,7 +49,7 @@ namespace Library_Project.Resources.Windows
                 return;
             }
 
-            Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, "1");
+            Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, txtBookNumber.Text);
            
             try
             {

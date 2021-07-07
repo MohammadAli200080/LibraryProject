@@ -120,7 +120,6 @@ namespace Library_Project.Resources.Windows
             register.Show();
             this.Close();
         }
-
         /// <summary>
         /// a delegate with a method for deleting employees form datagrid
         /// </summary>
@@ -145,7 +144,6 @@ namespace Library_Project.Resources.Windows
             payment.Show();
             this.Close();
         }
-
         /// <summary>
         /// Updates Bank of library
         /// </summary>
