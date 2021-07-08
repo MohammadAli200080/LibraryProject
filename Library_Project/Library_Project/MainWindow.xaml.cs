@@ -36,8 +36,10 @@ namespace Library_Project
         {
             if (Properties.Settings.Default.UserName == txtuserName.Text && Properties.Settings.Default.PassWord == txtPassword.Password)
             {
-                ManagerDashboard Manegar = new ManagerDashboard();
-                Manegar.Show();
+                txtuserName.Clear();
+                txtPassword.Clear();
+                ManagerDashboard manager = new ManagerDashboard();
+                manager.Show();
                 this.Close();
                 return;
             }
@@ -57,9 +59,13 @@ namespace Library_Project
                 return;
             }
             MessageBox.Show("نام کاربری/ پسورد نادرست می باشد");
+            txtuserName.Clear();
+            txtPassword.Clear();
         }
         private void btnCreat_Click(object sender, RoutedEventArgs e)
         {
+            txtuserName.Clear();
+            txtPassword.Clear();
             Register CreatAcount = new Register(typeOfUser.Member);
             CreatAcount.Show();
             this.Close();

@@ -79,8 +79,6 @@ namespace Library_Project.Resources.Windows
                 else if (_paymentWindow == null) _paymentWindow = value;
             }
         }
-        RowToIndexConv convertor;
-
         public ManagerDashboard()
         {
             InitializeComponent();

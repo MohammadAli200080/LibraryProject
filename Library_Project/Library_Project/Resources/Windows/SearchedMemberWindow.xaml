@@ -17,50 +17,85 @@
 
         <Border Grid.Row="0" Background="WhiteSmoke" BorderBrush="WhiteSmoke"  VerticalAlignment="Center" BorderThickness="34" CornerRadius="5" Margin="10,30,10,45" Height="625" Grid.RowSpan="2">
             <StackPanel>
-                <Label Content="اطلاعات اعضا" Width="200" FontSize="30" Margin="0,20,0,0" FlowDirection="RightToLeft" FontWeight="Bold"/>
+                <Label Content="اطلاعات اعضا" FontFamily="Calibri" FontSize="37" Margin="356,20,362,0" FlowDirection="RightToLeft" FontWeight="Bold"/>
                 <Image x:Name="image" Margin="706,-50,56,50" Width="150" Height="150"/>
                 <DockPanel Margin="633,-40,0,0">
-                    <TextBlock x:Name="txtUsername" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtUsername" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="RenameBox" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="350,-95,281,0">
-                    <TextBlock x:Name="txtEmail" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtEmail" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="Email" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="80,-98,561,0">
-                    <TextBlock x:Name="txtPhoneNumber" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtPhoneNumber" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="MobilePhone" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="633,-35,11,0">
-                    <TextBlock x:Name="txtRegisterDay" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtRegisterDay" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="DateRange" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="353,-90,11,0">
-                    <TextBlock x:Name="txtsubscription" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtsubscription" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="Subscriptions" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="83,-90,11,0">
-                    <TextBlock x:Name="txtsubscriptionRemain" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtsubscriptionRemain" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="SortDateAscending" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
-                <DataGrid x:Name="BookBorrowed" Height="170" IsReadOnly="True" Margin="14,20,14,0" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma">
+                <DataGrid x:Name="BookBorrowed" AlternationCount="{Binding Borrowed.Count}" Height="170" IsReadOnly="True" Margin="14,20,14,0" Visibility="Collapsed" BorderThickness="0" FlowDirection="RightToLeft" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Calibri" Background="#FFE0E0E8">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Width" Value="Auto"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontSize" Value="18"/>
+                            <Setter Property="Margin" Value="5,5,5,0"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="FontFamily" Value="Arial"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridRowHeader}">
+                            <Setter Property="Width" Value="150"/>
+                            <Setter Property="Height" Value="100"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="42"/>
+                            <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                            <Setter Property="BorderBrush" Value="#03045E"/>
+                            <Setter Property="Background" Value="#FF1808B9"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontFamily" Value="Tohama"/>
+                            <Setter Property="Foreground" Value="WhiteSmoke"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Style>
+                    </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ردیف"/>
+                        <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                         <DataGridTextColumn Header="نام کتاب" Binding="{Binding nameBook}"/>
                         <DataGridTextColumn Header="تاریخ امانت" Binding="{Binding gotDate}"/>
                         <DataGridTextColumn Header="تاریخ برگشت" Binding="{Binding returnDate}"/>
                         <DataGridTextColumn Header="روزهای باقیمانده" Binding="{Binding remainDate}"/>
                     </DataGrid.Columns>
-                </DataGrid> 
-                <Label x:Name="Emty" Content="لیست امانت خالی است" FontSize="20" FontWeight="Bold" Margin="350,80,0,0" Visibility="Collapsed"/>
+                </DataGrid>
+                <Label x:Name="Emty" Content="لیست امانت خالی است" FontFamily="Calibri" FontSize="20" FontWeight="Bold" Margin="350,80,0,0" Visibility="Collapsed"/>
             </StackPanel>
         </Border>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="20" Width="80" Height="30" Margin="400,122,120,77" Background="#FFC7B60D" Click="Return_Click" FontWeight="Black" FontSize="14" Content="بازگشت"/>
+            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="20" Width="150" Height="40" Margin="300,115,120,77" Background="#FFC7B60D" Click="Return_Click" FontFamily="Calibri" FontWeight="Black" FontSize="20" Content="بازگشت"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button x:Name="Delete" Style="{DynamicResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="20" Width="80" Click="Delete_Click" Height="30" Margin="520,122,120,77" Background="#FFF3190E" FontWeight="Black" FontSize="14" Content="حذف"/>
+            <Button x:Name="Delete" Style="{DynamicResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="20" Width="150" Height="40" Click="Delete_Click"  Margin="530,115,120,77" Background="#FFF3190E" FontFamily="Calibri" FontWeight="Black" FontSize="20" Content="حذف"/>
         </StackPanel>
     </Grid>
 </Window>

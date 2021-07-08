@@ -1,6 +1,7 @@
 ﻿using Library_Project.Resources.Classes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,13 @@ namespace Library_Project.Resources.Windows
     /// <summary>
     /// a window for showing result of search in Member dashboard
     /// </summary>
-    public partial class SearchedBookWindow : Window
+    public partial class SearchedBookWindow : Window, INotifyPropertyChanged
     {
-        private List<Book> SearchedAvailableBooks { get; set; }
+        private List<Book> _searchedAvailableBooks { get; set; }
+        public List<Book> SearchedAvailableBooks {
+            get { return _searchedAvailableBooks; }
+            set { _searchedAvailableBooks = value; NotifyPropertyChanged("SearchedAvailableBooks"); }
+        }
         //private List<BorrowedBook> BorrowedBooks { get; set; }
         private string Username { get; set; }
         private string KindOfSearch { get; set; }
@@ -60,6 +65,17 @@ namespace Library_Project.Resources.Windows
             BooksSearchData.Visibility = Visibility.Visible;
             return true;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+
         private void Return_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
