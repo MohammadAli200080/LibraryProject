@@ -25,29 +25,64 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,30,20,0" FontWeight="Black" FontSize="35" Content=".به بخش کتاب های صفحۀ کارمندان خوش آمدید"/>
+                        <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="20,30,20,0" FontWeight="Black" FontSize="35" Content="بخش کتاب ها"/>
                         <StackPanel Orientation="Horizontal" Margin="0,-60">
-                            <Button x:Name="AvailableBooksButton" Width="240" Height="70" Margin="30,100,30,10" Click="AvailableBooks_Click">
+                            <Button x:Name="AvailableBooksButton" FontFamily="Calibri" Width="240" Height="70" Margin="30,100,30,10" Click="AvailableBooks_Click">
                                 <DockPanel Margin="5,0,0,0">
                                     <materialDesign:PackIcon Kind="BookSecure" Width="50" Height="50" Margin="-20,0,65,0"/>
-                                    <Label Content="کتاب های موجود " Foreground="White" Margin="-60,0,0,0" FontSize="23.4" FontWeight="Black"/>
+                                    <Label FontFamily="Calibri" Content="کتاب های موجود " Foreground="White" Margin="-60,0,0,0" FontSize="23.4" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
-                            <Button x:Name="BorrowedBooksButton" Width="240" Height="70" Margin="30,100,30,10" Click="BorrowedBooks_Click">
+                            <Button x:Name="BorrowedBooksButton" FontFamily="Calibri" Width="240" Height="70" Margin="30,100,30,10" Click="BorrowedBooks_Click">
                                 <DockPanel Margin="10,0,0,0">
                                     <materialDesign:PackIcon Kind="BookAlert" Width="50" Height="50" Margin="-20,0,65,0"/>
-                                    <Label Content="کتاب های امانتی" VerticalContentAlignment="Bottom" Foreground="White" Margin="-60,0,0,8" FontSize="23" FontWeight="Black"/>
+                                    <Label Content="کتاب های امانتی" FontFamily="Calibri" VerticalContentAlignment="Bottom" Foreground="White" Margin="-60,0,0,8" FontSize="23" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
                             <Button x:Name="ShowALlBooks" Width="240" Height="70" Margin="30,100,50,10" Click="ShowALlBooks_Click">
                                 <DockPanel Margin="12,0,0,0">
                                     <materialDesign:PackIcon Kind="Books" Width="50" Height="50" Margin="-20,3,65,0" />
-                                    <Label Content="تمام کتاب ها " VerticalContentAlignment="Bottom" Foreground="White" Margin="-60,0,0,7" FontSize="25" FontWeight="Black"/>
+                                    <Label Content="تمام کتاب ها " FontFamily="Calibri" VerticalContentAlignment="Bottom" Foreground="White" Margin="-60,0,0,7" FontSize="25" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True"  AlternationCount="{Binding AllBooks.Count}"  Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid x:Name="allBooksData" IsReadOnly="True"  AlternationCount="{Binding AllBooks.Count}"  Visibility="Collapsed" BorderThickness="0" FlowDirection="RightToLeft" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" Background="#FFE0E0E8">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="18"/>
+                                <Setter Property="Margin" Value="5,5,5,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Arial"/>
+                            </Style>
+                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Height" Value="100"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                                <Setter Property="BorderBrush" Value="#03045E"/>
+                                <Setter Property="Background" Value="#FF1808B9"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Tohama"/>
+                                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </Style>
+                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -57,7 +92,42 @@
                             <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="borrowedBooksData"  AlternationCount="{Binding BorrwoedBooks.Count}"  IsReadOnly="True" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="borrowedBooksData"  AlternationCount="{Binding BorrowedBooks.Count}" Visibility="Collapsed" BorderThickness="0" FlowDirection="RightToLeft" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="18"/>
+                                <Setter Property="Margin" Value="5,5,5,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Arial"/>
+                            </Style>
+                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Height" Value="100"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                                <Setter Property="BorderBrush" Value="#03045E"/>
+                                <Setter Property="Background" Value="#FF1808B9"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Tohama"/>
+                                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </Style>
+                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -67,7 +137,42 @@
                             <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="availableBooksData" IsReadOnly="True"  AlternationCount="{Binding AvailableBooks.Count}"  Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="availableBooksData" IsReadOnly="True"  AlternationCount="{Binding AvailableBooks.Count}"  Visibility="Collapsed" BorderThickness="0" FlowDirection="RightToLeft" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" Background="#FFE0E0E8">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="18"/>
+                                <Setter Property="Margin" Value="5,5,5,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Arial"/>
+                            </Style>
+                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Height" Value="100"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                                <Setter Property="BorderBrush" Value="#03045E"/>
+                                <Setter Property="Background" Value="#FF1808B9"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Tohama"/>
+                                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </Style>
+                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -88,25 +193,25 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <StackPanel>
-                            <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,10" FontWeight="Black" FontSize="30" Content="بخش اعضای کتابخانه"/>
+                            <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="20,10" FontWeight="Black" FontSize="30" Content="بخش اعضای کتابخانه"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,-100">
-                            <Button x:Name="DelayedMembersInPaymentButton" Width="260" Height="70" Margin="20,100,10,10" Click="DelayedMembersInPayment_Click">
+                            <Button x:Name="DelayedMembersInPaymentButton" FontFamily="Calibri" Width="260" Height="70" Margin="20,100,10,10" Click="DelayedMembersInPayment_Click">
                                 <DockPanel Margin="5,0,0,0">
                                     <materialDesign:PackIcon Kind="BadgeAccountAlert" Width="50" Height="50" Margin="-20,0,65,0"/>
-                                    <Label Content="اعضای متاخر در پرداخت" VerticalContentAlignment="Bottom"  Foreground="White" Margin="-60,-10,10,10" FontSize="17.5" FontWeight="Black"/>
+                                    <Label Content="اعضای متاخر در پرداخت" FontFamily="Calibri" VerticalContentAlignment="Bottom"  Foreground="White" Margin="-60,-10,10,10" FontSize="17.5" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
-                            <Button x:Name="DelayedMembersInReturningButton" Width="260" Height="70" Margin="30,100,10,10" Click="DelayedMembersInReturning_Click">
+                            <Button x:Name="DelayedMembersInReturningButton" FontFamily="Calibri" Width="260" Height="70" Margin="30,100,10,10" Click="DelayedMembersInReturning_Click">
                                 <DockPanel Margin="10,0,0,0">
                                     <materialDesign:PackIcon Kind="AccountAlert" Width="50" Height="50" Margin="-25,0,65,0"/>
-                                    <Label Content="اعضای متاخر در امانت" VerticalContentAlignment="Bottom" Foreground="White" Margin="-57,0,0,10" FontSize="17.5" FontWeight="Black"/>
+                                    <Label Content="اعضای متاخر در امانت" FontFamily="Calibri" VerticalContentAlignment="Bottom" Foreground="White" Margin="-57,0,0,10" FontSize="17.5" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
-                            <Button x:Name="ShowALlMembers" Width="260" Height="70" Margin="30,100,10,10" Click="ShowALlMembers_Click">
+                            <Button x:Name="ShowALlMembers" Width="260" FontFamily="Calibri" Height="70" Margin="30,100,10,10" Click="ShowALlMembers_Click">
                                 <DockPanel Margin="12,0,0,0">
                                     <materialDesign:PackIcon Kind="AccountBoxMultiple" Width="50" Height="50" Margin="-20,3,65,0" />
-                                    <Label Content="تمام اعضا" VerticalContentAlignment="Bottom" Foreground="White" Margin="-20,0,0,7" FontSize="27" FontWeight="Black"/>
+                                    <Label Content="تمام اعضا" FontFamily="Calibri" VerticalContentAlignment="Bottom" Foreground="White" Margin="-20,0,0,7" FontSize="27" FontWeight="Black"/>
                                 </DockPanel>
                             </Button>
                         </StackPanel>
@@ -129,7 +234,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData"  AlternationCount="{Binding DelayedMembersInReturning.Count}"  Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData" AlternationCount="{Binding DelayedMembersInReturning.Count}"  Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
@@ -166,13 +271,13 @@
 
                     </DataGrid>
                     <StackPanel Grid.Row="2">
-                        <TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,20,80,10" FontSize="20" Text="نام عضوی که می خواهید جستوجو کنید را وارد کنید:" FontWeight="Black" Height="52" Width="720"/>
+                        <TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,20,80,10" FontFamily="Calibri" FontSize="20" Text="نام عضوی که می خواهید جستوجو کنید را وارد کنید:" FontWeight="Black" Height="52" Width="720"/>
                         <StackPanel Margin="132,0,116,0" Orientation="Horizontal">
-                            <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="Search" Click="Search_Click">
+                            <Button Margin="80,0" Width="100" FontFamily="Calibri" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="Search" Click="Search_Click">
                                 <materialDesign:PackIcon Kind="Search" Width="50" Height="50" Foreground="#FF1808B9"/>
                             </Button>
                             <!--Text will be added by backend based on the checkbox-->
-                            <TextBox x:Name="SearchBox" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                            <TextBox x:Name="SearchBox" FontFamily="Calibri" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                  Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft"/>
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
@@ -185,14 +290,14 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="35" FontWeight="Black">
+                        <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="35" FontWeight="Black">
                             بخش کیف پول
                         </Label>
                         <StackPanel Orientation="Horizontal" Margin="0,20">
-                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock FontFamily="Calibri" Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="350" Margin="0,-50,0,0">
-                            <Label x:Name="money" Width="472" Background="#FFE4D8D5" BorderBrush="Black" BorderThickness="2" Padding="20,25,0,0" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="30,100,30,146" FontSize="30" FontWeight="Black"/>
+                            <Label x:Name="money" Width="472" FontFamily="Calibri" Background="#FFE4D8D5" BorderBrush="Black" BorderThickness="2" Padding="20,25,0,0" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="30,100,30,146" FontSize="30" FontWeight="Black"/>
                             <Image Source="Wallet.png" Height="350" Width="350" Margin="0,-50,0,0"/>
                         </StackPanel>
                     </StackPanel>
@@ -200,33 +305,33 @@
             </Border>
             <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
                 <StackPanel Margin="0,0,0,0">
-                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو کارمند</Label>
+                    <Label HorizontalAlignment="Center" FontFamily="Calibri" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو کارمند</Label>
                     <ListView FontSize="15" Margin="0,80,0,0">
                         <ListViewItem x:Name="HomePn" Padding="6" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
-                                <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="صفحه اصلی" FontFamily="Calibri" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="BooksPn" Padding="6" MouseLeftButtonUp="BooksPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Books" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
-                                <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="کتاب ها" FontFamily="Calibri" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="MemberspPn" Padding="6" MouseLeftButtonUp = "MembersPn_MouseLeftButtonUp">
+                        <ListViewItem x:Name="MemberspPn" Padding="6" FontFamily="Calibri" MouseLeftButtonUp = "MembersPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="AccountBoxMultiple" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
                                 <TextBlock Text="اعضای کتابخانه" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="WalletPn" Padding="6" MouseLeftButtonUp = "WalletPn_MouseLeftButtonUp">
+                        <ListViewItem x:Name="WalletPn" FontFamily="Calibri" Padding="6" MouseLeftButtonUp = "WalletPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FFC18505"/>
                                 <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="LoginPn" Padding="6" MouseLeftButtonUp="LoginPn_MouseLeftButtonUp">
+                        <ListViewItem x:Name="LoginPn" FontFamily="Calibri" Padding="6" MouseLeftButtonUp="LoginPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Login" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF3E0A0A"/>
                                 <TextBlock Text="صفحه ورود" VerticalAlignment="Center" Margin="-108,0,0,0" FontSize="15" FontWeight="Bold"/>

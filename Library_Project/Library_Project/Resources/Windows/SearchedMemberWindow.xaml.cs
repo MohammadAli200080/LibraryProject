@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,15 @@ namespace Library_Project.Resources.Windows
     /// <summary>
     /// Interaction logic for SearchedMemberWindow.xaml
     /// </summary>
-    public partial class SearchedMemberWindow : Window
+    public partial class SearchedMemberWindow : Window, INotifyPropertyChanged
     {
+        private List<BorrowedBook> _borrowed;
+        public List<BorrowedBook> Borrowed
+        {
+            get { return _borrowed; }
+            set { _borrowed = value; NotifyPropertyChanged("Borrowed"); }
+        }
+
         public static string UserName = "";
         public SearchedMemberWindow(string username)
         {
@@ -55,7 +63,7 @@ namespace Library_Project.Resources.Windows
                 }
                 if (BorrowedBook.infoBorrowed(username).Count != 0)
                 {
-                    var Borrowed = BorrowedBook.infoBorrowed(username);
+                    Borrowed = BorrowedBook.infoBorrowed(username);
                     BookBorrowed.Visibility = Visibility.Visible;
                     for(int i=0;i< BorrowedBook.infoBorrowed(username).Count; i++)
                     {
@@ -80,6 +88,16 @@ namespace Library_Project.Resources.Windows
                 MessageBox.Show("چنین کابری یافت نشد");
             }
                 
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
         }
 
         public void Return_Click(object sender, RoutedEventArgs e)

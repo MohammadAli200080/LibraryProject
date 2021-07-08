@@ -34,37 +34,37 @@
                                     <materialDesign:PackIcon x:Name="User" Kind="User" Width="100" Height="100" Foreground="White" Margin="7"/>
                                 </Grid>
                             </Border>
-                            <Button x:Name="ImageButton" Width="82" Margin="25,0" Content="بارگذاری" Background="#191970" 
+                            <Button x:Name="ImageButton" FontFamily="Calibri" Width="82" Margin="25,0" FontSize="18" Content="بارگذاری" Background="#191970" 
                             Foreground="White" materialDesign:ButtonAssist.CornerRadius="10" BorderBrush="Black" Click="ImageButton_Click">
                             </Button>
                         </StackPanel>
                     </Border>
                     <StackPanel Orientation="Horizontal" Margin="10,20,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtuserName" Margin="10,0" materialDesign:HintAssist.Hint="نام کاربری" Foreground="White"
-                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
+                        <TextBox FontFamily="Calibri" x:Name="txtuserName" Margin="10,0" materialDesign:HintAssist.Hint="نام کاربری" Foreground="White"
+                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
-                        <PasswordBox x:Name="txtPassword" Margin="10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="White"
-                                     Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
+                        <PasswordBox FontFamily="Calibri" x:Name="txtPassword" Margin="10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="White"
+                                     Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtPhone" Margin="10,0" materialDesign:HintAssist.Hint="تلفن" Foreground="White"
-                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
+                        <TextBox x:Name="txtPhone" FontFamily="Calibri" Margin="10,0" materialDesign:HintAssist.Hint="تلفن" Foreground="White"
+                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtEmail" Margin="10,0" materialDesign:HintAssist.Hint="example@gmail.com" Foreground="White"
-                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="14"/>
+                        <TextBox FontFamily="Calibri" x:Name="txtEmail" Margin="10,0" materialDesign:HintAssist.Hint="example@gmail.com" Foreground="White"
+                                 Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                 </StackPanel>
 
             </Border>
         </StackPanel>
         <Grid Height="100" VerticalAlignment="Top">
-            <TextBlock Text="صفحه ثبت نام" Margin="0,22" Foreground="White" TextAlignment="Center" FontSize="25"
+            <TextBlock FontFamily="Calibri" Text="صفحه ثبت نام" Margin="0,22" Foreground="White" TextAlignment="Center" FontSize="35"
                            Height="50" VerticalAlignment="Top" />
             <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
                          BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
@@ -73,11 +73,9 @@
         </Grid>
         <Grid Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,140,40">
             <StackPanel Orientation="Horizontal" Margin="60,0,-30,10">
-                <Button x:Name="btnReturn" Content="بازگشت" Width="100" HorizontalAlignment="Left" Background="#191970" BorderBrush="Black" FontSize="14"
-                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="btnReturn_Click">
+                <Button FontFamily="Calibri" x:Name="btnReturn" Content="بازگشت" Width="100" HorizontalAlignment="Left" Background="#FFD94800" BorderBrush="Black" FontSize="16" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="btnReturn_Click">
                 </Button>
-                <Button x:Name="btnCreatAcount" Content="ایجاد" Margin="45,0,0,0" Width="100" Background="#191970" HorizontalAlignment="Right"  BorderBrush="Black"
-                            materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="btnCreatAcount_Click">
+                <Button x:Name="btnCreatAcount" FontFamily="Calibri" Content="ایجاد" Margin="45,0,0,0" Width="100" Background="#FF43AD03" HorizontalAlignment="Right"  BorderBrush="Black" FontSize="16" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="btnCreatAcount_Click">
                 </Button>
             </StackPanel>
         </Grid>

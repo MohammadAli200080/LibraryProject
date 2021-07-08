@@ -19,14 +19,14 @@
 
         <Border Width="450" CornerRadius="0,0,0,100" Background="#110E17" Margin="0,0,0,60"/>
         <StackPanel Orientation="Vertical">
-            <TextBlock Margin="10,90,10,10" Foreground="WhiteSmoke" TextAlignment="Center" FontSize="28"
+            <TextBlock FontFamily="Calibri" Margin="10,90,10,10" Foreground="WhiteSmoke" TextAlignment="Center" FontSize="28"
                            Height="77" VerticalAlignment="Top" FontWeight="Bold">
                 اگر تمایل به بازگشت به صفحۀ ورود را <LineBreak/>
                 دارید، بر روی خروج کلیک کنید
             </TextBlock>
             <StackPanel Orientation="Horizontal" Margin="20,30,20,0">
-                <Button x:Name="btnLogOut" Content="خروج" Margin="70,0,0,0" Width="120" Height="60" HorizontalAlignment="Right" Background="#FFD94800" BorderBrush="Black" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="BtnLogOut_Click" FontSize="22"/>
-                <Button x:Name="btnCancle" Content="انصراف" Margin="30,0,0,0" Width="120" Height="60" HorizontalAlignment="Right" Background="#FF43AD03" BorderBrush="Black" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="ExtraBlack" Click="BtnCancle_Click" FontSize="22"/>
+                <Button FontFamily="Calibri" x:Name="btnLogOut" Content="خروج" Margin="70,0,0,0" Width="120" Height="50" HorizontalAlignment="Right" Background="#FFD94800" BorderBrush="Black" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="Black" Click="BtnLogOut_Click" FontSize="22"/>
+                <Button FontFamily="Calibri" x:Name="btnCancle" Content="انصراف" Margin="30,0,0,0" Width="120" Height="50" HorizontalAlignment="Right" Background="#FF43AD03" BorderBrush="Black" materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" Foreground="White" FontWeight="ExtraBlack" Click="BtnCancle_Click" FontSize="22"/>
             </StackPanel>
         </StackPanel>
     </Grid>

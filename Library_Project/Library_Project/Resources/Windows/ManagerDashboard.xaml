@@ -17,7 +17,7 @@
         <Grid>
             <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="30" Content=".به بخش مدیر خوش آمدید"/>
+                    <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="30" Content=".به بخش مدیریت خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/ManagerDashboard.png" />
                 </StackPanel>
             </Border>
@@ -28,17 +28,52 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                        <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
                             بخش کتاب ها
                         </Label>
-                        <Button x:Name="AddBook" Height="70" Margin="292.5,10,292.5,0" Click="AddBook_Click">
+                        <Button x:Name="AddBook" Height="70" FontFamily="Calibri" Margin="292.5,10,292.5,0" Click="AddBook_Click">
                             <DockPanel Margin="10,0,0,0">
                                 <materialDesign:PackIcon Kind="BookAdd" Width="50" Height="50" Margin="-20,0,65,0"/>
                                 <Label Content="افزودن کتاب" Foreground="White" Margin="-30,0,0,0" FontSize="25"/>
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" AlternationCount="{Binding AllBooks.Count}" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma" IsReadOnly="True">
+                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" AlternationCount="{Binding AllBooks.Count}" BorderThickness="0" FlowDirection="RightToLeft" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="18"/>
+                                <Setter Property="Margin" Value="5,5,5,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Arial"/>
+                            </Style>
+                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Height" Value="100"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                                <Setter Property="BorderBrush" Value="#03045E"/>
+                                <Setter Property="Background" Value="#FF1808B9"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Tohama"/>
+                                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </Style>
+                        </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -56,20 +91,20 @@
                         <RowDefinition Height="0.5*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="329,10,329,100" FontSize="40" FontWeight="Black">
+                    <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="329,10,329,100" FontSize="40" FontWeight="Black">
                         بخش کارمندان
                     </Label>
                     <DockPanel>
                         <Button x:Name="AddEmployee" Width="250" Height="70" Margin="120,90,30,11" Click="AddEmployee_Click">
                             <DockPanel Margin="5,0,0,0">
                                 <materialDesign:PackIcon Kind="AccountAdd" Width="40" Height="40" Margin="-20,0,65,0"/>
-                                <Label Content="افزودن کارمند" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
+                                <Label Content="افزودن کارمند" FontFamily="Calibri" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="SalarayEmployee" Width="250" Height="70" Margin="30,90,50,10" Click="SalarayEmployee_Click">
                             <DockPanel Margin="12,0,0,0">
                                 <materialDesign:PackIcon Kind="Money" Width="40" Height="40" Margin="-20,3,65,0" />
-                                <Label Content="واریز حقوق" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
+                                <Label Content="واریز حقوق" FontFamily="Calibri" Foreground="White" Margin="-60,0,0,0" FontSize="25" FontWeight="Black"/>
                             </DockPanel>
                         </Button>
                     </DockPanel>
@@ -87,7 +122,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                             <DataGridTemplateColumn Header="حذف کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -105,25 +140,25 @@
                     </DataGrid>
                 </Grid>
             </Border>
-            <Border Name="BankPan" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
+            <Border Name="BankPan" BorderBrush="Black"  Visibility="Collapsed" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
+                        <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
                             بخش کیف پول
                         </Label>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="0,70,40,60" FontSize="30" FontWeight="Black" Text=":برای اضافه کردن پول به کیف پول خود بر روی دکمۀ زیر کلیک کنید" Height="52" Width="808"/>
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="0,70,40,60" FontSize="30" FontWeight="Black" Text=":برای اضافه کردن پول به کیف پول خود بر روی دکمۀ زیر کلیک کنید" Height="52" Width="808"/>
                         <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
-                            <Button Margin="70,0" Width="450" Height="56" FontWeight="Black" FontSize="25" Background="AliceBlue" Content="صفحۀ پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
+                            <Button Margin="70,0" Width="450" Height="56" FontFamily="Calibri" FontWeight="Black" FontSize="25" Background="AliceBlue" Content="صفحۀ پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
                             <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#FF060F70"/>
                         </StackPanel>
                     </StackPanel>
@@ -131,36 +166,36 @@
             </Border>
             <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
                 <StackPanel Margin="0,0,0,0">
-                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">منو مدیریت</Label>
+                    <Label HorizontalAlignment="Center" FontSize="20" FontFamily="Calibri" FontWeight="Bold" Margin="0,30,0,0">منو مدیریت</Label>
                     <ListView FontSize="15" Margin="0,80,0,0">
                         <ListViewItem x:Name="HomePn" Padding="6" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
-                                <TextBlock Text="صفحه اصلی" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="صفحه اصلی" FontFamily="Calibri" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="BooksPn" Padding="6" MouseLeftButtonUp="BooksPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Books" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
-                                <TextBlock Text="کتاب ها" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="کتاب ها" FontFamily="Calibri" VerticalAlignment="Center" Margin="-90,0,0,0" FontSize="15" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="EmployeesPn" Padding="6" MouseLeftButtonUp="EmployeesPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="AccountMultiple" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
-                                <TextBlock VerticalAlignment="Center" Margin="-116,8,0,8" FontSize="15" FontWeight="Bold" Width="72"><Run FlowDirection="RightToLeft" Text="کارمندان"/></TextBlock>
+                                <TextBlock VerticalAlignment="Center" FontFamily="Calibri" Margin="-116,8,0,8" FontSize="15" FontWeight="Bold" Width="72"><Run FlowDirection="RightToLeft" Text="کارمندان"/></TextBlock>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="WalletPn" Padding="6" MouseLeftButtonUp="WalletPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Bank" Width="30" Height="30" Margin="247,0,0,6" Foreground="#FF31640E" VerticalAlignment="Bottom"/>
-                                <TextBlock VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="بانک پول"/></TextBlock>
+                                <TextBlock VerticalAlignment="Center" FontFamily="Calibri" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="بانک پول"/></TextBlock>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="LoginPn" Padding="6" MouseLeftButtonUp="LoginPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Login" Width="30" Height="30" Margin="247,0,0,6" Foreground="#FF551401" VerticalAlignment="Bottom"/>
-                                <TextBlock VerticalAlignment="Center" Margin="-109,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="صفحه ورود"/></TextBlock>
+                                <TextBlock VerticalAlignment="Center" FontFamily="Calibri" Margin="-109,0,0,0" FontSize="15" FontWeight="Bold"><Run FlowDirection="RightToLeft" Text="صفحه ورود"/></TextBlock>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="AccountPn" Padding="5">

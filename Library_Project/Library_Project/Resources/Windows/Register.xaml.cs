@@ -78,7 +78,7 @@ namespace Library_Project.Resourses.Windows
                     txtuserName.Text = "";
                     return;
                 }
-                if (Library_Project.Resources.Classes.Validation.UserNameExists(txtuserName.Text))
+                if (Library_Project.Resources.Classes.Validation.UserNameExists(txtuserName.Text) || txtuserName.Text == "admin")
                 {
                     MessageBox.Show("نام کاربری تکراری است");
                     txtuserName.Text = "";

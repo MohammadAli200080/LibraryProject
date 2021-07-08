@@ -18,9 +18,44 @@
 
         <Border Grid.Row="0" Background="WhiteSmoke" BorderBrush="WhiteSmoke"  VerticalAlignment="Center" BorderThickness="25" CornerRadius="20" Margin="10,30,10,20" Height="625" Grid.RowSpan="3"/>
 
-        <Label Content="اطلاعات کتاب" Width="200" FontSize="30" Margin="400,32,400,205" FlowDirection="RightToLeft" FontWeight="Bold" Grid.RowSpan="2"/>
+        <Label Content="اطلاعات کتاب" FontFamily="Calibri" FontSize="35" Margin="410,32,410,205" FlowDirection="RightToLeft" FontWeight="Bold" Grid.RowSpan="2"/>
 
-        <DataGrid Grid.Row="1" x:Name="BooksSearchData" IsReadOnly="True" Height="170" Margin="20" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma">
+        <DataGrid Grid.Row="1" x:Name="BooksSearchData" Height="170" Visibility="Collapsed"  BorderThickness="0" FlowDirection="RightToLeft" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Margin" Value="5,5,5,0"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontFamily" Value="Arial"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridRowHeader}">
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Height" Value="100"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="42"/>
+                    <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                    <Setter Property="BorderBrush" Value="#03045E"/>
+                    <Setter Property="Background" Value="#FF1808B9"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="FontFamily" Value="Tohama"/>
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="IsEnabled" Value="False"/>
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ردیف"/>
                 <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name}"/>
@@ -35,7 +70,7 @@
         </DataGrid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="20" Width="200" Height="50" Margin="400,10,120,45" Background="#FFC7B60D" Click="Return_Click" FontWeight="Black" FontSize="20" Content="بازگشت"/>
+            <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" materialDesign:ButtonAssist.CornerRadius="20" Width="200" Height="50" Margin="400,10,120,45" Background="#FFC7B60D" FontFamily="Calibri" Click="Return_Click" FontWeight="Black" FontSize="25" Content="بازگشت"/>
         </StackPanel>
     </Grid>
 </Window>
