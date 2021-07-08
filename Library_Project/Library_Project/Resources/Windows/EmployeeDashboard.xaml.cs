@@ -251,23 +251,25 @@ namespace Library_Project.Resources.Windows
             else
                 SearchBox.Text = "";
         }
-        private void btnSeting_Click(object sender, RoutedEventArgs e)
+        private void BtnSeting_Click(object sender, RoutedEventArgs e)
         {
             if (CheckPass == null)
             {
                 CheckPass = new CheckPassWindow(Username, "Employee");
                 CheckPass.Closed += (s, _) => CheckPass = null;
                 CheckPass.Show();
+                this.Close();
             }
         }
 
-        private void btnMessage_Click(object sender, RoutedEventArgs e)
+        private void BtnMessage_Click(object sender, RoutedEventArgs e)
         {
             if (Message == null)
             {
-                Message = new MassagerEmployee();
+                Message = new MassagerEmployee(MassengeType.employee, Username);
                 Message.Closed += (s, _) => Message = null;
                 Message.Show();
+                this.Close();
             }
         }
         private void InitializeMoney()

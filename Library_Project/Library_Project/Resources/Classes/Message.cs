@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Library_Project.Resources.Classes
 {
-
+    public struct MassengerUsers
+    {
+        public string Username { get; set; }
+        public byte[] Image { get; set; }
+    }
     public enum MassengeType { employee, member }
     public interface IMessanger { }
     /// <summary>
@@ -16,25 +21,25 @@ namespace Library_Project.Resources.Classes
     /// </summary>
     /// <typeparam name="T">specify type of reciever</typeparam>
 
-    public class Message<T> where T : IMessanger
+    public class Message
     {
-        private static Message<T> instance;
+        private static Message instance;
 
         private string _senderUsername;
         private string _recieverUsername;
         private string _messageText;
-        private MassengeType _typeOfReciever;
+        private MassengeType _senderType;
 
         public string SenderUsername { get => _senderUsername; set => _senderUsername = value; }
         public string RecieverUsername { get => _recieverUsername; set => _recieverUsername = value; }
         public string MessageText { get => _messageText; set => _messageText = value; }
-        public MassengeType TypeOfReciever { get => _typeOfReciever; set => _typeOfReciever = value; }
+        public MassengeType SenderType { get => _senderType; set => _senderType = value; }
 
-        public static Message<T> Instance
+        public static Message Instance
         {
             get
             {
-                if (instance == null) instance = new Message<T>();
+                if (instance == null) instance = new Message();
                 return instance;
             }
         }
@@ -43,48 +48,73 @@ namespace Library_Project.Resources.Classes
         {
         }
 
-        public Message(string senderUsername, string recieverUsername, string messageText, MassengeType receiverType)
+        public Message(string senderUsername, string recieverUsername, string messageText, MassengeType senderType)
         {
             SenderUsername = senderUsername;
             RecieverUsername = recieverUsername;
             MessageText = messageText;
-            TypeOfReciever = receiverType;
+            SenderType = senderType;
         }
 
         public bool SendMessage()
         {
-            string command = "INSERT INTO T_Message VALUES('" + this.SenderUsername + "', '" + this.RecieverUsername + "', '" + this.MessageText + "', '" + this.TypeOfReciever.ToString() + "')";
+            string command = "INSERT INTO T_Messages VALUES('" + this.SenderUsername + "', '" + this.RecieverUsername + "', '" + this.MessageText + "', '" + this.SenderType.ToString() + "')";
             return DatabaseControl.Exe(command);
         }
 
-        public static Message<T>[] RecieveAllMessages(string reciever, string sender)
+        public Message[] RecieveAllMessages(string reciever, string sender)
         {
-            string command = "SELECT * FROM T_Message WHERE senderUsername='" + sender + "' AND recieverUsername='" + reciever + "'";
+            string command = "SELECT * FROM T_Messages WHERE senderUsername='" + sender + "'";
             var data = DatabaseControl.Select(command);
 
-            List<Message<T>> messages = new List<Message<T>>();
+            List<Message> messages = new List<Message>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                var message = new Message<T>(data.Rows[i]["senderUsername"].ToString(), data.Rows[i]["recieverUsername"].ToString(), data.Rows[i]["message"].ToString(), (MassengeType)Enum.Parse(typeof(MassengeType), data.Rows[i]["receiverType"].ToString()));
-                messages.Add(message);
+                if (data.Rows[i]["recieverUsername"].ToString() == reciever)
+                {
+                    var message = new Message(data.Rows[i]["senderUsername"].ToString(), data.Rows[i]["recieverUsername"].ToString(), data.Rows[i]["message"].ToString(), (MassengeType)Enum.Parse(typeof(MassengeType), data.Rows[i]["typeofSender"].ToString()));
+                    messages.Add(message);
+                }
             }
 
             return messages.ToArray();
         }
 
-        public static string[] AllSenders(string reciever, MassengeType typeofSender)
+        public string[] AllSenders(string reciever, MassengeType typeofSender)
         {
-            string command = "SELECT * FROM T_Message WHERE recieverUsername='" + reciever + "' AND typeofSender='" + typeofSender.ToString().ToLower() + "'";
+            string command = "SELECT * FROM T_Messages WHERE recieverUsername='" + reciever + "'";
             var data = DatabaseControl.Select(command);
 
             List<string> names = new List<string>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                string sender = data.Rows[i]["senderUsername"].ToString();
-                names.Add(sender);
+                if (data.Rows[i]["typeofSender"].ToString() == typeofSender.ToString())
+                {
+                    string sender = data.Rows[i]["senderUsername"].ToString();
+                    names.Add(sender);
+                }
             }
 
             return names.ToArray();
+        }
+
+        public List<MassengerUsers> GetMassengerUsers(MassengeType type)
+        {
+            DataTable data = new DataTable();
+            List<MassengerUsers> members = new List<MassengerUsers>();
+            string userName;
+            byte[] image;
+            if (type == MassengeType.member) data = DatabaseControl.Select("SELECT username,imgSrc FROM T_Members");
+            else data = DatabaseControl.Select("SELECT username,imgSrc FROM T_Employees");
+
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                userName = data.Rows[i]["username"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
+
+                members.Add(new MassengerUsers { Username = userName, Image = image });
+            }
+            return members;
         }
     }
 }

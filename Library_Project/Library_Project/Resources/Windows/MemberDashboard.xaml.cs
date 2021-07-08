@@ -31,6 +31,16 @@ namespace Library_Project.Resources.Windows
         private List<string> _nameCollection;
         private List<string> _subscriptionCollectionNames;
         private string _moneyTxt;
+        private MassagerEmployee _message;
+        private MassagerEmployee Message
+        {
+            get => _message;
+            set
+            {
+                if (value == null) _message = value;
+                else if (_message == null) _message = value;
+            }
+        }
 
         public List<Book> AvailableBooks
         {
@@ -454,6 +464,18 @@ namespace Library_Project.Resources.Windows
                 CheckPass = new CheckPassWindow(Username, "Member");
                 CheckPass.Closed += (s, _) => CheckPass = null;
                 CheckPass.Show();
+                this.Close();
+            }
+        }
+
+        private void BtnMessage_Click(object sender, RoutedEventArgs e)
+        {
+            if (Message == null)
+            {
+                Message = new MassagerEmployee(MassengeType.member, Username);
+                Message.Closed += (s, _) => Message = null;
+                Message.Show();
+                this.Close();
             }
         }
 

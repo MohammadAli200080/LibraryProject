@@ -346,18 +346,22 @@
         </Grid>
         <Grid VerticalAlignment="Top" Height="70">
 
-            <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
-            <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <Button x:Name="btnClse" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="#FFEC0C0C" VerticalAlignment="Top" Click="btnClose_Click" HorizontalAlignment="Right" Margin="0,10,10,0">
+                <materialDesign:PackIcon Kind="CloseBold" Margin="-16.5" Width="30" Height="30"  Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875"/>
+            </Button>
             <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,40,0"/>
-            <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,40,0"/>
-            <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
-                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" Click="btnSeting_Click"/>
-            <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
-            <Button x:Name="btnMessage" Background="{x:Null}" Width="40" Height="40"
-                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,10,0,0" Click="btnMessage_Click"/>
-            <materialDesign:PackIcon Kind="Email" Width="40" Height="40" Foreground="#FFE8B402" RenderTransformOrigin="1.375,0.875" Margin="70,10,0,0"/>
+                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,60,0">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black"  Width="30" Height="30" HorizontalAlignment="Right" Margin="-13"/>
+            </Button>
+            <Button x:Name="BtnSeting" Background="{x:Null}" Width="40" Height="40"
+                         BorderBrush="{x:Null}" VerticalAlignment="Top" Click="BtnSeting_Click" HorizontalAlignment="Left" Margin="30,10,0,0">
+                <materialDesign:PackIcon Kind="CogBox" Margin="-21" Width="50" Height="50"  Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875"/>
+            </Button>
+            <Button x:Name="BtnMessage" Background="{x:Null}" Width="40" Height="40"
+                         BorderBrush="{x:Null}" VerticalAlignment="Top" Click="BtnMessage_Click" HorizontalAlignment="Left" Margin="100,10,0,0">
+                <materialDesign:PackIcon Kind="EmailBox" Width="50" Height="50" Margin="-21"  Foreground="#FFFFCE45" RenderTransformOrigin="1.375,0.875"/>
+            </Button>
 
         </Grid>
 

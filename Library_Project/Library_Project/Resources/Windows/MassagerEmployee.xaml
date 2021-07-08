@@ -15,7 +15,7 @@
             <Border x:Name="SendMessage" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="-295,70,0,0">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="230,20,0,324" Height="89">
-                        <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding Names}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="MemberOrEmployeeComboBox" SelectionChanged="MemberOrEmployeeComboBox_SelectionChanged">
+                        <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding AllRecieverNames}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="AllRecieversComboBox" SelectionChanged="AllRecieversComboBox_SelectionChanged">
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="ComboBoxItem">
                                     <Setter Property="Cursor" Value="Pen"/>
@@ -24,7 +24,7 @@
                         </ComboBox>
                         <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="30,20,35,20" FontSize="25" FontWeight="Black" Height="50"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
                     </StackPanel>
-                    <StackPanel Margin="0,-350,0,-100" Height="426">
+                    <StackPanel Margin="0,-350,0,-100" Height="426" Orientation="Vertical">
                         <DockPanel>
                             <Image x:Name="image" Margin="746,0,56,50" Width="93" Height="89"/>
                         </DockPanel>
@@ -41,7 +41,7 @@
                             <materialDesign:PackIcon Margin="5,35,20,15" Kind="MobilePhone" Width="40" Height="40" Foreground="#FF0032B8"/>
                         </DockPanel>
                         <DockPanel>
-                            <RichTextBox x:Name="MessageSend" Width="700" Height="150" Margin="0,20,0,0" Background="WhiteSmoke" FlowDirection="RightToLeft"/>
+                            <RichTextBox x:Name="MessageTxt" Width="700" Height="150" Margin="0,20,0,0" Background="WhiteSmoke" FlowDirection="RightToLeft"/>
                         </DockPanel>
                         <Button x:Name="Sendbtn" Width="100" Margin="400,20,0,0" Content="ارسال" Click="Sendbtn_Click"/>
 
@@ -51,10 +51,66 @@
 
 
             </Border>
-            <Border x:Name="ReciveMessage" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="-295,70,0,0">
+            <Border x:Name="ReciveMessage" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="-295,70,0,0">
 
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="230,20,0,324" Height="89">
+                        <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding AllSendersName}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="AllSendersNameComboBox" SelectionChanged="AllSendersNameComboBox_SelectionChanged">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Cursor" Value="Pen"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="30,20,35,20" FontSize="25" FontWeight="Black" Height="50"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
+                    </StackPanel>
+                    <DataGrid x:Name="allMessagesData" Visibility="Visible" AlternationCount="{Binding AllMessages.Count}" BorderThickness="0" FlowDirection="RightToLeft" IsEnabled="False" Grid.Row="1" CanUserAddRows="False" Width="700" AutoGenerateColumns="False" Margin="99,-350,99,-100" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8" Height="360">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="18"/>
+                                <Setter Property="Margin" Value="5,5,5,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Arial"/>
+                            </Style>
+                            <Style TargetType="{x:Type DataGridRowHeader}">
+                                <Setter Property="Width" Value="150"/>
+                                <Setter Property="Height" Value="100"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                                <Setter Property="BorderBrush" Value="#03045E"/>
+                                <Setter Property="Background" Value="#FF1808B9"/>
+                            </Style>
+                        </DataGrid.RowStyle>
 
-
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontFamily" Value="Tohama"/>
+                                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                <Setter Property="FontSize" Value="14"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                            <DataGridTemplateColumn Header="متن پیام">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding MessageText}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
 
             </Border>
             <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
@@ -71,6 +127,12 @@
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="EmailBox" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
                                 <TextBlock Text="صندوق دریافت" FontFamily="Calibri" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="18" FontWeight="Bold"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="BackPn" Padding="6" MouseLeftButtonUp="BackPn_MouseLeftButtonUp">
+                            <StackPanel Orientation="Horizontal" Height="36">
+                                <materialDesign:PackIcon Kind="KeyboardReturn" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
+                                <TextBlock Text="صفحه قبل" FontFamily="Calibri" VerticalAlignment="Center" Margin="-135,7,0,7" FontSize="18" FontWeight="Bold" Width="83"/>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>

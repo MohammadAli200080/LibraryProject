@@ -126,6 +126,36 @@ namespace Library_Project.Resources.Classes
             }
             return employeesTmp;
         }
+
+        public static List<Employees> SearchAllEmployees(string username)
+        {
+            List<Employees> EmployeesTmp = new List<Employees>();
+            var data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + username + "'");
+
+            string passWord, Username, email, phoneNumber, pocket;
+            byte[] image;
+
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                passWord = data.Rows[i]["password"].ToString();
+                Username = data.Rows[i]["username"].ToString();
+                email = data.Rows[i]["email"].ToString();
+                phoneNumber = data.Rows[i]["phoneNumber"].ToString();
+                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
+                pocket = data.Rows[i]["pocket"].ToString();
+
+                EmployeesTmp.Add(new Employees
+                {
+                    UserName = Username,
+                    PassWord = passWord,
+                    Email = email,
+                    PhoneNumber = phoneNumber,
+                    Image = image,
+                    Pocket = decimal.Parse(pocket)
+                });
+            }
+            return EmployeesTmp;
+        }
     }
     public class Employees : Users, IMessanger
     {

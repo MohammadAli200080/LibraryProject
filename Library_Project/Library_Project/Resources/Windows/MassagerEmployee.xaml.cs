@@ -22,48 +22,44 @@ namespace Library_Project.Resources.Windows
     /// <summary>
     /// Interaction logic for MassagerEmployee.xaml
     /// </summary>
-    
-    public class Members
-    {
-        public string UserName { get; set; }
-        public byte[] Image { get; set; }
-        public static List<Members> Users()
-        {
-            DataTable data = new DataTable();
-            List<Members> members = new List<Members>();
-            string userName;
-            byte[] image;
-            data = DatabaseControl.Select("SELECT username,imgSrc FROM T_Members");
 
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                userName = data.Rows[i]["username"].ToString();
-                image = Convert.FromBase64String(data.Rows[i]["imgSrc"].ToString());
-
-                members.Add(new Members { UserName = userName, Image = image });
-            }
-            return members;
-        }
-    }
     public partial class MassagerEmployee : Window, INotifyPropertyChanged
     {
-        public string selected = "";
-        private List<string> _name;
-        public List<string> Names
+        private MassengeType Type { get; set; }
+        private string Username { get; set; }
+        public string Receiver { get; set; }
+        private List<string> _allRecieverNames;
+        public List<string> AllRecieverNames
         {
-            get => _name;
-            set { _name = value; NotifyPropertyChanged("MembersNames"); }
+            get => _allRecieverNames;
+            set { _allRecieverNames = value; NotifyPropertyChanged("AllRecieverNames"); }
         }
-        public MassagerEmployee()
+        private List<string> _allSendersName;
+        public List<string> AllSendersName
         {
-            List<Member> members2 = new List<Member>();
-            members2 = Employees.TakeAllMember();
-            Names = new List<string>();
+            get => _allSendersName;
+            set { _allSendersName = value; NotifyPropertyChanged("AllSendersName"); }
+        }
+        private List<Message> _allMessages;
+        public List<Message> AllMessages
+        {
+            get => _allMessages;
+            set { _allMessages = value; NotifyPropertyChanged("AllMessages"); }
+        }
 
-            for(int i = 0; i < members2.Count; i++)
-            {
-                Names.Add(members2[i].UserName.ToString());
-            }
+        public MassagerEmployee(MassengeType type, string username)
+        {
+            Type = type;
+            Username = username;
+
+            AllSendersName = new List<string>();
+            if (Type == MassengeType.employee) AllSendersName = Message.Instance.AllSenders(Username, MassengeType.member).ToList();
+            else AllSendersName = Message.Instance.AllSenders(Username, MassengeType.employee).ToList();
+
+            AllRecieverNames = new List<string>();
+            if (Type == MassengeType.employee) AllRecieverNames = Employees.TakeAllMember().Select(x => x.UserName).ToList();
+            else AllRecieverNames = Managers.TakeAllEmployee().Select(x => x.UserName).ToList();
+
             InitializeComponent();
             DataContext = this;
         }
@@ -97,37 +93,80 @@ namespace Library_Project.Resources.Windows
             SendMessage.Visibility = Visibility.Visible;
             ReciveMessage.Visibility = Visibility.Collapsed;
         }
-        private void MemberOrEmployeeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void BackPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (MemberOrEmployeeComboBox.SelectedIndex < 0)
+            if (Type == MassengeType.employee)
+            {
+                var ew = new EmployeeDashboard(Username);
+                ew.Show();
+                this.Close();
+            }
+            else
+            {
+                var mw = new MemberDashboard(Username);
+                mw.Show();
+                this.Close();
+            }
+        }
+        private void AllRecieversComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AllRecieversComboBox.SelectedIndex < 0)
                 return;
 
-            selected = MemberOrEmployeeComboBox.SelectedItem.ToString();
-            var SelectedMember = Employees.SearchAllMember(selected)[0];
-            image.Source = ImageControl.ByteToImage(SelectedMember.Image);
-            txtEmail.Text = SelectedMember.Email;
-            txtPhoneNumber.Text = SelectedMember.PhoneNumber;
-            txtUsername.Text = SelectedMember.UserName;
+            Receiver = AllRecieversComboBox.SelectedItem.ToString();
+
+            if (Type == MassengeType.employee)
+            {
+                var SelectedMember = Employees.SearchAllMember(Receiver)[0];
+                image.Source = ImageControl.ByteToImage(SelectedMember.Image);
+                txtEmail.Text = SelectedMember.Email;
+                txtPhoneNumber.Text = SelectedMember.PhoneNumber;
+                txtUsername.Text = SelectedMember.UserName;
+            }
+            else
+            {
+                var SelectedEmployee = Managers.SearchAllEmployees(Receiver)[0];
+                image.Source = ImageControl.ByteToImage(SelectedEmployee.Image);
+                txtEmail.Text = SelectedEmployee.Email;
+                txtPhoneNumber.Text = SelectedEmployee.PhoneNumber;
+                txtUsername.Text = SelectedEmployee.UserName;
+            }
         }
         private void Sendbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MemberOrEmployeeComboBox.SelectedIndex < 0)
+            if (AllRecieversComboBox.SelectedIndex < 0)
             {
                 MessageBox.Show(".ابتدا آیتم مورد نظر را انتخاب کنید");
                 return;
             }
-            selected = MemberOrEmployeeComboBox.SelectedItem.ToString();
-            TextRange text = new TextRange(MessageSend.Document.ContentStart, MessageSend.Document.ContentEnd);
+            Receiver = AllRecieversComboBox.SelectedItem.ToString();
+            TextRange text = new TextRange(MessageTxt.Document.ContentStart, MessageTxt.Document.ContentEnd);
             if (text.Text == "\r\n")
             {
                 MessageBox.Show("ابتدا باکس را پرکنید");
                 return;
             }
 
-            MessageBox.Show("پیام با موفقیت ارسال شد");
-            this.Close();
+            Message message = new Message(Username, Receiver, text.Text, Type);
+            if (message.SendMessage())
+            {
+                MessageBox.Show("پیام با موفقیت ارسال شد");
+                text.Text = "";
+            }
 
 
-        }        
+        }
+
+        private void AllSendersNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AllSendersNameComboBox.SelectedIndex < 0)
+                return;
+
+            string senderUsername = AllSendersNameComboBox.SelectedItem.ToString();
+
+            AllMessages = Message.Instance.RecieveAllMessages(Username, senderUsername).ToList();
+        }
+
     }
 }
