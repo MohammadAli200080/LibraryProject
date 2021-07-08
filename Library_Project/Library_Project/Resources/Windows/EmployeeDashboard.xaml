@@ -14,7 +14,7 @@
         <Grid>
             <Border x:Name="HomePan" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="2,70,2,2" HorizontalAlignment="Left" Background="WhiteSmoke">
                 <StackPanel>
-                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20" FontWeight="Black" FontSize="35" Content=".به بخش کارمندان خوش آمدید"/>
+                    <Label Foreground="#FF060F70" HorizontalAlignment="Center" FontFamily="Calibri" Margin="20" FontWeight="Black" FontSize="35" Content=".به بخش کارمندان خوش آمدید"/>
                     <Image Width="560" Height="475" Margin="169,30,169,0" Source="/Resources/Images/—Pngtree—cartoon employee discussing work_4538195.png" />
                 </StackPanel>
             </Border>
@@ -68,8 +68,8 @@
                             <Style TargetType="DataGridRow">
                                 <Setter Property="Height" Value="42"/>
                                 <Setter Property="BorderThickness" Value="0,2,0,0"/>
-                                <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
+                                <Setter Property="BorderBrush" Value="#FF1B1D93"/>
+                                <Setter Property="Background" Value="#FF5648E4"/>
                             </Style>
                         </DataGrid.RowStyle>
 
@@ -114,7 +114,7 @@
                                 <Setter Property="Height" Value="42"/>
                                 <Setter Property="BorderThickness" Value="0,2,0,0"/>
                                 <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
+                                <Setter Property="Background" Value="#FF5648E4"/>
                             </Style>
                         </DataGrid.RowStyle>
 
@@ -159,7 +159,7 @@
                                 <Setter Property="Height" Value="42"/>
                                 <Setter Property="BorderThickness" Value="0,2,0,0"/>
                                 <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
+                                <Setter Property="Background" Value="#FF5648E4"/>
                             </Style>
                         </DataGrid.RowStyle>
 

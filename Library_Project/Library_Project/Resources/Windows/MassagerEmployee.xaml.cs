@@ -48,25 +48,21 @@ namespace Library_Project.Resources.Windows
     public partial class MassagerEmployee : Window, INotifyPropertyChanged
     {
         public string selected = "";
-        private List<Members> _Member;
-        private List<string> _MemberName;
-        public List<Members> members
+        private List<string> _name;
+        public List<string> Names
         {
-            get { return _Member; }
-            set { _Member = value; NotifyPropertyChanged("members"); }
-        }
-        public List<string> MembersNames
-        {
-            get => _MemberName;
-            set { _MemberName = value; NotifyPropertyChanged("MembersNames"); }
+            get => _name;
+            set { _name = value; NotifyPropertyChanged("MembersNames"); }
         }
         public MassagerEmployee()
         {
-            members = new List<Members>();
-            members = Members.Users();
-            for(int i = 0; i < Employees.TakeAllMember().Count; i++)
+            List<Member> members2 = new List<Member>();
+            members2 = Employees.TakeAllMember();
+            Names = new List<string>();
+
+            for(int i = 0; i < members2.Count; i++)
             {
-                MembersNames.Add(Employees.TakeAllMember()[i].UserName);
+                Names.Add(members2[i].UserName.ToString());
             }
             InitializeComponent();
             DataContext = this;
@@ -101,13 +97,37 @@ namespace Library_Project.Resources.Windows
             SendMessage.Visibility = Visibility.Visible;
             ReciveMessage.Visibility = Visibility.Collapsed;
         }
-
-        private void KindOfSubsciptionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MemberOrEmployeeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (MemberComboBox.SelectedIndex < 0)
+            if (MemberOrEmployeeComboBox.SelectedIndex < 0)
                 return;
 
-           selected = MemberComboBox.SelectedItem.ToString();
+            selected = MemberOrEmployeeComboBox.SelectedItem.ToString();
+            var SelectedMember = Employees.SearchAllMember(selected)[0];
+            image.Source = ImageControl.ByteToImage(SelectedMember.Image);
+            txtEmail.Text = SelectedMember.Email;
+            txtPhoneNumber.Text = SelectedMember.PhoneNumber;
+            txtUsername.Text = SelectedMember.UserName;
         }
+        private void Sendbtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MemberOrEmployeeComboBox.SelectedIndex < 0)
+            {
+                MessageBox.Show(".ابتدا آیتم مورد نظر را انتخاب کنید");
+                return;
+            }
+            selected = MemberOrEmployeeComboBox.SelectedItem.ToString();
+            TextRange text = new TextRange(MessageSend.Document.ContentStart, MessageSend.Document.ContentEnd);
+            if (text.Text == "\r\n")
+            {
+                MessageBox.Show("ابتدا باکس را پرکنید");
+                return;
+            }
+
+            MessageBox.Show("پیام با موفقیت ارسال شد");
+            this.Close();
+
+
+        }        
     }
 }
