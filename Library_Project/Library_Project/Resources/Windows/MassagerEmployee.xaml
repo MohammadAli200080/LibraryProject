@@ -12,9 +12,9 @@
     <Grid>
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="SendMessage" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="-295,70,0,0">
+            <Border x:Name="SendMessage" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="-295,70,0,0">
                 <StackPanel Orientation="Horizontal" Margin="230,20,0,324">
-                    <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding MembersNames}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="MemberComboBox" SelectionChanged="KindOfSubsciptionComboBox_SelectionChanged">
+                    <ComboBox  materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding Names}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="MemberComboBox" SelectionChanged="KindOfSubsciptionComboBox_SelectionChanged">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="ComboBoxItem">
                                 <Setter Property="Cursor" Value="Pen"/>
@@ -28,7 +28,16 @@
             </Border>
             <Border x:Name="ReciveMessage" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="-295,70,0,0">
 
-
+                <StackPanel Orientation="Horizontal" Margin="230,20,0,324">
+                    <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding Names}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="RecieveComboBox" SelectionChanged="KindOfSubsciptionComboBox_SelectionChanged">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Cursor" Value="Pen"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                    <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="30,26,35,26" FontSize="25" FontFamily="Calibri" FontWeight="Black"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
+                </StackPanel>
 
             </Border>
             <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
@@ -43,8 +52,8 @@
                         </ListViewItem>
                         <ListViewItem x:Name="RecivePn" Padding="6" MouseLeftButtonUp="RecivePn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
-                                <materialDesign:PackIcon Kind="EmailBox" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
-                                <TextBlock Text="صندوق دریافت" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <materialDesign:PackIcon Kind="EmailReceive" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
+                                <TextBlock Text="صندوق دریافت" VerticalAlignment="Center" Margin="-135,3,0,7" FontSize="18" FontFamily="Calibri" FontWeight="Bold" Height="19"/>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>

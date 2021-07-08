@@ -127,7 +127,7 @@ namespace Library_Project.Resources.Classes
             return employeesTmp;
         }
     }
-    public class Employees : Users
+    public class Employees : Users, IMessanger
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -392,7 +392,7 @@ namespace Library_Project.Resources.Classes
             return Convert.ToDecimal(data.Rows[0]["pocket"].ToString());
         }
     }
-    public class Member : Users
+    public class Member : Users, IMessanger
     {
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
