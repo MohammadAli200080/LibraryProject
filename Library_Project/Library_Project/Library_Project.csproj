@@ -94,6 +94,9 @@
     <Compile Include="Resources\Windows\ManagerDashboard.xaml.cs">
       <DependentUpon>ManagerDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Windows\MassagerEmployee.xaml.cs">
+      <DependentUpon>MassagerEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Windows\MemberDashboard.xaml.cs">
       <DependentUpon>MemberDashboard.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Windows\ManagerDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Windows\MassagerEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -250,6 +250,9 @@
             <Button x:Name="btnSeting" Background="{x:Null}" Width="40" Height="40"
                          BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" Click="btnSeting_Click"/>
             <materialDesign:PackIcon Kind="CogBox" Width="40" Height="40" Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875" Margin="10,10,0,0"/>
+            <Button x:Name="btnMessage" Background="{x:Null}" Width="40" Height="40"
+                         BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,10,0,0" Click="btnMessage_Click"/>
+            <materialDesign:PackIcon Kind="Email" Width="40" Height="40" Foreground="#FFE8B402" RenderTransformOrigin="1.375,0.875" Margin="70,10,0,0"/>
 
         </Grid>
 

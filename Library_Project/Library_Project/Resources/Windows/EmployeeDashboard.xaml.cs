@@ -74,6 +74,7 @@ namespace Library_Project.Resources.Windows
         private CheckPassWindow _checkPassWindow;
         private LogOutWindow _logOutWindow;
         private Payment _paymentWindow;
+        private MassagerEmployee _message;
         private CheckPassWindow CheckPass
         {
             get => _checkPassWindow;
@@ -101,7 +102,15 @@ namespace Library_Project.Resources.Windows
                 else if (_paymentWindow == null) _paymentWindow = value;
             }
         }
-
+        private MassagerEmployee Message
+        {
+            get => _message;
+            set
+            {
+                if (value == null) _message = value;
+                else if (_message == null) _message = value;
+            }
+        }
         public EmployeeDashboard(string username)
         {
             InitializeComponent();
@@ -252,6 +261,15 @@ namespace Library_Project.Resources.Windows
             }
         }
 
+        private void btnMessage_Click(object sender, RoutedEventArgs e)
+        {
+            if (Message == null)
+            {
+                Message = new MassagerEmployee();
+                Message.Closed += (s, _) => Message = null;
+                Message.Show();
+            }
+        }
         private void InitializeMoney()
         {
             Money = Employees.GetMoneyOfEmployee(Username);
@@ -329,5 +347,6 @@ namespace Library_Project.Resources.Windows
                 allBooksData.ItemsSource = AllBooks;
             }
         }
+
     }
 }
