@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="Resources\Classes\Book.cs" />
     <Compile Include="Resources\Classes\DatabaseControl.cs" />
+    <Compile Include="Resources\Classes\RowToIndexConv.cs" />
     <Compile Include="Resources\Classes\ImageControl.cs" />
     <Compile Include="Resources\Classes\KindOfSubscription.cs" />
     <Compile Include="Resources\Classes\User.cs" />

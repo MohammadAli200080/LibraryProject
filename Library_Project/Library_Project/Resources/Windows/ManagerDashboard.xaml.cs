@@ -39,6 +39,13 @@ namespace Library_Project.Resources.Windows
             set { _allEmployees = value; NotifyPropertyChanged("AllEmployees"); }
         }
 
+        private List<int> _rowNumberAllEmployee;
+        public List<int> RowNumberAllEmployee
+        {
+            get => _rowNumberAllEmployee;
+            set { _rowNumberAllEmployee = value; NotifyPropertyChanged("Numbers"); }
+        }
+
         private decimal _money;
         public decimal Money { get { return _money; } set { _money = value; NotifyPropertyChanged("Money"); } }
 
@@ -72,6 +79,7 @@ namespace Library_Project.Resources.Windows
                 else if (_paymentWindow == null) _paymentWindow = value;
             }
         }
+        RowToIndexConv convertor;
 
         public ManagerDashboard()
         {
@@ -79,6 +87,7 @@ namespace Library_Project.Resources.Windows
             UpdateEmployeeGrid();
             UpdateBookGrid();
             BankUpdate();
+            UpdateNumbersList();
 
             DataContext = this;
         }
@@ -239,5 +248,18 @@ namespace Library_Project.Resources.Windows
             }
         }
 
+        public void UpdateNumbersList()
+        {
+            RowNumberAllEmployee = new List<int>();
+            for (int i = 0; i< AllEmployees.Count; i++)
+            {
+                RowNumberAllEmployee.Add(i + 1);
+            }
+        }
+
+        private void allEmployeesData_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
     }
 }

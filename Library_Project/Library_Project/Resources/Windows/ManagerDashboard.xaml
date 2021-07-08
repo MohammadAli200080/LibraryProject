@@ -38,9 +38,9 @@
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma" IsReadOnly="True">
+                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" AlternationCount="{Binding AllBooks.Count}" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -73,15 +73,9 @@
                             </DockPanel>
                         </Button>
                     </DockPanel>
-                    <!--<Button x:Name="SalarayEmployee" Width="150" Height="50" Margin="30,90,50,10" Click="SalarayEmployee_Click">
-                        <DockPanel Margin="12,0,0,0">
-                            <materialDesign:PackIcon Kind="Money" Width="30" Height="30" Margin="-25,7,65,0" />
-                            <Label Content="واریز حقوق" Foreground="White" Margin="-60,6,0,0" FontSize="15" FontWeight="Black"/>
-                        </DockPanel>
-                    </Button>-->
-                    <DataGrid x:Name="allEmployeesData" Visibility="Collapsed" Margin="10" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma" IsReadOnly="True">
+                    <DataGrid x:Name="allEmployeesData" AlternationCount="{Binding AllEmployees.Count}" Visibility="Collapsed" Margin="10" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
@@ -93,6 +87,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+                            
                             <DataGridTemplateColumn Header="حذف کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -105,6 +100,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

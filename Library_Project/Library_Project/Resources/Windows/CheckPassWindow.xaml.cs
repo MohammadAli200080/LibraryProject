@@ -79,6 +79,7 @@ namespace Library_Project.Resources.Windows
                     MessageBox.Show("کارمند با موفقیت حذف شد");
                 }
                 managerDashboard.UpdateEmployeeGrid();
+                managerDashboard.UpdateNumbersList();
                 txtPassword.Password = "";
                 this.Close();
             }

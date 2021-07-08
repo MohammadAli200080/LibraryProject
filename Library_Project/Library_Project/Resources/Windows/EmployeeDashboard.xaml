@@ -47,9 +47,9 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True"  AlternationCount="{Binding AllBooks.Count}"  Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -57,9 +57,9 @@
                             <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="borrowedBooksData" IsReadOnly="True" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="borrowedBooksData"  AlternationCount="{Binding BorrwoedBooks.Count}"  IsReadOnly="True" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -67,9 +67,9 @@
                             <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="availableBooksData" IsReadOnly="True" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="availableBooksData" IsReadOnly="True"  AlternationCount="{Binding AvailableBooks.Count}"  Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -111,9 +111,9 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allMembersData" Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="allMembersData" Visibility="Collapsed"  AlternationCount="{Binding AllMembers.Count}"  IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
@@ -129,9 +129,9 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData" Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData"  AlternationCount="{Binding DelayedMembersInReturning.Count}"  Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
@@ -147,9 +147,9 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="delayedMembersInPaymentData" Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInPaymentData" AlternationCount="{Binding DelayedMembersInPayment.Count}"   Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>

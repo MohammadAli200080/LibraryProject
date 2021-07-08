@@ -48,9 +48,9 @@
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="2" x:Name="availableBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="2" x:Name="availableBooksData" AlternationCount="{Binding AvailableBooks.Count}"  Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn IsReadOnly="True" Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -81,9 +81,9 @@
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <Label Foreground="#FF060F70" HorizontalAlignment="Center" Margin="20,10,20,0" FontWeight="Black" FontSize="30" Content="بخش  کتاب های من"/>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="myBooksData" Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="myBooksData" AlternationCount="{Binding MyBooks.Count}"  Visibility="Collapsed" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="ردیف"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="نام کتاب" Binding="{Binding Name}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
