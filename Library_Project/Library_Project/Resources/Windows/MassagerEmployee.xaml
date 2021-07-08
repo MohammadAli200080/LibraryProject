@@ -8,52 +8,69 @@
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Title="MassagerEmployee" Height="500" Width="1200" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="MassagerEmployee" Height="600" Width="1200" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Border Background="White"/>
         <Grid>
-            <Border x:Name="SendMessage" BorderBrush="Black" Visibility="Collapsed" BorderThickness="1" Width="900" Margin="-295,70,0,0">
-                <StackPanel Orientation="Horizontal" Margin="230,20,0,324">
-                    <ComboBox  materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding Names}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="MemberComboBox" SelectionChanged="KindOfSubsciptionComboBox_SelectionChanged">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Cursor" Value="Pen"/>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
-                    <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="30,20,35,20" FontSize="20" FontWeight="Black" Height="50"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
+            <Border x:Name="SendMessage" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="-295,70,0,0">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="230,20,0,324" Height="89">
+                        <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding Names}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="MemberOrEmployeeComboBox" SelectionChanged="MemberOrEmployeeComboBox_SelectionChanged">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Cursor" Value="Pen"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="30,20,35,20" FontSize="25" FontWeight="Black" Height="50"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="0,-350,0,-100" Height="426">
+                        <DockPanel>
+                            <Image x:Name="image" Margin="746,0,56,50" Width="93" Height="89"/>
+                        </DockPanel>
+                        <DockPanel Margin="633,-50,0,0">
+                            <TextBlock x:Name="txtUsername" FontSize="15" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                            <materialDesign:PackIcon Margin="5,35,20,15" Kind="UserBox" Width="40" Height="40" Foreground="#FF0032B8"/>
+                        </DockPanel>
+                        <DockPanel Margin="350,-95,281,0">
+                            <TextBlock x:Name="txtEmail" FontFamily="Calibri" FontSize="15" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                            <materialDesign:PackIcon Margin="5,35,20,15" Kind="Email" Width="40" Height="40" Foreground="#FF0032B8"/>
+                        </DockPanel>
+                        <DockPanel Margin="80,-98,550,0">
+                            <TextBlock x:Name="txtPhoneNumber" FontFamily="Calibri" FontSize="15" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                            <materialDesign:PackIcon Margin="5,35,20,15" Kind="MobilePhone" Width="40" Height="40" Foreground="#FF0032B8"/>
+                        </DockPanel>
+                        <DockPanel>
+                            <RichTextBox x:Name="MessageSend" Width="700" Height="150" Margin="0,20,0,0" Background="WhiteSmoke" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                        <Button x:Name="Sendbtn" Width="100" Margin="400,20,0,0" Content="ارسال" Click="Sendbtn_Click"/>
+
+                    </StackPanel>
+
                 </StackPanel>
 
 
             </Border>
             <Border x:Name="ReciveMessage" BorderBrush="Black" Visibility="Visible" BorderThickness="1" Width="900" Margin="-295,70,0,0">
 
-                <StackPanel Orientation="Horizontal" Margin="230,20,0,324">
-                    <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding Names}" Margin="70,0,0,0" Width="330" Height="40" Cursor="Hand" Background="#FFE8F2F3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="RecieveComboBox" SelectionChanged="KindOfSubsciptionComboBox_SelectionChanged">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Cursor" Value="Pen"/>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
-                    <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" Margin="30,26,35,26" FontSize="25" FontFamily="Calibri" FontWeight="Black"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
-                </StackPanel>
+
+
 
             </Border>
             <Border Background="#FFE4E4E4" Width="292" HorizontalAlignment="Right" Margin="2,70,2,2" BorderThickness="1" BorderBrush="Black">
                 <StackPanel Margin="0,0,0,0">
-                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,30,0,0">پیام رسان</Label>
+                    <Label HorizontalAlignment="Center" FontSize="25" FontFamily="Calibri" FontWeight="Bold" Margin="0,30,0,0">پیام رسان</Label>
                     <ListView FontSize="15" Margin="0,50,0,0">
                         <ListViewItem x:Name="SendingPn" Padding="6" MouseLeftButtonUp="SendingPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Send" Width="25" Height="25" Margin="247,0,0,0" Foreground="#FF0E2D63"/>
-                                <TextBlock Text="ارسال پیام" VerticalAlignment="Center" Margin="-100,-10,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="ارسال پیام" FontFamily="Calibri" VerticalAlignment="Center" Margin="-100,-10,0,0" FontSize="18" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="RecivePn" Padding="6" MouseLeftButtonUp="RecivePn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
-                                <materialDesign:PackIcon Kind="EmailReceive" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
-                                <TextBlock Text="صندوق دریافت" VerticalAlignment="Center" Margin="-135,3,0,7" FontSize="18" FontFamily="Calibri" FontWeight="Bold" Height="19"/>
+                                <materialDesign:PackIcon Kind="EmailBox" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
+                                <TextBlock Text="صندوق دریافت" FontFamily="Calibri" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="18" FontWeight="Bold"/>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>
