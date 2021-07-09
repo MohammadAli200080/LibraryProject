@@ -72,12 +72,24 @@ namespace Library_Project.Resources.Windows
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
+            if (Window == "Employee")
+            {
+                EmployeeDashboard employee = new EmployeeDashboard(userName);
+                employee.Show();
+            }
+            else
+            {
+                MemberDashboard member = new MemberDashboard(userName);
+                member.Show();
+            }
+
             ImageFill.Source = null;
             txtuserName.Text = "";
             txtPassword.Password = "";
             txtEmail.Text = "";
             txtPhone.Text = "";
             this.Close();
+            
         }
 
         private void btnCreatAcount_Click(object sender, RoutedEventArgs e)
@@ -131,11 +143,18 @@ namespace Library_Project.Resources.Windows
             txtPhone.Text = "";
             txtuserName.Text = "";
             IsImage = false;
-            this.Close();
-        }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
+            if (Window == "Employee")
+            {
+                EmployeeDashboard employee = new EmployeeDashboard(userName);
+                employee.Show();
+            }
+            else
+            {
+                MemberDashboard member = new MemberDashboard(userName);
+                member.Show();
+            }
+
             this.Close();
         }
 

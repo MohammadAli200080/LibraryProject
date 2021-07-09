@@ -86,10 +86,10 @@
                                 <Setter Property="Height" Value="42"/>
                                 <Setter Property="BorderThickness" Value="0,2,0,0"/>
                                 <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
+                                <Setter Property="Background" Value="#FF3A2EB2"/>
                             </Style>
                         </DataGrid.RowStyle>
-
+                        
                         <DataGrid.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Setter Property="VerticalAlignment" Value="Center"/>

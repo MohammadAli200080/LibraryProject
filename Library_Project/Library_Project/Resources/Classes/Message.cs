@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -58,7 +59,8 @@ namespace Library_Project.Resources.Classes
 
         public bool SendMessage()
         {
-            string command = "INSERT INTO T_Messages VALUES('" + this.SenderUsername + "', '" + this.RecieverUsername + "', '" + this.MessageText + "', '" + this.SenderType.ToString() + "')";
+            string command = "INSERT INTO T_Messages VALUES('" + this.SenderUsername + "', '" + this.RecieverUsername + "', N'" + this.MessageText + "', '" + this.SenderType.ToString() + "')";
+
             return DatabaseControl.Exe(command);
         }
 
@@ -70,7 +72,7 @@ namespace Library_Project.Resources.Classes
             List<Message> messages = new List<Message>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                if (data.Rows[i]["recieverUsername"].ToString() == reciever)
+                if (data.Rows[i]["recieverUsername"].ToString().ToLower() == reciever.ToLower())
                 {
                     var message = new Message(data.Rows[i]["senderUsername"].ToString(), data.Rows[i]["recieverUsername"].ToString(), data.Rows[i]["message"].ToString(), (MassengeType)Enum.Parse(typeof(MassengeType), data.Rows[i]["typeofSender"].ToString()));
                     messages.Add(message);
@@ -80,22 +82,22 @@ namespace Library_Project.Resources.Classes
             return messages.ToArray();
         }
 
-        public string[] AllSenders(string reciever, MassengeType typeofSender)
+        public ObservableCollection<string> AllSenders(string reciever, MassengeType typeofSender)
         {
-            string command = "SELECT * FROM T_Messages WHERE recieverUsername='" + reciever + "'";
+            string command = "SELECT * FROM T_Messages WHERE senderUsername='" + reciever + "'";
             var data = DatabaseControl.Select(command);
 
-            List<string> names = new List<string>();
+            ObservableCollection<string> names = new ObservableCollection<string>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 if (data.Rows[i]["typeofSender"].ToString() == typeofSender.ToString())
                 {
-                    string sender = data.Rows[i]["senderUsername"].ToString();
+                    string sender = data.Rows[i]["recieverUsername"].ToString();
                     names.Add(sender);
                 }
             }
 
-            return names.ToArray();
+            return names;
         }
 
         public List<MassengerUsers> GetMassengerUsers(MassengeType type)
