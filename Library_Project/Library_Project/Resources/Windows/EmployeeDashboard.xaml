@@ -111,7 +111,7 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allMembersData" Visibility="Collapsed"  AlternationCount="{Binding AllMembers.Count}"  IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="allMembersData" Visibility="Collapsed"  AlternationCount="2"  IsReadOnly="True" RowBackground="LightYellow"  RowStyle="{StaticResource DataGrid_Row_WithImage}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}"  AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
@@ -121,7 +121,7 @@
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                        <Image Source="{Binding Image}" HorizontalAlignment="Center" Width="100" Height="100" Margin="10"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -129,7 +129,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData" AlternationCount="{Binding DelayedMembersInReturning.Count}"  Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData" Visibility="Collapsed"  AlternationCount="2"  IsReadOnly="True" RowBackground="LightYellow"  RowStyle="{StaticResource DataGrid_Row_WithImage}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}"  AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
@@ -139,7 +139,7 @@
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                        <Image Source="{Binding Image}" HorizontalAlignment="Center" Width="100" Height="100" Margin="10"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -147,7 +147,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <DataGrid Grid.Row="1" x:Name="delayedMembersInPaymentData" AlternationCount="{Binding DelayedMembersInPayment.Count}"   Visibility="Collapsed" IsReadOnly="True" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
+                    <DataGrid Grid.Row="1" x:Name="delayedMembersInPaymentData" Visibility="Collapsed"  AlternationCount="2"  IsReadOnly="True" RowBackground="LightYellow"  RowStyle="{StaticResource DataGrid_Row_WithImage}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}"  AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Tahoma">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
@@ -157,7 +157,7 @@
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Image}" Width="100" Height="100" Margin="0,0,100,0"/>
+                                        <Image Source="{Binding Image}" HorizontalAlignment="Center" Width="100" Height="100" Margin="10"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

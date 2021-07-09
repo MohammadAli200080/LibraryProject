@@ -73,7 +73,7 @@
                             </DockPanel>
                         </Button>
                     </DockPanel>
-                    <DataGrid Grid.Row="1" x:Name="allEmployeesData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_WithImage}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell_WithButton}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="1" x:Name="allEmployeesData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_Delete}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell_Delete}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
