@@ -48,44 +48,9 @@
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="2" x:Name="availableBooksData" AlternationCount="{Binding AvailableBooks.Count}"  Visibility="Collapsed"  BorderThickness="0" FlowDirection="RightToLeft" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8">
-                        <DataGrid.Resources>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Width" Value="Auto"/>
-                                <Setter Property="Height" Value="40"/>
-                                <Setter Property="FontSize" Value="18"/>
-                                <Setter Property="Margin" Value="5,5,5,0"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="FontFamily" Value="Arial"/>
-                            </Style>
-                            <Style TargetType="{x:Type DataGridRowHeader}">
-                                <Setter Property="Width" Value="150"/>
-                                <Setter Property="Height" Value="100"/>
-                            </Style>
-                        </DataGrid.Resources>
-                        <DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
-                                <Setter Property="Height" Value="42"/>
-                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
-                                <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
-                            </Style>
-                        </DataGrid.RowStyle>
-
-                        <DataGrid.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="FontFamily" Value="Tohama"/>
-                                <Setter Property="Foreground" Value="WhiteSmoke"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="IsEnabled" Value="False"/>
-                            </Style>
-                        </DataGrid.CellStyle>
+                    <DataGrid Grid.Row="2" x:Name="availableBooksData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn IsReadOnly="True" Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -116,43 +81,9 @@
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="20,10,20,0" FontWeight="Black" FontSize="30" Content="بخش  کتاب های من"/>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="myBooksData"  Visibility="Collapsed" BorderThickness="0" FlowDirection="RightToLeft" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8">
-                        <DataGrid.Resources>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Width" Value="Auto"/>
-                                <Setter Property="Height" Value="40"/>
-                                <Setter Property="FontSize" Value="18"/>
-                                <Setter Property="Margin" Value="5,5,5,0"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="FontFamily" Value="Arial"/>
-                            </Style>
-                            <Style TargetType="{x:Type DataGridRowHeader}">
-                                <Setter Property="Width" Value="150"/>
-                                <Setter Property="Height" Value="100"/>
-                            </Style>
-                        </DataGrid.Resources>
-                        <DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
-                                <Setter Property="Height" Value="42"/>
-                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
-                                <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
-                            </Style>
-                        </DataGrid.RowStyle>
-
-                        <DataGrid.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="FontFamily" Value="Tohama"/>
-                                <Setter Property="Foreground" Value="WhiteSmoke"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="IsEnabled" Value="False"/>
-                            </Style>
-                        </DataGrid.CellStyle>
+                    <DataGrid Grid.Row="1" x:Name="myBooksData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="نام کتاب" Binding="{Binding Name}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>

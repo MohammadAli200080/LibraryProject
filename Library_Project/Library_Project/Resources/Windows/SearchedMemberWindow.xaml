@@ -43,44 +43,9 @@
                     <TextBlock x:Name="txtsubscriptionRemain" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="SortDateAscending" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
-                <DataGrid x:Name="BookBorrowed" AlternationCount="{Binding Borrowed.Count}" Height="170" IsReadOnly="True" Margin="14,20,14,0" Visibility="Collapsed" BorderThickness="0" FlowDirection="RightToLeft" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Calibri" Background="#FFE0E0E8">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="Width" Value="Auto"/>
-                            <Setter Property="Height" Value="40"/>
-                            <Setter Property="FontSize" Value="18"/>
-                            <Setter Property="Margin" Value="5,5,5,0"/>
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="FontFamily" Value="Arial"/>
-                        </Style>
-                        <Style TargetType="{x:Type DataGridRowHeader}">
-                            <Setter Property="Width" Value="150"/>
-                            <Setter Property="Height" Value="100"/>
-                        </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.RowStyle>
-                        <Style TargetType="DataGridRow">
-                            <Setter Property="Height" Value="42"/>
-                            <Setter Property="BorderThickness" Value="0,2,0,0"/>
-                            <Setter Property="BorderBrush" Value="#03045E"/>
-                            <Setter Property="Background" Value="#FF1808B9"/>
-                        </Style>
-                    </DataGrid.RowStyle>
-
-                    <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="FontFamily" Value="Tohama"/>
-                            <Setter Property="Foreground" Value="WhiteSmoke"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="IsEnabled" Value="False"/>
-                        </Style>
-                    </DataGrid.CellStyle>
+                <DataGrid Grid.Row="1" x:Name="BookBorrowed" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                        <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
                         <DataGridTextColumn Header="نام کتاب" Binding="{Binding nameBook}"/>
                         <DataGridTextColumn Header="تاریخ امانت" Binding="{Binding gotDate}"/>
                         <DataGridTextColumn Header="تاریخ برگشت" Binding="{Binding returnDate}"/>

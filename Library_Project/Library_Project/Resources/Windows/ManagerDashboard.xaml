@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library_Project.Resources.Windows"
+        xmlns:super="clr-namespace:Library_Project.Resources.Classes"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -38,45 +39,10 @@
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" Visibility="Collapsed" AlternationCount="{Binding AllBooks.Count}" BorderThickness="0" FlowDirection="RightToLeft" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" FontFamily="Calibri" IsReadOnly="True" Background="#FFE0E0E8">
-                        <DataGrid.Resources>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Width" Value="Auto"/>
-                                <Setter Property="Height" Value="40"/>
-                                <Setter Property="FontSize" Value="18"/>
-                                <Setter Property="Margin" Value="5,5,5,0"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="FontFamily" Value="Arial"/>
-                            </Style>
-                            <Style TargetType="{x:Type DataGridRowHeader}">
-                                <Setter Property="Width" Value="150"/>
-                                <Setter Property="Height" Value="100"/>
-                            </Style>
-                        </DataGrid.Resources>
-                        <DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
-                                <Setter Property="Height" Value="42"/>
-                                <Setter Property="BorderThickness" Value="0,2,0,0"/>
-                                <Setter Property="BorderBrush" Value="#03045E"/>
-                                <Setter Property="Background" Value="#FF1808B9"/>
-                            </Style>
-                        </DataGrid.RowStyle>
-
-                        <DataGrid.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="FontFamily" Value="Tohama"/>
-                                <Setter Property="Foreground" Value="WhiteSmoke"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="IsEnabled" Value="False"/>
-                            </Style>
-                        </DataGrid.CellStyle>
+                    <DataGrid x:Name="allBooksData" Grid.Row="1" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
-                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
                             <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}"/>
@@ -110,7 +76,7 @@
                     </DockPanel>
                     <DataGrid x:Name="allEmployeesData" AlternationCount="{Binding AllEmployees.Count}" Visibility="Collapsed" Margin="10" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" BorderBrush="Gray" BorderThickness="5" FlowDirection="RightToLeft" Grid.Row="1" Background="WhiteSmoke" CanUserAddRows="False" AutoGenerateColumns="False" FontFamily="Tahoma" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
@@ -152,7 +118,7 @@
                         </Label>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-700,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">

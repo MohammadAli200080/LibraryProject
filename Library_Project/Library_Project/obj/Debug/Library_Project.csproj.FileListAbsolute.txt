@@ -130,3 +130,4 @@ C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\
 C:\Users\dearuser\Desktop\Sample\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\MassagerEmployee.baml
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\MassagerEmployee.g.cs
 C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\Resources\Windows\MassagerEmployee.baml
+C:\Users\Top\Documents\GitHub\LibraryProject\Library_Project\Library_Project\obj\Debug\GeneratedInternalTypeHelper.g.cs
