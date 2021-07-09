@@ -152,7 +152,7 @@
                         </Label>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-800,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-750,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">

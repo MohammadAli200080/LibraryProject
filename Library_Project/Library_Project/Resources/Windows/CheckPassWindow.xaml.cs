@@ -132,6 +132,16 @@ namespace Library_Project.Resources.Windows
                 SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
                 searched.Show();
             }
+            if(Window== "Member")
+            {
+                MemberDashboard member = new MemberDashboard(UserName);
+                member.Show();
+            }
+            if (Window == "Employee")
+            {
+                EmployeeDashboard employee = new EmployeeDashboard(UserName);
+                employee.Show();
+            }
             this.Close();
         }
     }

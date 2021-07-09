@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Globalization;
@@ -28,17 +29,17 @@ namespace Library_Project.Resources.Windows
         private MassengeType Type { get; set; }
         private string Username { get; set; }
         public string Receiver { get; set; }
-        private List<string> _allRecieverNames;
-        public List<string> AllRecieverNames
+        private ObservableCollection<string> _allRecieverNames;
+        public ObservableCollection<string> AllRecieverNames
         {
             get => _allRecieverNames;
-            set { _allRecieverNames = value; NotifyPropertyChanged("AllRecieverNames"); }
+            set { _allRecieverNames = value; }
         }
-        private List<string> _allSendersName;
-        public List<string> AllSendersName
+        private ObservableCollection<string> _allSendersName;
+        public ObservableCollection<string> AllSendersName
         {
             get => _allSendersName;
-            set { _allSendersName = value; NotifyPropertyChanged("AllSendersName"); }
+            set { _allSendersName = value; }
         }
         private List<Message> _allMessages;
         public List<Message> AllMessages
@@ -52,14 +53,32 @@ namespace Library_Project.Resources.Windows
             Type = type;
             Username = username;
 
-            AllSendersName = new List<string>();
-            if (Type == MassengeType.employee) AllSendersName = Message.Instance.AllSenders(Username, MassengeType.member).ToList();
-            else AllSendersName = Message.Instance.AllSenders(Username, MassengeType.employee).ToList();
+            AllSendersName = new ObservableCollection<string>();
+            if (Type == MassengeType.employee) AllSendersName = Message.Instance.AllSenders(Username, MassengeType.employee);
+            else AllSendersName = Message.Instance.AllSenders(Username, MassengeType.member);
 
-            AllRecieverNames = new List<string>();
-            if (Type == MassengeType.employee) AllRecieverNames = Employees.TakeAllMember().Select(x => x.UserName).ToList();
-            else AllRecieverNames = Managers.TakeAllEmployee().Select(x => x.UserName).ToList();
+            AllRecieverNames = new ObservableCollection<string>();
 
+            if (Type == MassengeType.employee)
+            {
+                DataTable data = new DataTable();
+                data = DatabaseControl.Select("SELECT username FROM T_Members");
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    AllRecieverNames.Add(data.Rows[i]["username"].ToString());
+                }
+            }
+
+            else
+            {
+                DataTable data = new DataTable();
+                data = DatabaseControl.Select("SELECT DISTINCT senderUsername FROM T_Messages WHERE recieverUsername='" + Username + "'");
+                for(int i = 0; i < data.Rows.Count; i++)
+                {
+                    AllRecieverNames.Add(data.Rows[i]["senderUsername"].ToString());
+                }
+            }
+            
             InitializeComponent();
             DataContext = this;
         }
@@ -84,12 +103,14 @@ namespace Library_Project.Resources.Windows
 
         private void RecivePn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            AllSendersNameComboBox.ItemsSource = AllSendersName;
             SendMessage.Visibility = Visibility.Collapsed;
             ReciveMessage.Visibility = Visibility.Visible;
         }
 
         private void SendingPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            AllRecieversComboBox.ItemsSource = AllRecieverNames;
             SendMessage.Visibility = Visibility.Visible;
             ReciveMessage.Visibility = Visibility.Collapsed;
         }
@@ -166,6 +187,7 @@ namespace Library_Project.Resources.Windows
             string senderUsername = AllSendersNameComboBox.SelectedItem.ToString();
 
             AllMessages = Message.Instance.RecieveAllMessages(Username, senderUsername).ToList();
+            allMessagesData.ItemsSource = AllMessages;
         }
 
     }
