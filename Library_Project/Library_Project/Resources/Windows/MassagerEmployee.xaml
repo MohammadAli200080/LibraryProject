@@ -135,14 +135,9 @@
             </Border>
         </Grid>
         <Grid VerticalAlignment="Top" Height="70">
-
-            <Button x:Name="btnClse" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="#FFEC0C0C" VerticalAlignment="Top" Click="btnClose_Click" HorizontalAlignment="Right" Margin="0,10,10,0">
-                <materialDesign:PackIcon Kind="CloseBold" Margin="-15.5,-14" Width="30" Height="30"  Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875"/>
-            </Button>
             <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,60,0">
-                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black"  Width="30" Height="30" HorizontalAlignment="Right" Margin="-13"/>
+                         BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,20,0">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="Black"  Width="30" Height="30" HorizontalAlignment="Right" Margin="-13,-13,-13,-13"/>
             </Button>
         </Grid>
 

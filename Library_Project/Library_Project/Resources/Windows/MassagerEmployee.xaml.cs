@@ -53,32 +53,7 @@ namespace Library_Project.Resources.Windows
             Type = type;
             Username = username;
 
-            AllSendersName = new ObservableCollection<string>();
-            if (Type == MassengeType.employee) AllSendersName = Message.Instance.AllSenders(Username, MassengeType.employee);
-            else AllSendersName = Message.Instance.AllSenders(Username, MassengeType.member);
-
-            AllRecieverNames = new ObservableCollection<string>();
-
-            if (Type == MassengeType.employee)
-            {
-                DataTable data = new DataTable();
-                data = DatabaseControl.Select("SELECT DISTINCT username FROM T_Members");
-                for (int i = 0; i < data.Rows.Count; i++)
-                {
-                    AllRecieverNames.Add(data.Rows[i]["username"].ToString());
-                }
-            }
-
-            else
-            {
-                DataTable data = new DataTable();
-                data = DatabaseControl.Select("SELECT DISTINCT senderUsername FROM T_Messages WHERE recieverUsername='" + Username + "'");
-                for(int i = 0; i < data.Rows.Count; i++)
-                {
-                    AllRecieverNames.Add(data.Rows[i]["senderUsername"].ToString());
-                }
-            }
-            
+            UpdateMemberComboBox();           
             InitializeComponent();
             DataContext = this;
         }
@@ -91,11 +66,6 @@ namespace Library_Project.Resources.Windows
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -103,14 +73,20 @@ namespace Library_Project.Resources.Windows
 
         private void RecivePn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            UpdateMemberComboBox();
+            AllRecieversComboBox.ItemsSource = AllRecieverNames;
             AllSendersNameComboBox.ItemsSource = AllSendersName;
+
             SendMessage.Visibility = Visibility.Collapsed;
             ReciveMessage.Visibility = Visibility.Visible;
         }
 
         private void SendingPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            UpdateMemberComboBox();
+            AllSendersNameComboBox.ItemsSource = AllSendersName;
             AllRecieversComboBox.ItemsSource = AllRecieverNames;
+
             SendMessage.Visibility = Visibility.Visible;
             ReciveMessage.Visibility = Visibility.Collapsed;
         }
@@ -189,6 +165,48 @@ namespace Library_Project.Resources.Windows
             AllMessages = Message.Instance.RecieveAllMessages(Username, senderUsername).ToList();
             allMessagesData.ItemsSource = AllMessages;
         }
+        private void UpdateMemberComboBox()
+        {
+            AllSendersName = new ObservableCollection<string>();
+            if (Type == MassengeType.employee)
+            {
+                DataTable data = new DataTable();
+                data = DatabaseControl.Select("SELECT DISTINCT recieverUsername FROM T_Messages WHERE senderUsername='" + Username + "'");
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    AllSendersName.Add(data.Rows[i]["recieverUsername"].ToString());
+                }
+            }
+            else
+            {
+                DataTable data = new DataTable();
+                data = DatabaseControl.Select("SELECT DISTINCT senderUsername FROM T_Messages WHERE recieverUsername='" + Username + "'");
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    AllSendersName.Add(data.Rows[i]["senderUsername"].ToString());
+                }
+            }
 
+            AllRecieverNames = new ObservableCollection<string>();
+            if (Type == MassengeType.employee)
+            {
+                DataTable data = new DataTable();
+                data = DatabaseControl.Select("SELECT DISTINCT username FROM T_Members");
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    AllRecieverNames.Add(data.Rows[i]["username"].ToString());
+                }
+            }
+
+            else
+            {
+                DataTable data = new DataTable();
+                data = DatabaseControl.Select("SELECT DISTINCT senderUsername FROM T_Messages WHERE recieverUsername='" + Username + "'");
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    AllRecieverNames.Add(data.Rows[i]["senderUsername"].ToString());
+                }
+            }
+        }
     }
 }
