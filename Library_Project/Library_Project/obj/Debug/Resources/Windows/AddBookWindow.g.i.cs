@@ -84,15 +84,15 @@ namespace Library_Project.Resources.Windows {
         #line hidden
         
         
-        #line 51 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+        #line 52 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button btnClose;
+        internal System.Windows.Controls.Button btnClse;
         
         #line default
         #line hidden
         
         
-        #line 54 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+        #line 56 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnMin;
         
@@ -100,7 +100,7 @@ namespace Library_Project.Resources.Windows {
         #line hidden
         
         
-        #line 61 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+        #line 64 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnReturn;
         
@@ -108,7 +108,7 @@ namespace Library_Project.Resources.Windows {
         #line hidden
         
         
-        #line 63 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+        #line 66 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button btnCreatAcount;
         
@@ -161,10 +161,10 @@ namespace Library_Project.Resources.Windows {
             this.txtBookNumber = ((System.Windows.Controls.TextBox)(target));
             return;
             case 6:
-            this.btnClose = ((System.Windows.Controls.Button)(target));
+            this.btnClse = ((System.Windows.Controls.Button)(target));
             
-            #line 52 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
-            this.btnClose.Click += new System.Windows.RoutedEventHandler(this.btnClose_Click);
+            #line 53 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+            this.btnClse.Click += new System.Windows.RoutedEventHandler(this.btnClose_Click);
             
             #line default
             #line hidden
@@ -172,7 +172,7 @@ namespace Library_Project.Resources.Windows {
             case 7:
             this.btnMin = ((System.Windows.Controls.Button)(target));
             
-            #line 55 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+            #line 57 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
             this.btnMin.Click += new System.Windows.RoutedEventHandler(this.btnMin_Click);
             
             #line default
@@ -181,7 +181,7 @@ namespace Library_Project.Resources.Windows {
             case 8:
             this.btnReturn = ((System.Windows.Controls.Button)(target));
             
-            #line 61 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+            #line 64 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
             this.btnReturn.Click += new System.Windows.RoutedEventHandler(this.btnReturn_Click);
             
             #line default
@@ -190,7 +190,7 @@ namespace Library_Project.Resources.Windows {
             case 9:
             this.btnCreatAcount = ((System.Windows.Controls.Button)(target));
             
-            #line 63 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
+            #line 66 "..\..\..\..\Resources\Windows\AddBookWindow.xaml"
             this.btnCreatAcount.Click += new System.Windows.RoutedEventHandler(this.BtnAddBook_Click);
             
             #line default

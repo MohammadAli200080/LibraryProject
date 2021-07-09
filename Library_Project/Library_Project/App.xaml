@@ -38,6 +38,39 @@
                     <Trigger Property="AlternationIndex" Value="1">
                         <Setter Property="Background" Value="#4361ee"/>
                     </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF43AD03"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DataGrid_Row_WithImage" TargetType="{x:Type DataGridRow}">
+                <Setter Property="Height" Value="Auto"/>
+                <Setter Property="BorderThickness" Value="0,2,0,0"/>
+                <Setter Property="BorderBrush" Value="#03045E"/>
+                <Style.Triggers>
+                    <Trigger Property="AlternationIndex" Value="0">
+                        <Setter Property="Background" Value="#3a0ca3"/>
+                    </Trigger>
+                    <Trigger Property="AlternationIndex" Value="1">
+                        <Setter Property="Background" Value="#4361ee"/>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="#FFD94800"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DataGrid_Cell_WithButton" TargetType="{x:Type DataGridCell}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="Tohama"/>
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="IsEnabled" Value="True"/>
+                <Setter Property="FontFamily" Value="Calibri"/>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="#FFD94800"/>
+                    </Trigger>
                 </Style.Triggers>
             </Style>
             <Style x:Key="DataGrid_Cell" TargetType="{x:Type DataGridCell}">

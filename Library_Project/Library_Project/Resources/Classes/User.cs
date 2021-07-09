@@ -41,8 +41,16 @@ namespace Library_Project.Resources.Classes
             var data = DatabaseControl.Select("SELECT (username) FROM T_Employees WHERE username ='" + UserName + "' ");
             if (data.Rows.Count == 0)
                 return false;
+
             if (DatabaseControl.Exe("DELETE FROM T_Employees WHERE username ='" + UserName + "'"))
-                return true;
+            {
+                if (DatabaseControl.Select("SELECT * FROM T_Messages WHERE WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'").Rows.Count == 0)
+                    return true;
+
+                if (DatabaseControl.Exe("DELETE FROM T_Messages WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'"))
+                    return true;
+            }
+
             return false;
         }
         //this function for Increase inventory
@@ -411,7 +419,14 @@ namespace Library_Project.Resources.Classes
             if (data.Rows.Count == 0)
                 return false;
             if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username='" + UserName + "'"))
-                return true;
+            {
+                if (DatabaseControl.Select("SELECT * FROM T_Messages WHERE WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'").Rows.Count == 0)
+                    return true;
+
+                if (DatabaseControl.Exe("DELETE FROM T_Messages WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'"))
+                    return true;
+            }
+
             return false;
         }
 
