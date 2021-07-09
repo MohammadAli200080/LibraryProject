@@ -75,6 +75,16 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style x:Key="DataGrid_Cell" TargetType="{x:Type DataGridCell}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="Tohama"/>
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="FontFamily" Value="Calibri"/>
+            </Style>
+
             <Style x:Key="DataGrid_Cell_Delete" TargetType="{x:Type DataGridCell}">
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -88,15 +98,6 @@
                         <Setter Property="Background" Value="#FFD94800"/>
                     </Trigger>
                 </Style.Triggers>
-            </Style>
-            <Style x:Key="DataGrid_Cell" TargetType="{x:Type DataGridCell}">
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="FontFamily" Value="Tohama"/>
-                <Setter Property="Foreground" Value="WhiteSmoke"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="IsEnabled" Value="False"/>
-                <Setter Property="FontFamily" Value="Calibri"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

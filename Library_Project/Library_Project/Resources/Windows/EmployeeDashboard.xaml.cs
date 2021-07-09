@@ -280,20 +280,23 @@ namespace Library_Project.Resources.Windows
 
         private void InitializeDelayedMembersInReturn()
         {
-            if (Employees.TakeDelayedMemebrsInReturn() != null)
-                DelayedMembersInReturning = Employees.TakeDelayedMemebrsInReturn().ToList();
+            var list = Employees.TakeDelayedMemebrsInReturn();
+            if (list.Count != 0)
+                DelayedMembersInReturning = list;
             else DelayedMembersInReturning = new List<Member>();
 
             if (DelayedMembersInReturning.Count > 0)
             {
                 delayedMembersInReturningData.ItemsSource = DelayedMembersInReturning;
+                delayedMembersInReturningData.Visibility = Visibility.Visible;
             }
         }
 
         private void InitializeDelayedMembersInPayment()
         {
-            if (Employees.TakeDelayedMembersInPayment() != null)
-                DelayedMembersInPayment = Employees.TakeDelayedMembersInPayment().ToList();
+            var list = Employees.TakeDelayedMembersInPayment();
+            if (list.Count != 0)
+                DelayedMembersInPayment = list;
             else DelayedMembersInPayment = new List<Member>();
 
             if (DelayedMembersInPayment.Count > 0)
@@ -304,8 +307,9 @@ namespace Library_Project.Resources.Windows
 
         private void InitializeAllMembers()
         {
-            if (Employees.TakeAllMember() != null)
-                AllMembers = Employees.TakeAllMember().ToList();
+            var list = Employees.TakeAllMember();
+            if (list.Count != 0)
+                AllMembers = list;
             else AllMembers = new List<Member>();
 
             if (AllMembers.Count > 0)
@@ -316,8 +320,9 @@ namespace Library_Project.Resources.Windows
 
         private void InitializeAvailableBooks()
         {
-            if (Book.TakeAvailableBooks() != null)
-                AvailableBooks = Book.TakeAvailableBooks().ToList();
+            var list = Book.TakeAvailableBooks();
+            if (list.Length != 0)
+                AvailableBooks = list.ToList();
             else AvailableBooks = new List<Book>();
 
             if (AvailableBooks.Count > 0)
@@ -328,20 +333,23 @@ namespace Library_Project.Resources.Windows
 
         private void InitializeBorrowedBooks()
         {
-            if (Book.TakeBorrowedBooks() != null)
-                BorrowedBooks = Book.TakeBorrowedBooks().ToList();
+            var list = Book.TakeBorrowedBooks();
+            if (list.Length != 0)
+                BorrowedBooks = list.ToList();
             else BorrowedBooks = new List<Book>();
 
             if (BorrowedBooks.Count > 0)
             {
                 borrowedBooksData.ItemsSource = BorrowedBooks;
+                borrowedBooksData.Visibility = Visibility.Visible;
             }
         }
 
         private void InitializeAllBooks()
         {
-            if (Book.TakeAllBooks() != null)
-                AllBooks = Book.TakeAllBooks().ToList();
+            var list = Book.TakeAllBooks();
+            if (list.Length != 0)
+                AllBooks = list.ToList();
             else AllBooks = new List<Book>();
 
             if (AllBooks.Count > 0)
