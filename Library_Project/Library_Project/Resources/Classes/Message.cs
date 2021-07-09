@@ -84,7 +84,7 @@ namespace Library_Project.Resources.Classes
 
         public ObservableCollection<string> AllSenders(string reciever, MassengeType typeofSender)
         {
-            string command = "SELECT DISTINCT recieverUsername,typeofSender FROM T_Messages WHERE senderUsername='" + reciever + "'";
+            string command = "SELECT DISTINCT senderUsername,typeofSender FROM T_Messages WHERE recieverUsername='" + reciever + "'";
             var data = DatabaseControl.Select(command);
 
             ObservableCollection<string> names = new ObservableCollection<string>();
@@ -92,7 +92,7 @@ namespace Library_Project.Resources.Classes
             {
                 if (data.Rows[i]["typeofSender"].ToString() == typeofSender.ToString())
                 {
-                    string sender = data.Rows[i]["recieverUsername"].ToString();
+                    string sender = data.Rows[i]["senderUsername"].ToString();
                     names.Add(sender);
                 }
             }

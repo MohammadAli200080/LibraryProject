@@ -146,8 +146,6 @@ namespace Library_Project.Resourses.Windows
             else if (typeOfUser.Manager == Type)
             {
                 MessageBox.Show("موجودی افزایش نیافت");
-                ManagerDashboard managerDashboard = new ManagerDashboard();
-                managerDashboard.Show();
                 this.Close();
             }
             else

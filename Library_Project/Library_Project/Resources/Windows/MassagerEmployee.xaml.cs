@@ -54,8 +54,8 @@ namespace Library_Project.Resources.Windows
             Username = username;
 
             AllSendersName = new ObservableCollection<string>();
-            if (Type == MassengeType.employee) AllSendersName = Message.Instance.AllSenders(Username, MassengeType.employee);
-            else AllSendersName = Message.Instance.AllSenders(Username, MassengeType.member);
+            if (Type == MassengeType.employee) AllSendersName = Message.Instance.AllSenders(Username, MassengeType.member);
+            else AllSendersName = Message.Instance.AllSenders(Username, MassengeType.employee);
 
             AllRecieverNames = new ObservableCollection<string>();
 
@@ -91,11 +91,6 @@ namespace Library_Project.Resources.Windows
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -103,14 +98,18 @@ namespace Library_Project.Resources.Windows
 
         private void RecivePn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            AllSendersNameComboBox.ItemsSource = AllSendersName;
+            MassagerEmployee massager = new MassagerEmployee(Type, Username);
+            AllRecieversComboBox.ItemsSource = AllRecieverNames;
+
             SendMessage.Visibility = Visibility.Collapsed;
             ReciveMessage.Visibility = Visibility.Visible;
         }
 
         private void SendingPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            AllRecieversComboBox.ItemsSource = AllRecieverNames;
+            MassagerEmployee massager = new MassagerEmployee(Type, Username);
+            AllSendersNameComboBox.ItemsSource = AllSendersName;
+
             SendMessage.Visibility = Visibility.Visible;
             ReciveMessage.Visibility = Visibility.Collapsed;
         }
