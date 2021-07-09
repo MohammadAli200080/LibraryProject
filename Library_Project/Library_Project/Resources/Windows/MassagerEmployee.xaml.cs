@@ -62,7 +62,7 @@ namespace Library_Project.Resources.Windows
             if (Type == MassengeType.employee)
             {
                 DataTable data = new DataTable();
-                data = DatabaseControl.Select("SELECT username FROM T_Members");
+                data = DatabaseControl.Select("SELECT DISTINCT username FROM T_Members");
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
                     AllRecieverNames.Add(data.Rows[i]["username"].ToString());

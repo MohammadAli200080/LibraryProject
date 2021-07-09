@@ -84,7 +84,7 @@ namespace Library_Project.Resources.Classes
 
         public ObservableCollection<string> AllSenders(string reciever, MassengeType typeofSender)
         {
-            string command = "SELECT * FROM T_Messages WHERE senderUsername='" + reciever + "'";
+            string command = "SELECT DISTINCT recieverUsername,typeofSender FROM T_Messages WHERE senderUsername='" + reciever + "'";
             var data = DatabaseControl.Select(command);
 
             ObservableCollection<string> names = new ObservableCollection<string>();
