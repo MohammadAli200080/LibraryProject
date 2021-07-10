@@ -41,23 +41,19 @@
                     </Border>
                     <StackPanel Orientation="Horizontal" Margin="10,20,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
-                        <TextBox FontFamily="Calibri" x:Name="txtuserName" Focusable="True" Margin="10,0" materialDesign:HintAssist.Hint="نام کاربری" Foreground="White"
-                                 Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
+                        <TextBox FontFamily="Calibri" x:Name="txtuserName" FlowDirection="LeftToRight" Focusable="True" Margin="10,0" materialDesign:HintAssist.Hint="نام کاربری" Foreground="White" Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
-                        <PasswordBox FontFamily="Calibri" x:Name="txtPassword" Margin="10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="White"
-                                     Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
+                        <PasswordBox FontFamily="Calibri" FlowDirection="LeftToRight" x:Name="txtPassword" Margin="10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="White" Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtPhone" FontFamily="Calibri" Margin="10,0" materialDesign:HintAssist.Hint="تلفن" Foreground="White"
-                                 Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
+                        <TextBox x:Name="txtPhone" FlowDirection="LeftToRight" FontFamily="Calibri" Margin="10,0" materialDesign:HintAssist.Hint="تلفن" Foreground="White" Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
-                        <TextBox FontFamily="Calibri" x:Name="txtEmail" Margin="10,0" materialDesign:HintAssist.Hint="example@gmail.com" Foreground="White"
-                                 Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
+                        <TextBox FontFamily="Calibri" FlowDirection="LeftToRight" x:Name="txtEmail" Margin="10,0" materialDesign:HintAssist.Hint="example@gmail.com" Foreground="White" Width="265" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -68,7 +64,7 @@
                            Height="50" VerticalAlignment="Top" />
             <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
                          BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
-            <materialDesign:PackIcon Kind="WindowMinimize" Foreground="White" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,9,10,0"/>
+            <materialDesign:PackIcon Kind="WindowMinimize" Foreground="White" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,10,10,0"/>
 
         </Grid>
         <Grid Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,140,40">

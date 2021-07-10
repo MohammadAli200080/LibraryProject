@@ -20,26 +20,26 @@
                 <StackPanel Margin="30,0,0,0" Height="540">
                     <StackPanel Orientation="Horizontal" Margin="10,100,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="RenameBox" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtName" Focusable="True" FontFamily="Calibri"  Margin="10,0" materialDesign:HintAssist.Hint="نام کتاب" Foreground="White"
+                        <TextBox x:Name="txtName" Focusable="True" FontFamily="Calibri"  Margin="10,0" materialDesign:HintAssist.Hint="نام کتاب" Foreground="White" FlowDirection="LeftToRight"
                                  Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Pen" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtAuthor"  FontFamily="Calibri"  Margin="10,0" materialDesign:HintAssist.Hint="نویسنده" Foreground="White"
+                        <TextBox x:Name="txtAuthor" FlowDirection="LeftToRight" FontFamily="Calibri"  Margin="10,0" materialDesign:HintAssist.Hint="نویسنده" Foreground="White"
                                      Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Book" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtCategory"  FontFamily="Calibri" Margin="10,0" materialDesign:HintAssist.Hint="ژانر" Foreground="White"
+                        <TextBox x:Name="txtCategory" FlowDirection="LeftToRight" FontFamily="Calibri" Margin="10,0" materialDesign:HintAssist.Hint="ژانر" Foreground="White"
                                  Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Typewriter" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtPublishNumber"  FontFamily="Calibri"  Margin="10,0" materialDesign:HintAssist.Hint="شماره چاپ کتاب" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
+                        <TextBox x:Name="txtPublishNumber" FlowDirection="LeftToRight" FontFamily="Calibri"  Margin="10,0" materialDesign:HintAssist.Hint="شماره چاپ کتاب" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,40,10,10" FlowDirection="RightToLeft">
                         <materialDesign:PackIcon Kind="Counter" Width="25" Height="25" Foreground="White"/>
-                        <TextBox  FontFamily="Calibri"  x:Name="txtBookNumber" Margin="10,0" materialDesign:HintAssist.Hint="تعداد کتاب" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
+                        <TextBox  FontFamily="Calibri" FlowDirection="LeftToRight" x:Name="txtBookNumber" Margin="10,0" materialDesign:HintAssist.Hint="تعداد کتاب" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="16"/>
                     </StackPanel>
                 </StackPanel>
 

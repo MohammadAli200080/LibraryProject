@@ -341,6 +341,7 @@ namespace Library_Project.Resources.Windows
             if (BorrowedBooks.Count > 0)
             {
                 borrowedBooksData.ItemsSource = BorrowedBooks;
+                borrowedBooksData.Visibility = Visibility.Visible;
             }
         }
 
