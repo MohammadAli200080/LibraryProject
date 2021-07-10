@@ -25,7 +25,7 @@
         </Grid>
         <StackPanel Orientation="Horizontal" Margin="50,100,50,70" FlowDirection="RightToLeft" Height="30">
             <materialDesign:PackIcon Kind="Lock" Width="28" Height="28" Foreground="#FF98A0EA"/>
-            <PasswordBox FontFamily="Calibri" x:Name="txtPassword" Margin="0,0,10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="Black"
+            <PasswordBox FontFamily="Calibri" x:Name="txtPassword" Focusable="True" Margin="0,0,10,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="Black"
                                      Width="217" BorderBrush="Black" Background="#FFE8E9F3" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="15"/>
         </StackPanel>
         <StackPanel>

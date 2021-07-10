@@ -25,6 +25,7 @@ namespace Library_Project.Resources.Windows
         {
             md = managerDashboard;
             InitializeComponent();
+            txtName.Focus();
         }
 
         private void btnMin_Click(object sender, RoutedEventArgs e)
@@ -42,11 +43,34 @@ namespace Library_Project.Resources.Windows
             if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtAuthor.Text) || string.IsNullOrEmpty(txtCategory.Text) || string.IsNullOrEmpty(txtPublishNumber.Text) || string.IsNullOrEmpty(txtBookNumber.Text))
             {
                 MessageBox.Show(".ابتدا فیلد هارا به طور کامل پرکنید");
+                txtName.Focus();
                 return;
             }
-            if (Convert.ToInt32(txtBookNumber.Text) == 0)
+            try
             {
-                MessageBox.Show(".تعداد باید عددی مثبت باشد");
+                if (Convert.ToInt32(txtBookNumber.Text) == 0)
+                {
+                    MessageBox.Show(".تعداد باید عددی مثبت باشد");
+                    txtBookNumber.Focus();
+                    return;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("تعداد نمی تواند شامل حروف باشد");
+                txtBookNumber.Text = "";
+                txtBookNumber.Focus();
+                return;
+            }
+            try
+            {
+                int.Parse(txtPublishNumber.Text);
+            }
+            catch
+            {
+                MessageBox.Show("شماره چاپ نمی تواند شامل حروف باشد");
+                txtPublishNumber.Text = "";
+                txtPublishNumber.Focus();
                 return;
             }
             Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, txtBookNumber.Text);
@@ -65,10 +89,13 @@ namespace Library_Project.Resources.Windows
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show(".عدد وارد شده باید مثبت باشد");
+                txtBookNumber.Focus();
             }
             catch (FormatException)
             {
                 MessageBox.Show(".برای بخش تعداد و شماه نشر باید عدد وارد شود");
+                txtBookNumber.Focus();
+                txtPublishNumber.Focus();
             }
             catch
             {

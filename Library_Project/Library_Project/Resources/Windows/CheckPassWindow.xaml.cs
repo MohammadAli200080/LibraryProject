@@ -31,6 +31,7 @@ namespace Library_Project.Resources.Windows
         public CheckPassWindow(string userName, string WindNam, ManagerDashboard md = null)
         {
             InitializeComponent();
+            txtPassword.Focus();
             Window = WindNam;
             UserName = userName;
             managerDashboard = md;
@@ -47,6 +48,7 @@ namespace Library_Project.Resources.Windows
                 if (!(mainPass == txtPassword.Password))
                 {
                     MessageBox.Show(".رمز عبور وارد شده نادرست است");
+                    txtPassword.Focus();
                     txtPassword.Password = "";
                     return;
                 }
@@ -71,6 +73,7 @@ namespace Library_Project.Resources.Windows
                 if (!(mainPass == txtPassword.Password))
                 {
                     MessageBox.Show(".رمز عبور وارد شده نادرست است");
+                    txtPassword.Focus();
                     txtPassword.Password = "";
                     return;
                 }
@@ -122,6 +125,7 @@ namespace Library_Project.Resources.Windows
                 else
                     MessageBox.Show("رمز نادرست است");
                 txtPassword.Password = "";
+                txtPassword.Focus();
             }
         }
 

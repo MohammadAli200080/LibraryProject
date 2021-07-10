@@ -41,7 +41,7 @@
                             <materialDesign:PackIcon Margin="5,35,20,15" Kind="MobilePhone" Width="40" Height="40" Foreground="#FF0032B8"/>
                         </DockPanel>
                         <DockPanel>
-                            <RichTextBox x:Name="MessageTxt" Width="700" Height="150" Margin="0,20,0,0" Background="WhiteSmoke" FlowDirection="RightToLeft"/>
+                            <RichTextBox x:Name="MessageTxt" Focusable="True" Width="700" Height="150" Margin="0,20,0,0" Background="WhiteSmoke" FlowDirection="RightToLeft"/>
                         </DockPanel>
                         <Button x:Name="Sendbtn" Width="100" Margin="400,20,0,0" Content="ارسال" Click="Sendbtn_Click"/>
 
@@ -62,9 +62,9 @@
                                 </Style>
                             </ComboBox.ItemContainerStyle>
                         </ComboBox>
-                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="30,20,35,20" FontSize="25" FontWeight="Black" Height="50"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
+                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="20,10,0,0" FontSize="25" FontWeight="Black" Height="50"><Run Text=": نام عضو را انتخاب کنید"/></TextBlock>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allMessagesData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Visible" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="1" x:Name="allMessagesData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Visible" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="99,-350,99,-100" Height="285" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTemplateColumn Header="متن پیام">
