@@ -38,14 +38,61 @@
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" GridLinesVisibility="None" HorizontalGridLinesBrush="{x:Null}" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" GridLinesVisibility="None" HorizontalGridLinesBrush="{x:Null}" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
-                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
-                            <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
-                            <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
-                            <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}"/>
-                            <DataGridTextColumn Header="موجودی کتاب" Binding="{Binding Quantity}"/>
+                            
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                        <Setter Property="FlowDirection" Value="LeftToRight" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                        <Setter Property="FlowDirection" Value="LeftToRight" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="نویسنده کتاب" Binding="{Binding Author}">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                        <Setter Property="FlowDirection" Value="LeftToRight" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header= "موجودی کتاب"  Binding="{Binding Quantity}">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
