@@ -39,14 +39,14 @@ namespace Library_Project.Resources.Windows
 
         private void BtnAddBook_Click(object sender, RoutedEventArgs e)
         {
-            if (txtName.Text == "" || txtAuthor.Text == "" || txtCategory.Text == "" || txtPublishNumber.Text == "")
+            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtAuthor.Text) || string.IsNullOrEmpty(txtCategory.Text) || string.IsNullOrEmpty(txtPublishNumber.Text) || string.IsNullOrEmpty(txtBookNumber.Text))
             {
-                MessageBox.Show("ابتدا فیلد هارا به طور کامل پرکنید");
+                MessageBox.Show(".ابتدا فیلد هارا به طور کامل پرکنید");
                 return;
             }
 
             Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, txtBookNumber.Text);
-           
+
             try
             {
                 if (Book.BookExists(book.Name))
@@ -58,13 +58,13 @@ namespace Library_Project.Resources.Windows
                     book.AddBook();
                 }
             }
-            catch (ArgumentOutOfRangeException err)
+            catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show(".عدد وارد شده باید مثبت باشد");
             }
-            catch(FormatException err)
+            catch (FormatException)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show(".برای بخش تعداد و شماه نشر باید عدد وارد شود");
             }
             catch
             {
@@ -73,7 +73,7 @@ namespace Library_Project.Resources.Windows
 
             md.AllBooks = Book.TakeAllBooks().ToList();
             md.allBooksData.ItemsSource = md.AllBooks;
-            MessageBox.Show("کتاب با موفقیت اضافه شد");
+            MessageBox.Show(".کتاب با موفقیت اضافه شد");
 
             this.Close();
         }
