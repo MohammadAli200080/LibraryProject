@@ -96,7 +96,8 @@ namespace Library_Project.Resources.Windows
                 if (Window == "Remove")
                 {
                     BorrowedBook.RemoveBook(SearchedMemberWindow.UserName);
-                    MessageBox.Show("حذف کاربر با موفقیت انجام شد");
+                    if (Employees.RemoveMember(SearchedMemberWindow.UserName))
+                        MessageBox.Show("حذف کاربر با موفقیت انجام شد");
                     EmployeeDashboard employee = new EmployeeDashboard(UserName);
                     employee.Show();
                     this.Close();

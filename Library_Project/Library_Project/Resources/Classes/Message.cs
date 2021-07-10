@@ -29,12 +29,14 @@ namespace Library_Project.Resources.Classes
         private string _senderUsername;
         private string _recieverUsername;
         private string _messageText;
+        private int _row;
         private MassengeType _senderType;
 
         public string SenderUsername { get => _senderUsername; set => _senderUsername = value; }
         public string RecieverUsername { get => _recieverUsername; set => _recieverUsername = value; }
         public string MessageText { get => _messageText; set => _messageText = value; }
         public MassengeType SenderType { get => _senderType; set => _senderType = value; }
+        public int Row { get => _row; set => _row = value; }
 
         public static Message Instance
         {
@@ -49,6 +51,14 @@ namespace Library_Project.Resources.Classes
         {
         }
 
+        public Message(int Row,string senderUsername, string recieverUsername, string messageText, MassengeType senderType)
+        {
+            SenderUsername = senderUsername;
+            RecieverUsername = recieverUsername;
+            MessageText = messageText;
+            SenderType = senderType;
+            this.Row = Row;
+        }
         public Message(string senderUsername, string recieverUsername, string messageText, MassengeType senderType)
         {
             SenderUsername = senderUsername;
@@ -56,7 +66,6 @@ namespace Library_Project.Resources.Classes
             MessageText = messageText;
             SenderType = senderType;
         }
-
         public bool SendMessage()
         {
             string command = "INSERT INTO T_Messages VALUES('" + this.SenderUsername + "', '" + this.RecieverUsername + "', N'" + this.MessageText + "', '" + this.SenderType.ToString() + "')";
@@ -66,6 +75,7 @@ namespace Library_Project.Resources.Classes
 
         public Message[] RecieveAllMessages(string reciever, string sender)
         {
+            Row = 1;
             string command = "SELECT * FROM T_Messages WHERE senderUsername='" + sender + "'";
             var data = DatabaseControl.Select(command);
 
@@ -74,8 +84,9 @@ namespace Library_Project.Resources.Classes
             {
                 if (data.Rows[i]["recieverUsername"].ToString().ToLower() == reciever.ToLower())
                 {
-                    var message = new Message(data.Rows[i]["senderUsername"].ToString(), data.Rows[i]["recieverUsername"].ToString(), data.Rows[i]["message"].ToString(), (MassengeType)Enum.Parse(typeof(MassengeType), data.Rows[i]["typeofSender"].ToString()));
+                    var message = new Message(Row, data.Rows[i]["senderUsername"].ToString(), data.Rows[i]["recieverUsername"].ToString(), data.Rows[i]["message"].ToString(), (MassengeType)Enum.Parse(typeof(MassengeType), data.Rows[i]["typeofSender"].ToString()));
                     messages.Add(message);
+                    Row++;
                 }
             }
 

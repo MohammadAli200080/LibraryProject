@@ -40,7 +40,7 @@
                     </StackPanel>
                     <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -75,7 +75,7 @@
                     </DockPanel>
                     <DataGrid Grid.Row="1" x:Name="allEmployeesData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_Delete}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell_Delete}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
