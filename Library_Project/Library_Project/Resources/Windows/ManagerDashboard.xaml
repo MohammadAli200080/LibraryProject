@@ -38,7 +38,7 @@
                             </DockPanel>
                         </Button>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="1" x:Name="allBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" GridLinesVisibility="None" HorizontalGridLinesBrush="{x:Null}" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
@@ -73,12 +73,39 @@
                             </DockPanel>
                         </Button>
                     </DockPanel>
-                    <DataGrid Grid.Row="1" x:Name="allEmployeesData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_Delete}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell_Delete}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="1" x:Name="allEmployeesData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" GridLinesVisibility="None" HorizontalGridLinesBrush="{x:Null}" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
-                            <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
-                            <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
-                            <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
+                            <DataGridTemplateColumn Header="ردیف">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Row}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="نام کاربری">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding UserName}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="ایمیل">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Email}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="تلفن همراه" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding PhoneNumber}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>

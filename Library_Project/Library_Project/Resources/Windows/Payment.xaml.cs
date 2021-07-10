@@ -135,7 +135,15 @@ namespace Library_Project.Resourses.Windows
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            if (username == "")
+            if (Type == typeOfUser.Employee)
+            {
+                MessageBox.Show("ثبت نام انجام نشد");
+                DatabaseControl.Exe("DELETE FROM T_Employees WHERE username ='" + Register.Info[0] + "'");
+                ManagerDashboard md = new ManagerDashboard();
+                md.Show();
+                this.Close();
+            }
+            else if (username == "")
             {
                 MessageBox.Show("ثبت نام انجام نشد");
                 DatabaseControl.Exe("DELETE FROM T_Members WHERE username ='" + Register.Info[0] + "'");
@@ -157,6 +165,13 @@ namespace Library_Project.Resourses.Windows
 
         private void txMoney_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var text = txMoney.Text;
+            if (text.Any(x => char.IsLetter(x)))
+            {
+                MessageBox.Show(".امکان وارد کردن حرف در این بحش وجود ندارد");
+                txMoney.Clear();
+                return;
+            }
             if (txMoney.Text != string.Empty)
             {
                 txMoney.Text = string.Format("{0:N0}", double.Parse(txMoney.Text.Replace(",", "")));

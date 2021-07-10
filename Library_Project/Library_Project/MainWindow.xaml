@@ -46,8 +46,9 @@
             </Border>
             <Grid>
                 <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="Red" Click="btnClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Width="30" Height="30" VerticalAlignment="Top"/>
+                         BorderBrush="#FFEC0C0C" VerticalAlignment="Top" Click="btnClose_Click" HorizontalAlignment="Right" Margin="-10,10,10,0">
+                    <materialDesign:PackIcon Kind="CloseBold" Margin="-16.5,-10" Width="30" Height="30"  Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875"/>
+                </Button>
             </Grid>
 
         </StackPanel>

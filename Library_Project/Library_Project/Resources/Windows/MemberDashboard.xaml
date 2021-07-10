@@ -48,7 +48,7 @@
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid Grid.Row="2" x:Name="availableBooksData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="2" x:Name="availableBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn IsReadOnly="True" Header="نام کتاب" Binding="{Binding Name }"/>
@@ -81,7 +81,7 @@
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="20,10,20,0" FontWeight="Black" FontSize="30" Content="بخش  کتاب های من"/>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" x:Name="myBooksData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="False"  AutoGenerateColumns="False" Margin="10">
+                    <DataGrid Grid.Row="1" x:Name="myBooksData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False"  CanUserSortColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn IsReadOnly="True" Header="نام کتاب" Binding="{Binding Name}"/>
@@ -225,9 +225,9 @@
         </Grid>
         <Grid VerticalAlignment="Top" Height="70">
 
-            <Button x:Name="btnClse" Background="{x:Null}" Width="30" Height="30"
-                         BorderBrush="#FFEC0C0C" VerticalAlignment="Top" Click="btnClose_Click" HorizontalAlignment="Right" Margin="0,10,10,0">
-                <materialDesign:PackIcon Kind="CloseBold" Margin="-16.5" Width="30" Height="30"  Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875"/>
+            <Button x:Name="btnClose" Background="{x:Null}" Width="30" Height="30"
+                         BorderBrush="#FFEC0C0C" VerticalAlignment="Top" Click="btnClose_Click" HorizontalAlignment="Right" Margin="-10,10,10,0">
+                <materialDesign:PackIcon Kind="CloseBold" Margin="-16.5,-10" Width="30" Height="30"  Foreground="#FFEC0C0C" RenderTransformOrigin="1.375,0.875"/>
             </Button>
             <Button x:Name="btnMin" Background="{x:Null}" Width="30" Height="30"
                          BorderBrush="{x:Null}" Click="btnMin_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,15,60,0">

@@ -44,7 +44,11 @@ namespace Library_Project.Resources.Windows
                 MessageBox.Show(".ابتدا فیلد هارا به طور کامل پرکنید");
                 return;
             }
-
+            if (Convert.ToInt32(txtBookNumber.Text) == 0)
+            {
+                MessageBox.Show(".تعداد باید عددی مثبت باشد");
+                return;
+            }
             Book book = new Book(txtName.Text, txtAuthor.Text, txtCategory.Text, txtPublishNumber.Text, txtBookNumber.Text);
 
             try

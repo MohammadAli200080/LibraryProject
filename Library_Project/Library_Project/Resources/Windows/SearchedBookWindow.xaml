@@ -19,7 +19,7 @@
         <Border Grid.Row="0" Background="WhiteSmoke" BorderBrush="WhiteSmoke" VerticalAlignment="Center" BorderThickness="25" CornerRadius="100" Height="400" Grid.RowSpan="3"/>
 
         <Label Content="اطلاعات کتاب" FontFamily="Calibri" FontSize="35" Margin="410,32,410,205" FlowDirection="RightToLeft" FontWeight="Bold" Grid.RowSpan="2"/>
-        <DataGrid Grid.Row="1" x:Name="BooksSearchData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+        <DataGrid Grid.Row="1" x:Name="BooksSearchData" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                 <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name}"/>

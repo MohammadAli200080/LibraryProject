@@ -34,6 +34,21 @@ namespace Library_Project
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtuserName.Text) && string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                MessageBox.Show(".لطفا تمام فیلد ها را پر کنید");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                MessageBox.Show(".لطفا فیلم رمز عبور را پر کنید");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtuserName.Text))
+            {
+                MessageBox.Show(".لطفا فیلد نام را پر کنید");
+                return;
+            }
             if (Properties.Settings.Default.UserName == txtuserName.Text && Properties.Settings.Default.PassWord == txtPassword.Password)
             {
                 txtuserName.Clear();

@@ -43,9 +43,9 @@
                     <TextBlock x:Name="txtsubscriptionRemain" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="SortDateAscending" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
-                <DataGrid Grid.Row="1" x:Name="BookBorrowed" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10" Height="163">
+                <DataGrid Grid.Row="1" x:Name="BookBorrowed" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserSortColumns="False" AutoGenerateColumns="False" Margin="10">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ردیف"/>
+                        <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
                         <DataGridTextColumn Header="نام کتاب" Binding="{Binding nameBook}"/>
                         <DataGridTextColumn Header="تاریخ امانت" Binding="{Binding gotDate}"/>
                         <DataGridTextColumn Header="تاریخ برگشت" Binding="{Binding returnDate}"/>
