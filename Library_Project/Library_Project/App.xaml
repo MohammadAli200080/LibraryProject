@@ -22,6 +22,7 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="IsEnabled" Value="False"/>
             </Style>
             <Style x:Key="DataGrid_RowHeader" TargetType="{x:Type DataGridRowHeader}">
                 <Setter Property="Width" Value="150"/>
@@ -31,6 +32,7 @@
                 <Setter Property="Height" Value="45"/>
                 <Setter Property="BorderThickness" Value="0,2,0,0"/>
                 <Setter Property="BorderBrush" Value="#03045E"/>
+                <Setter Property="IsEnabled" Value="False"/>
                 <Style.Triggers>
                     <Trigger Property="AlternationIndex" Value="0">
                         <Setter Property="Background" Value="#3a0ca3"/>
