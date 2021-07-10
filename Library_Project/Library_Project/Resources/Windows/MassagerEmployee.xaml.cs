@@ -112,7 +112,7 @@ namespace Library_Project.Resources.Windows
                 return;
 
             Receiver = AllRecieversComboBox.SelectedItem.ToString();
-
+            MessageTxt.Focus();
             if (Type == MassengeType.employee)
             {
                 var SelectedMember = Employees.SearchAllMember(Receiver)[0];

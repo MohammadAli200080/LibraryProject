@@ -31,6 +31,7 @@ namespace Library_Project.Resourses.Windows
             this.username = username;
             this.Type = type;
             InitializeComponent();
+            txCardNum1.Focus();
         }
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
@@ -46,12 +47,14 @@ namespace Library_Project.Resourses.Windows
             if (!Library_Project.Resources.Classes.Validation.IsValidCvv2(CVV2))
             {
                 MessageBox.Show("CVV2 نادرست می باشد");
+                txCVV2.Focus();
                 txCVV2.Text = "";
                 return;
             }
             if (!Library_Project.Resources.Classes.Validation.IsValidExpiry(expiry))
             {
                 MessageBox.Show("تاریخ انقضا کارت غیر قابل قبول است");
+                txMonth.Focus();
                 txMoney.Text = "";
                 txMonth.Text = "";
                 txYear.Text = "";
@@ -60,6 +63,7 @@ namespace Library_Project.Resourses.Windows
             if (!Library_Project.Resources.Classes.Validation.IsValidCardNumber(CardNumber))
             {
                 MessageBox.Show("شماره کارت نامعتبر است");
+                txCardNum1.Focus();
                 txCardNum1.Text = "";
                 txCardNum2.Text = "";
                 txCardNum3.Text = "";
@@ -69,6 +73,7 @@ namespace Library_Project.Resourses.Windows
             if (!Library_Project.Resources.Classes.Validation.IsValidPassCard(PassWord))
             {
                 MessageBox.Show("رمز کارت نادرست می باشد");
+                txPass.Focus();
                 txPass.Password = "";
                 return;
             }
@@ -121,6 +126,7 @@ namespace Library_Project.Resourses.Windows
             else
             {
                 MessageBox.Show("اطلاعات نادرست می باشد");
+                txCardNum1.Focus();
                 txCardNum1.Text = "";
                 txCardNum2.Text = "";
                 txCardNum3.Text = "";
@@ -170,6 +176,7 @@ namespace Library_Project.Resourses.Windows
             {
                 MessageBox.Show(".امکان وارد کردن حرف در این بحش وجود ندارد");
                 txMoney.Clear();
+                txMoney.Focus();
                 return;
             }
             if (txMoney.Text != string.Empty)
@@ -177,6 +184,42 @@ namespace Library_Project.Resourses.Windows
                 txMoney.Text = string.Format("{0:N0}", double.Parse(txMoney.Text.Replace(",", "")));
                 txMoney.Select(txMoney.Text.Length, 0);
             }
+        }
+
+        private void txCardNum1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txCardNum1.Text.Length == 4)
+                txCardNum2.Focus();
+        }
+
+        private void txCardNum2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txCardNum2.Text.Length == 4)
+                txCardNum3.Focus();
+        }
+
+        private void txCardNum3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txCardNum3.Text.Length == 4)
+                txCardNum4.Focus();
+        }
+
+        private void txCardNum4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txCardNum4.Text.Length == 4)
+                txPass.Focus();
+        }
+
+        private void txMonth_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txMonth.Text.Length == 2)
+                txYear.Focus();
+        }
+
+        private void txYear_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txYear.Text.Length == 4)
+                txMoney.Focus();
         }
     }
 }

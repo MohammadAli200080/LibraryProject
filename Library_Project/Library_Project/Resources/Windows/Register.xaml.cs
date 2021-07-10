@@ -35,6 +35,7 @@ namespace Library_Project.Resourses.Windows
             this.type = type;
 
             InitializeComponent();
+            txtuserName.Focus();
         }
 
         private void btnMin_Click(object sender, RoutedEventArgs e)
@@ -75,42 +76,49 @@ namespace Library_Project.Resourses.Windows
                 if (!Library_Project.Resources.Classes.Validation.IsValidUsername(Info[0]))
                 {
                     MessageBox.Show("نام کاربری نادرست می باشد");
+                    txtuserName.Focus();
                     txtuserName.Text = "";
                     return;
                 }
                 if (Library_Project.Resources.Classes.Validation.UserNameExists(txtuserName.Text) || txtuserName.Text == "admin")
                 {
                     MessageBox.Show("نام کاربری تکراری است");
+                    txtuserName.Focus();
                     txtuserName.Text = "";
                     return;
                 }
                 if (!Library_Project.Resources.Classes.Validation.IsValidPassword(Info[1]))
                 {
                     MessageBox.Show("پسورد نادرست می باشد");
+                    txtPassword.Focus();
                     txtPassword.Password = "";
                     return;
                 }
                 if (!Library_Project.Resources.Classes.Validation.IsValidPhoneNumber(Info[2]))
                 {
                     MessageBox.Show("تلفن همراه نادرست می باشد");
+                    txtPhone.Focus();
                     txtPhone.Text = "";
                     return;
                 }
                 if (Library_Project.Resources.Classes.Validation.PhoneNumberExists(txtPhone.Text))
                 {
                     MessageBox.Show("تلفن همراه تکراری می باشد");
+                    txtPhone.Focus();
                     txtPhone.Text = "";
                     return;
                 }
                 if (!Library_Project.Resources.Classes.Validation.IsValidEmail(Info[3]))
                 {
                     MessageBox.Show("ایمیل نادرست می باشد");
+                    txtEmail.Focus();
                     txtEmail.Text = "";
                     return;
                 }
                 if (Library_Project.Resources.Classes.Validation.EmailExists(txtEmail.Text))
                 {
                     MessageBox.Show("ایمیل تکراری می باشد");
+                    txtEmail.Focus();
                     txtEmail.Text = "";
                     return;
                 }
@@ -164,6 +172,7 @@ namespace Library_Project.Resourses.Windows
                     txtPhone.Text = "";
                     txtuserName.Text = "";
                     txtuserName.Text = "";
+                    txtuserName.Focus();
                     return;
                 }
             }

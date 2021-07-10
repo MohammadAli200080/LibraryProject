@@ -27,6 +27,7 @@ namespace Library_Project
         public MainWindow()
         {
             InitializeComponent();
+            txtuserName.Focus();
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -37,16 +38,19 @@ namespace Library_Project
             if (string.IsNullOrWhiteSpace(txtuserName.Text) && string.IsNullOrWhiteSpace(txtPassword.Password))
             {
                 MessageBox.Show(".لطفا تمام فیلد ها را پر کنید");
+                txtuserName.Focus();
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtPassword.Password))
             {
                 MessageBox.Show(".لطفا فیلم رمز عبور را پر کنید");
+                txtuserName.Focus();
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtuserName.Text))
             {
                 MessageBox.Show(".لطفا فیلد نام را پر کنید");
+                txtuserName.Focus();
                 return;
             }
             if (Properties.Settings.Default.UserName == txtuserName.Text && Properties.Settings.Default.PassWord == txtPassword.Password)
@@ -74,6 +78,7 @@ namespace Library_Project
                 return;
             }
             MessageBox.Show("نام کاربری/ پسورد نادرست می باشد");
+            txtuserName.Focus();
             txtuserName.Clear();
             txtPassword.Clear();
         }

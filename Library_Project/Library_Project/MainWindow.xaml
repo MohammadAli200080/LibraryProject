@@ -30,7 +30,7 @@
                     <StackPanel Margin="20" VerticalAlignment="Top" >
                         <StackPanel Orientation="Horizontal" Margin="10,35,10,10">
                             <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
-                            <TextBox FontFamily="Calibri" x:Name="txtuserName" Margin="10,0" materialDesign:HintAssist.Hint="نام کاربری" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="15"/>
+                            <TextBox FontFamily="Calibri" x:Name="txtuserName" Focusable="True" Margin="10,0" materialDesign:HintAssist.Hint="نام کاربری" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="15"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10,50,10,10">
                             <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
