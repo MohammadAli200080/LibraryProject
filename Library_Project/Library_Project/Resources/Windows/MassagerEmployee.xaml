@@ -94,7 +94,7 @@
                             </Style>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTemplateColumn Header="متن پیام">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

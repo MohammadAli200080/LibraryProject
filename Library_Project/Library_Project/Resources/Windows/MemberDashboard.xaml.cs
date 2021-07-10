@@ -440,6 +440,7 @@ namespace Library_Project.Resources.Windows
                                               searchedBook => searchedBook.Name,
                                               (borrowedBook, searchedBook) => new
                                               {
+                                                  Row=borrowedBook.Row,
                                                   Name = borrowedBook.nameBook,
                                                   Author = searchedBook.Author,
                                                   Category = searchedBook.Category,

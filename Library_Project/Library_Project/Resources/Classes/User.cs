@@ -44,7 +44,7 @@ namespace Library_Project.Resources.Classes
 
             if (DatabaseControl.Exe("DELETE FROM T_Employees WHERE username ='" + UserName + "'"))
             {
-                if (DatabaseControl.Select("SELECT * FROM T_Messages WHERE WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'").Rows.Count == 0)
+                if (DatabaseControl.Select("SELECT * FROM T_Messages WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'").Rows.Count == 0)
                     return true;
 
                 if (DatabaseControl.Exe("DELETE FROM T_Messages WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'"))
@@ -124,6 +124,7 @@ namespace Library_Project.Resources.Classes
 
                 employeesTmp.Add(new Employees
                 {
+                    Row = i+1,
                     UserName = Username,
                     PassWord = passWord,
                     Email = email,
@@ -154,6 +155,7 @@ namespace Library_Project.Resources.Classes
 
                 EmployeesTmp.Add(new Employees
                 {
+                    Row=i+1,
                     UserName = Username,
                     PassWord = passWord,
                     Email = email,
@@ -171,6 +173,7 @@ namespace Library_Project.Resources.Classes
         public string PhoneNumber { get; set; }
         public byte[] Image { get; set; }
         public decimal Pocket { get; set; }
+        public int Row { get; set; }
 
         public static bool date(string d1, string d2)
         {
@@ -205,6 +208,7 @@ namespace Library_Project.Resources.Classes
 
                 MembersTmp.Add(new Member
                 {
+                    Row = i+1,
                     UserName = Username,
                     PassWord = passWord,
                     Email = email,
@@ -243,6 +247,7 @@ namespace Library_Project.Resources.Classes
 
                 MembersTmp.Add(new Member
                 {
+                    Row = i+1,
                     UserName = Username,
                     PassWord = passWord,
                     Email = email,
@@ -281,6 +286,7 @@ namespace Library_Project.Resources.Classes
 
                     MembersTmp.Add(new Member
                     {
+                        Row = i+1,
                         UserName = Username,
                         PassWord = passWord,
                         Email = email,
@@ -319,6 +325,7 @@ namespace Library_Project.Resources.Classes
 
                 MembersTmp.Add(new Member
                 {
+                    Row = i+1,
                     UserName = Username,
                     PassWord = passWord,
                     Email = email,
@@ -355,6 +362,7 @@ namespace Library_Project.Resources.Classes
 
                     MembersTmp.Add(new Member
                     {
+                        Row = i+1,
                         UserName = Username,
                         PassWord = passWord,
                         Email = email,
@@ -391,6 +399,7 @@ namespace Library_Project.Resources.Classes
 
                 MembersTmp.Add(new Member
                 {
+                    Row = i+1,
                     UserName = Username,
                     PassWord = passWord,
                     Email = email,
@@ -420,7 +429,7 @@ namespace Library_Project.Resources.Classes
                 return false;
             if (DatabaseControl.Exe("DELETE FROM T_Members WHERE username='" + UserName + "'"))
             {
-                if (DatabaseControl.Select("SELECT * FROM T_Messages WHERE WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'").Rows.Count == 0)
+                if (DatabaseControl.Select("SELECT * FROM T_Messages WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'").Rows.Count == 0)
                     return true;
 
                 if (DatabaseControl.Exe("DELETE FROM T_Messages WHERE senderUsername ='" + UserName + "' OR recieverUsername = '" + UserName + "'"))
@@ -446,6 +455,7 @@ namespace Library_Project.Resources.Classes
         public string SubsriptionDate { get; set; }
         public string SubsriptionDateRenewal { get; set; }
         public decimal Balance { get; set; }
+        public int Row { get; set; }
 
         public static bool date2(string d1, string d2)
         {

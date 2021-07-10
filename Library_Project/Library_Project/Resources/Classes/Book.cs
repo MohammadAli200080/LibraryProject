@@ -15,6 +15,7 @@ namespace Library_Project.Resources.Classes
         public string gotDate { get; set; }
         public string returnDate { get; set; }
         public string remainDate { get; set; }
+        public int Row { get; set; }
 
         public static List<BorrowedBook> infoBorrowed(string UserName)
         {
@@ -30,7 +31,7 @@ namespace Library_Project.Resources.Classes
                 TimeSpan result = DateTime.Parse(ReturnDate) - DateTime.Parse(DateTime.Now.ToShortDateString());
                 RemainDate = int.Parse(result.TotalDays.ToString()).ToString();
 
-                Borrowed.Add(new BorrowedBook { nameBook = NameBook, gotDate = GotDate, returnDate = ReturnDate, remainDate = RemainDate });
+                Borrowed.Add(new BorrowedBook { Row = i + 1, nameBook = NameBook, gotDate = GotDate, returnDate = ReturnDate, remainDate = RemainDate });
             }
             return Borrowed;
         }
@@ -38,7 +39,6 @@ namespace Library_Project.Resources.Classes
         {
             DataTable data = DatabaseControl.Select("SELECT * FROM T_Books INNER JOIN T_Borrowed ON T_Books.bookName = T_Borrowed.bookName");
             DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE username='" + UserName + "'");
-            DatabaseControl.Exe("DELETE FROM T_Members WHERE username='" + UserName + "'");
             for(int i = 0; i < data.Rows.Count; i++)
             {
                 DatabaseControl.Exe("UPDATE T_Books SET quantity='" + int.Parse(data.Rows[i]["quantity"].ToString()) + 1 + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");
@@ -52,10 +52,12 @@ namespace Library_Project.Resources.Classes
         private string _category;
         private int _publishNumber;
         private int _quantity;
+        private int _row;
 
         public string Name { get => _name; set => _name = value; }
         public string Author { get => _author; set => _author = value; }
         public string Category { get => _category; set => _category = value; }
+        public int Row { get => _row; set => _row = value; }
         public int PublishNumber
         {
             get => _publishNumber;
@@ -78,7 +80,16 @@ namespace Library_Project.Resources.Classes
                 _quantity = value;
             }
         }
-        public Book(string name, string author, string category, string publishNumber, string quantity)
+        public Book(int Row,string name, string author, string category, string publishNumber, string quantity)
+        {
+            this.Name = name;
+            this.Author = author;
+            this.Category = category;
+            this.Quantity = int.Parse(quantity);
+            this.PublishNumber = int.Parse(publishNumber);
+            this.Row = Row;
+        }
+        public Book( string name, string author, string category, string publishNumber, string quantity)
         {
             this.Name = name;
             this.Author = author;
@@ -86,7 +97,6 @@ namespace Library_Project.Resources.Classes
             this.Quantity = int.Parse(quantity);
             this.PublishNumber = int.Parse(publishNumber);
         }
-
         // <summary> a method for taking all the books from database </summary>
         // <returns> an array of Book </returns>
 
@@ -109,7 +119,7 @@ namespace Library_Project.Resources.Classes
                     publishNumber = table.Rows[i]["publishNumber"].ToString();
                     quantity = table.Rows[i]["quantity"].ToString();
 
-                    books.Add(new Book(name, author, category, publishNumber, quantity));
+                    books.Add(new Book(i + 1, name, author, category, publishNumber, quantity));
                 }
             }
             catch (Exception)
@@ -148,6 +158,10 @@ namespace Library_Project.Resources.Classes
                              book => book.Name,
                              (name, book) => book)
                              .ToList();
+                for(int i = 0; i < books.Count; i++)
+                {
+                    books[i].Row = i + 1;
+                }
             }
             catch (Exception)
             {
@@ -177,6 +191,10 @@ namespace Library_Project.Resources.Classes
 
             var availableBooks = allBooks.Where(x => x.Quantity != 0).ToList();
 
+            for(int i = 0; i < availableBooks.Count; i++)
+            {
+                availableBooks[i].Row = i + 1;
+            }
             return availableBooks.ToArray();
         }
 

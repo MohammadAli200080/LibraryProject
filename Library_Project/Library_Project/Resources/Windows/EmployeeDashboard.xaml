@@ -47,9 +47,9 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid x:Name="allBooksData" Grid.Row="1" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid x:Name="allBooksData" Grid.Row="1" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Visible" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -59,7 +59,7 @@
                     </DataGrid>
                     <DataGrid Grid.Row="1" x:Name="borrowedBooksData"  IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -69,7 +69,7 @@
                     </DataGrid>
                     <DataGrid Grid.Row="1" x:Name="availableBooksData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row}" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کتاب" Binding="{Binding Name }"/>
                             <DataGridTextColumn Header="گروه کتاب" Binding="{Binding Category}"/>
                             <DataGridTextColumn Header="شماره چاپ کتاب" Binding="{Binding PublishNumber}"/>
@@ -113,7 +113,7 @@
                     </StackPanel>
                     <DataGrid Grid.Row="1" x:Name="allMembersData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_WithImage}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
@@ -127,7 +127,6 @@
                             </DataGridTemplateColumn>
 
                         </DataGrid.Columns>
-
                     </DataGrid>
                     <DataGrid Grid.Row="1" x:Name="delayedMembersInReturningData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_WithImage}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
@@ -149,7 +148,7 @@
                     </DataGrid>
                     <DataGrid Grid.Row="1" x:Name="delayedMembersInPaymentData" IsReadOnly="True" RowStyle="{StaticResource DataGrid_Row_WithImage}" HorizontalContentAlignment="Center" ColumnHeaderStyle="{StaticResource DataGrid_ColumnHeader}" RowHeaderStyle="{StaticResource DataGrid_RowHeader}" CellStyle="{StaticResource DataGrid_Cell}" Visibility="Collapsed" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Margin="10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ردیف" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToIndexConv}}"/>
+                            <DataGridTextColumn Header="ردیف" Binding="{Binding Row }"/>
                             <DataGridTextColumn Header="نام کاربری" Binding="{Binding UserName }"/>
                             <DataGridTextColumn Header="ایمیل" Binding="{Binding Email }"/>
                             <DataGridTextColumn Header="تلفن همراه" Binding="{Binding PhoneNumber }"/>
