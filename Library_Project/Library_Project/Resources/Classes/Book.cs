@@ -41,7 +41,8 @@ namespace Library_Project.Resources.Classes
             DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE username='" + UserName + "'");
             for(int i = 0; i < data.Rows.Count; i++)
             {
-                DatabaseControl.Exe("UPDATE T_Books SET quantity='" + int.Parse(data.Rows[i]["quantity"].ToString()) + 1 + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");
+                if (data.Rows[i]["username"].ToString() == UserName)
+                    DatabaseControl.Exe("UPDATE T_Books SET quantity='" + (int.Parse(data.Rows[i]["quantity"].ToString())+ 1) + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");
             }            
         }
     }

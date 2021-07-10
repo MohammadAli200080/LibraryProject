@@ -286,7 +286,7 @@ namespace Library_Project.Resources.Classes
 
                     MembersTmp.Add(new Member
                     {
-                        Row = i+1,
+                        Row = MembersTmp.Count+ 1,
                         UserName = Username,
                         PassWord = passWord,
                         Email = email,
@@ -362,7 +362,7 @@ namespace Library_Project.Resources.Classes
 
                     MembersTmp.Add(new Member
                     {
-                        Row = i+1,
+                        Row = MembersTmp.Count+1,
                         UserName = Username,
                         PassWord = passWord,
                         Email = email,
@@ -494,20 +494,23 @@ namespace Library_Project.Resources.Classes
         public static bool AbleToReturnBook(string BookName, out decimal money)
         {
             money = 0;
-            DataTable data = new DataTable();
-            DataTable data2 = new DataTable();
-            data = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE bookName='" + BookName + "'");
-            if (date2(DateTime.Now.ToShortDateString().ToString(), data.Rows[0]["returnDate"].ToString()))
+            decimal cost = 10000;
+            var returnDate = DatabaseControl.Select("SELECT returnDate FROM T_Borrowed WHERE bookName='" + BookName + "'").Rows[0]["returnDate"].ToString();
+            if (date2(DateTime.Now.ToShortDateString().ToString(), returnDate))
             {
-                data = DatabaseControl.Select("SELECT username FROM T_Borrowed WHERE bookName = '" + BookName + "'");
-                data2 = DatabaseControl.Select("SELECT pocket FROM T_Members WHERE username='" + data.Rows[0]["username"].ToString() + "'");
+                var username = DatabaseControl.Select("SELECT username FROM T_Borrowed WHERE bookName = '" + BookName + "'").Rows[0]["username"].ToString();
+                var pocket = DatabaseControl.Select("SELECT pocket FROM T_Members WHERE username='" + username + "'").Rows[0]["pocket"].ToString();
 
                 DateTime a = DateTime.Parse(DateTime.Now.ToShortDateString().ToString());
-                DateTime b = DateTime.Parse(data.Rows[0]["returnDate"].ToString());
+                DateTime b = DateTime.Parse(returnDate);
 
-                TimeSpan result = b - a;
-                money = Convert.ToInt32(result) * 10000 - decimal.Parse(data2.Rows[0]["pocket"].ToString());
+                TimeSpan result = a - b;
+                money = Convert.ToInt32(result.Days) * cost - decimal.Parse(pocket);
                 if (money > 0) return false;
+                else
+                {
+                    if (Member.UpdateMoneyOfMember(username, Convert.ToInt32(result.Days) * (-1) * cost)) return true;
+                }
             }
 
             return true;

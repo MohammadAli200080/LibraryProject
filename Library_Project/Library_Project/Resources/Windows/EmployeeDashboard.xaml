@@ -285,7 +285,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -329,7 +329,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                             <DataGridTemplateColumn Header="عکس کاربر" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -393,7 +393,7 @@
                             </Button>
                             <!--Text will be added by backend based on the checkbox-->
                             <TextBox x:Name="SearchBox" FontFamily="Calibri" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft"/>
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF1808B9" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft"/>
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
@@ -412,7 +412,7 @@
                             <TextBlock FontFamily="Calibri" Foreground="#FF060F70" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="350" Margin="0,-50,0,0">
-                            <Label x:Name="money" Width="472" FontFamily="Calibri" Background="#FFE4D8D5" BorderBrush="Black" BorderThickness="2" Padding="20,25,0,0" Foreground="#FF060F70" HorizontalAlignment="Left" Margin="30,100,30,146" FontSize="30" FontWeight="Black"/>
+                            <Label x:Name="money" Width="350" FontFamily="Calibri" Background="AliceBlue" BorderBrush="#FF060F70" BorderThickness="5" Padding="20,25,0,0" Foreground="#FF060F70" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="100,100,30,146" FontSize="30" FontWeight="Black" />
                             <Image Source="Wallet.png" Height="350" Width="350" Margin="0,-50,0,0"/>
                         </StackPanel>
                     </StackPanel>
@@ -425,7 +425,7 @@
                         <ListViewItem x:Name="HomePn" Padding="6" MouseLeftButtonUp="HomePn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Home" Width="30" Height="30" Margin="247,0,0,0"/>
-                                <TextBlock Text="صفحه اصلی" FontFamily="Calibri" VerticalAlignment="Center" Margin="-120,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="صفحه اصلی" FontFamily="Calibri" VerticalAlignment="Center" Margin="-120,9,0,9" FontSize="15" FontWeight="Bold" Width="103"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="BooksPn" Padding="6" MouseLeftButtonUp="BooksPn_MouseLeftButtonUp">
@@ -437,13 +437,13 @@
                         <ListViewItem x:Name="MemberspPn" Padding="6" FontFamily="Calibri" MouseLeftButtonUp = "MembersPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="AccountBoxMultiple" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FF871313"/>
-                                <TextBlock Text="اعضای کتابخانه" VerticalAlignment="Center" Margin="-135,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="اعضای کتابخانه" VerticalAlignment="Center" Margin="-135,9,0,9" FontSize="15" FontWeight="Bold" Width="122"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="WalletPn" FontFamily="Calibri" Padding="6" MouseLeftButtonUp = "WalletPn_MouseLeftButtonUp">
                             <StackPanel Orientation="Horizontal" Height="36">
                                 <materialDesign:PackIcon Kind="Wallet" Width="30" Height="30" Margin="247,0,0,0" Foreground="#FFC18505"/>
-                                <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,0,0,0" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Text="کیف پول" VerticalAlignment="Center" Margin="-97,9,0,9" FontSize="15" FontWeight="Bold" Width="92"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="LoginPn" FontFamily="Calibri" Padding="6" MouseLeftButtonUp="LoginPn_MouseLeftButtonUp">

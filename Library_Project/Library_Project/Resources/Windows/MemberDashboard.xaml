@@ -34,7 +34,7 @@
                             <CheckBox x:Name="AuthorName" Margin="30,0,0,0" Style="{DynamicResource MaterialDesignAccentCheckBox}" Content="نام نویسنده" FontFamily="Calibri" FontSize="20" FontWeight="Bold" Foreground="#DD2D10E4"  Checked="Author_Checked" Unchecked="Author_Unchecked"/>
                             <CheckBox x:Name="BookName" Margin="30,0,0,0" Style="{DynamicResource MaterialDesignAccentCheckBox}" Content="نام کتاب"  
    FontFamily="Calibri" FontSize="20" FontWeight="Bold" Foreground="#DD2D10E4" Checked="BookName_Checked" Unchecked="BookName_Unchecked"/>
-                            <TextBlock FontFamily="Calibri" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="170,10,0,5" FontSize="25" FontWeight="Black" Text="بر چه اساسی می خواهید سرچ کنید:" Height="42" Width="442"/>
+                            <TextBlock FontFamily="Calibri" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="LeftToRight" Margin="170,10,0,5" FontSize="25" FontWeight="Black" Text="بر چه اساسی می خواهید سرچ کنید:" Height="42" Width="442"/>
                         </StackPanel>
                         <!--Text will be added by backend based on the checkbox-->
                         <!--<TextBlock x:Name="TextOfSearch" Foreground="#FF060F70" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,10,80,5" FontSize="25" FontWeight="Black" Height="42" Width="720"/>-->
@@ -44,7 +44,7 @@
                             </Button>
                             <!--Text will be added by backend based on the checkbox-->
                             <TextBox x:Name="SearchBox"  FontFamily="Calibri" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Text="{Binding SearchBoxText}"
-                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft"/>
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="LeftToRight"/>
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
@@ -112,7 +112,7 @@
                                 <materialDesign:PackIcon Kind="BookAdd" Width="50" Height="50" Foreground="#FF1808B9"/>
                             </Button>
                             <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="نام کتاب" FlowDirection="RightToLeft" x:Name="BorrowedName" />
+                                 Width="330" Height="60" Background="#FFE8ECF3" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" materialDesign:HintAssist.Hint="نام کتاب" FlowDirection="LeftToRight" x:Name="BorrowedName" />
                             <materialDesign:PackIcon Kind="RenameBox" Width="60" Height="60" Foreground="#FF1808B9"/>
                         </StackPanel>
                     </StackPanel>
@@ -209,7 +209,7 @@
                             <Button Margin="80,0" Width="100" Height="56" FontWeight="Black" FontSize="25" Background="{x:Null}" Foreground="#FF0029B4" x:Name="GiveBack" Click="GiveBack_Click">
                                 <materialDesign:PackIcon Kind="BookMinus" Width="50" Height="50" Foreground="#FF1808B9"/>
                             </Button>
-                            <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding NameCollection}" Width="330" Height="60" Cursor="Hand" Background="#FFE8ECF3" FontFamily="Calibri" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="RightToLeft" x:Name="GiveBackName">
+                            <ComboBox materialDesign:ComboBoxAssist.ShowSelectedItem="True" ItemsSource="{Binding NameCollection}" Width="330" Height="60" Cursor="Hand" Background="#FFE8ECF3" FontFamily="Calibri" Foreground="#FF424141" FontWeight="Bold" FontSize="22" VerticalContentAlignment="Top" FlowDirection="LeftToRight" x:Name="GiveBackName">
                                 <ComboBox.ItemContainerStyle>
                                     <Style TargetType="ComboBoxItem">
                                         <Setter Property="Cursor" Value="Pen"/>
@@ -237,7 +237,7 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TextBlock Foreground="#FF060F70" HorizontalAlignment="Right" FontFamily="Calibri" Margin="0,70,40,60" FontSize="30" FontWeight="Black" Text=":برای اضافه کردن پول به کیف پول خود بر روی دکمۀ زیر کلیک کنید" Height="52" Width="808"/>
+                        <TextBlock Foreground="#FF060F70" FontFamily="Calibri" Margin="104,70,104,60" FontSize="30" FontWeight="Black" Text=":برای اضافه کردن پول به کیف پول خود بر روی دکمۀ زیر کلیک کنید" Height="52"/>
                         <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
                             <Button Margin="70,0" Width="450" Height="56" FontWeight="Black" FontFamily="Calibri" FontSize="25" Background="AliceBlue" Content="صفحۀ پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
                             <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#FF060F70"/>

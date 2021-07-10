@@ -73,8 +73,8 @@ namespace Library_Project.Resources.Windows
 
         private CheckPassWindow _checkPassWindow;
         private LogOutWindow _logOutWindow;
-        private Payment _paymentWindow;
         private MassagerEmployee _message;
+
         private CheckPassWindow CheckPass
         {
             get => _checkPassWindow;
@@ -91,15 +91,6 @@ namespace Library_Project.Resources.Windows
             {
                 if (value == null) _logOutWindow = value;
                 else if (_logOutWindow == null) _logOutWindow = value;
-            }
-        }
-        private Payment PaymentWindow
-        {
-            get => _paymentWindow;
-            set
-            {
-                if (value == null) _paymentWindow = value;
-                else if (_paymentWindow == null) _paymentWindow = value;
             }
         }
         private MassagerEmployee Message
@@ -160,6 +151,11 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Visible;
             MembersPan.Visibility = Visibility.Collapsed;
             WalletPan.Visibility = Visibility.Collapsed;
+
+            allBooksData.Visibility = Visibility.Collapsed;
+            if (BorrowedBooks.Count > 0)
+                borrowedBooksData.Visibility = Visibility.Visible;
+            availableBooksData.Visibility = Visibility.Collapsed;
         }
 
         private void MembersPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -168,6 +164,11 @@ namespace Library_Project.Resources.Windows
             BookPan.Visibility = Visibility.Collapsed;
             MembersPan.Visibility = Visibility.Visible;
             WalletPan.Visibility = Visibility.Collapsed;
+
+            if (DelayedMembersInReturning.Count > 0)
+                delayedMembersInReturningData.Visibility = Visibility.Visible;
+            delayedMembersInPaymentData.Visibility = Visibility.Collapsed;
+            allMembersData.Visibility = Visibility.Collapsed;
         }
         private void WalletPn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -357,6 +358,5 @@ namespace Library_Project.Resources.Windows
                 allBooksData.ItemsSource = AllBooks;
             }
         }
-
     }
 }

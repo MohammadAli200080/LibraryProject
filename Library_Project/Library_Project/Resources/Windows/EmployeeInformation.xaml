@@ -38,22 +38,22 @@
                             </Button>
                         </StackPanel>
                     </Border>
-                    <StackPanel Orientation="Horizontal" Margin="10,20,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,20,10,10">
                         <materialDesign:PackIcon Kind="User" Width="30" Height="30" Foreground="White"/>
                         <TextBlock FontFamily="Calibri" x:Name="txtuserName" Margin="20,0,0,0" FlowDirection="LeftToRight" Foreground="Black"
                                  Width="250" Background="WhiteSmoke" FontSize="25"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10">
                         <materialDesign:PackIcon Kind="Lock" Width="30" Height="30" Foreground="White"/>
-                        <PasswordBox FontFamily="Calibri" x:Name="txtPassword" Margin="20,0" materialDesign:HintAssist.Hint="رمز عبور" Foreground="White" FlowDirection="LeftToRight" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="20"/>
+                        <PasswordBox FontFamily="Calibri" x:Name="txtPassword" Margin="20,0" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="رمز عبور" Foreground="White" FlowDirection="LeftToRight" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10">
                         <materialDesign:PackIcon Kind="Phone" Width="30" Height="30" Foreground="White"/>
-                        <TextBox x:Name="txtPhone" FontFamily="Calibri" Margin="20,0" TextAlignment="Center" materialDesign:HintAssist.Hint="تلفن" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" FlowDirection="LeftToRight"  SelectionBrush="#FFD94448" FontSize="20"/>
+                        <TextBox x:Name="txtPhone" FontFamily="Calibri" Margin="20,0" TextAlignment="Left" materialDesign:HintAssist.Hint="تلفن" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" FlowDirection="LeftToRight"  SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10" FlowDirection="RightToLeft">
+                    <StackPanel Orientation="Horizontal" Margin="10,50,10,10">
                         <materialDesign:PackIcon Kind="Email" Width="30" Height="30" Foreground="White"/>
-                        <TextBox x:Name="txtEmail" Margin="20,0" FontFamily="Calibri" TextAlignment="Center" materialDesign:HintAssist.Hint="example@gmail.com" FlowDirection="LeftToRight" Foreground="white" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="20"/>
+                        <TextBox x:Name="txtEmail" Margin="20,0" FontFamily="Calibri" TextAlignment="Left" materialDesign:HintAssist.Hint="example@gmail.com" FlowDirection="LeftToRight" Foreground="white" Width="250" BorderBrush="white" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" FontSize="18"/>
                     </StackPanel>
                 </StackPanel>
 

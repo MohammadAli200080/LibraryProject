@@ -96,7 +96,7 @@ namespace Library_Project.Resources.Windows
                     EmployeeInformation changeInfo = new EmployeeInformation(UserName, "Employee");
                     changeInfo.Show();
                 }
-                if (Window == "Remove")
+                else if (Window == "Remove")
                 {
                     BorrowedBook.RemoveBook(SearchedMemberWindow.UserName);
                     if (Employees.RemoveMember(SearchedMemberWindow.UserName))
@@ -105,7 +105,7 @@ namespace Library_Project.Resources.Windows
                     employee.Show();
                     this.Close();
                 }
-                if (Window == "Member")
+                else if (Window == "Member")
                 {
                     EmployeeInformation changeInfo = new EmployeeInformation(UserName, "Member");
                     changeInfo.Show();
@@ -137,12 +137,12 @@ namespace Library_Project.Resources.Windows
                 SearchedMemberWindow searched = new SearchedMemberWindow(SearchedMemberWindow.UserName);
                 searched.Show();
             }
-            if(Window== "Member")
+            else if(Window== "Member")
             {
                 MemberDashboard member = new MemberDashboard(UserName);
                 member.Show();
             }
-            if (Window == "Employee")
+            else if (Window == "Employee")
             {
                 EmployeeDashboard employee = new EmployeeDashboard(UserName);
                 employee.Show();

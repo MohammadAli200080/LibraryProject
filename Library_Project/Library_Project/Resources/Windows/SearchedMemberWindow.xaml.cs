@@ -69,11 +69,11 @@ namespace Library_Project.Resources.Windows
                     {
                         if (int.Parse(BorrowedBook.infoBorrowed(username)[i].remainDate) > 0)
                         {
-                            Borrowed[i].remainDate += "روز باقی مانده است";
+                            Borrowed[i].remainDate += "روز باقی مانده است ";
                         }
                         if (int.Parse(BorrowedBook.infoBorrowed(username)[i].remainDate) < 0)
                         {
-                            Borrowed[i].remainDate += "روز گذشته است";
+                            Borrowed[i].remainDate = Math.Abs(int.Parse(Borrowed[i].remainDate)).ToString() + "روز گذشته است ";
                         }
                     }
                     BookBorrowed.ItemsSource = Borrowed;
@@ -108,9 +108,7 @@ namespace Library_Project.Resources.Windows
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            DataTable data = DatabaseControl.Select("SELECT * FROM T_Employees WHERE username='" + EmployeeDashboard.Username.Trim() + "'");
             CheckPassWindow Check = new CheckPassWindow(EmployeeDashboard.Username, "Remove");
-
             Check.Show();
             this.Close();
         }

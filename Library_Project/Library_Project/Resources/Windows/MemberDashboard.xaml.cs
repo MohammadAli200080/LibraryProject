@@ -106,7 +106,6 @@ namespace Library_Project.Resources.Windows
 
         public MemberDashboard(string username)
         {
-            Money = Member.GetMemberMoney(username);
             Username = username;
 
             InitializeComponent();
@@ -117,10 +116,9 @@ namespace Library_Project.Resources.Windows
             UpdateAvailableBoosData();
             UpdateMyBooksData();
             NameCollection = Book.GetAllNames(Username).ToList();
+            UpdateMoney();
 
-            money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -332,6 +330,7 @@ namespace Library_Project.Resources.Windows
                 {
                     UpdateAvailableBoosData();
                     UpdateMyBooksData();
+                    UpdateMoney();
                     NameCollection = Book.GetAllNames(Username).ToList();
                     MessageBox.Show(".کتاب با موفقیت پس داده شد");
                     return;
@@ -456,6 +455,12 @@ namespace Library_Project.Resources.Windows
                 myBooksData.Visibility = Visibility.Visible;
             }
             else myBooksData.Visibility = Visibility.Collapsed;
+        }
+
+        private void UpdateMoney()
+        {
+            Money = Member.GetMemberMoney(Username);
+            money.Text = Money.ToString("C0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
 
         private void btnSeting_Click(object sender, RoutedEventArgs e)
