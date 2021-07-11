@@ -14,9 +14,8 @@
             </ResourceDictionary.MergedDictionaries>
             
             <super:RowToIndexConv x:Key="RowToIndexConv"/>
-            
+
             <super:CellColorConvertor x:Key="CellColorConvertor"/>
-            
             <Style x:Key="DataGrid_ColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Width" Value="Auto"/>
