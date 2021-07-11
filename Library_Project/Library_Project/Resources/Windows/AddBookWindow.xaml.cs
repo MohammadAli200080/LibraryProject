@@ -17,6 +17,7 @@ namespace Library_Project.Resources.Windows
 {
     /// <summary>
     /// Interaction logic for AddBookWindow.xaml
+    /// this window for adding book from Manager Dashbord
     /// </summary>
     public partial class AddBookWindow : Window
     {
