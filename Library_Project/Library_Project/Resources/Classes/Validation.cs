@@ -145,7 +145,7 @@ namespace Library_Project.Resources.Classes
 
         public static bool IsValidEmail(string email)
         {
-            string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            string pattern = @"(^[a-zA-Z0-9_-]{1,32})@([a-zA-Z0-9]{1,8}\.)([a-zA-Z]{1,3})$";
 
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
 
@@ -155,7 +155,7 @@ namespace Library_Project.Resources.Classes
 
         public static bool IsValidPassword(string password)
         {
-            string pattern = @"[a-z](?=.*[A-Z]){8,32}";
+            string pattern = @"(?=.*[A-Z])[a-zA-Z0-9_]{8,32}";
 
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
 
@@ -173,7 +173,7 @@ namespace Library_Project.Resources.Classes
         }
         public static bool IsValidUsername(string username)
         {
-            string pattern = @"[a-z]{3,32}";
+            string pattern = @"^(?=.*[a-zA-Z])[a-zA-Z ]{3,32}$";
 
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
 
@@ -193,7 +193,7 @@ namespace Library_Project.Resources.Classes
 
         public static bool IsValidCvv2(string cvv2)
         {
-            string stringOfRegex = "^[0-9]{3,4}$";
+            string stringOfRegex = @"^[0-9]{3,4}$";
 
             Regex re = new Regex(stringOfRegex, RegexOptions.IgnoreCase);
 
