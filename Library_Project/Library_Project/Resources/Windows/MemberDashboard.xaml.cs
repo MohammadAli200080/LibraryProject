@@ -340,7 +340,7 @@ namespace Library_Project.Resources.Windows
             }
 
             decimal money;
-            if (Member.AbleToReturnBook(book.nameBook, out money) && !Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
+            if (Member.AbleToReturnBook(book.nameBook, out money))
             {
                 if (Member.ReturnBook(book.nameBook, Username))
                 {
@@ -348,19 +348,10 @@ namespace Library_Project.Resources.Windows
                     UpdateMyBooksData();
                     UpdateMoney();
                     NameCollection = Book.GetAllNames(Username).ToList();
-                    MessageBox.Show(".کتاب با موفقیت پس داده شد");
-                    return;
-                }
-            }
-            else if (Member.AbleToReturnBook(book.nameBook, out money) && Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
-            {
-                if (Member.ReturnBook(book.nameBook, Username))
-                {
-                    UpdateAvailableBoosData();
-                    UpdateMyBooksData();
-                    UpdateMoney();
-                    NameCollection = Book.GetAllNames(Username).ToList();
-                    MessageBox.Show("جریمه از حساب شما کم شد.\nکتاب با موفقیت پس داده شد");
+                    if (!Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
+                        MessageBox.Show(".کتاب با موفقیت پس داده شد");
+                    if (Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
+                        MessageBox.Show("جریمه از حساب شما کم شد.\nکتاب با موفقیت پس داده شد");
                     return;
                 }
             }
