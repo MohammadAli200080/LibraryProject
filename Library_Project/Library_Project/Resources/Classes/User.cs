@@ -234,7 +234,7 @@ namespace Library_Project.Resources.Classes
         {
             List<Member> MembersTmp = new List<Member>();
             DataTable data = new DataTable();
-            data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + MemberName + "'");
+            data = DatabaseControl.Select("SELECT * FROM T_Members WHERE username='" + MemberName + "' COLLATE SQL_Latin1_General_CP1_CS_AS");
 
             string passWord, Username, email, phoneNumber, pocket;
             string register, subsriptionDate, subsriptionDateRenewal;
