@@ -12,7 +12,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Purple.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
             <super:RowToIndexConv x:Key="RowToIndexConv"/>
+            
+            <super:CellColorConvertor x:Key="CellColorConvertor"/>
+            
             <Style x:Key="DataGrid_ColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Width" Value="Auto"/>

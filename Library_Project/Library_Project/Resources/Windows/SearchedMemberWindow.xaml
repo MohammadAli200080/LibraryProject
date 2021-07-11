@@ -20,27 +20,27 @@
                 <Label Content="اطلاعات اعضا" FontFamily="Calibri" FontSize="37" Margin="356,20,362,0" FlowDirection="RightToLeft" FontWeight="Bold"/>
                 <Image x:Name="image" Margin="706,-50,56,50" Width="150" Height="150"/>
                 <DockPanel Margin="633,-40,0,0">
-                    <TextBlock x:Name="txtUsername" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtUsername" FontFamily="Calibri" VerticalAlignment="Center" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft" FontSize="15" />
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="RenameBox" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="350,-95,281,0">
-                    <TextBlock x:Name="txtEmail" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtEmail" FontFamily="Calibri" VerticalAlignment="Center" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft" FontSize="15" />
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="Email" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="80,-98,561,0">
-                    <TextBlock x:Name="txtPhoneNumber" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtPhoneNumber" FontFamily="Calibri" VerticalAlignment="Center" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft" FontSize="15" />
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="MobilePhone" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="633,-35,11,0">
-                    <TextBlock x:Name="txtRegisterDay" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtRegisterDay" FontFamily="Calibri" VerticalAlignment="Center" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft" FontSize="15" />
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="DateRange" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="353,-90,11,0">
-                    <TextBlock x:Name="txtsubscription" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtsubscription" FontFamily="Calibri" VerticalAlignment="Center" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft" FontSize="15" />
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="Subscriptions" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DockPanel Margin="83,-90,11,0">
-                    <TextBlock x:Name="txtsubscriptionRemain" FontFamily="Calibri" TextAlignment="Center" Width="180" Height="30" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
+                    <TextBlock x:Name="txtsubscriptionRemain" FontFamily="Calibri" VerticalAlignment="Center" TextAlignment="Center" Width="180" Height="30" FontSize="15" Margin="15,30,10,10" Background="#FFE8E9F3" Foreground="#FF424141" FontWeight="Bold" FlowDirection="RightToLeft"/>
                     <materialDesign:PackIcon Margin="5,35,20,15" Kind="SortDateAscending" Width="40" Height="40" Foreground="#FF0032B8"/>
                 </DockPanel>
                 <DataGrid Grid.Row="1" x:Name="BookBorrowed" IsReadOnly="True" RowStyle="{StaticResource MaterialDesignDataGridRow}" ColumnHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" RowHeaderStyle="{StaticResource MaterialDesignFlatLightBgButton}" CellStyle="{StaticResource MaterialDesignDataGridCell}" Visibility="Collapsed" GridLinesVisibility="None" HorizontalGridLinesBrush="{x:Null}" AlternationCount="2" FlowDirection="RightToLeft"  CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" AutoGenerateColumns="False" Margin="10">
@@ -80,14 +80,23 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="روزهای باقیمانده" Binding="{Binding remainDate }">
-                            <DataGridTextColumn.ElementStyle >
-                                <Style TargetType="TextBlock">
+                        <DataGridTextColumn Header="روزهای باقیمانده" Binding="{Binding remainDate}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Background" Value="{Binding remainDate, Converter = {StaticResource CellColorConvertor}}"/>
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                    <Setter Property="Width" Value="150"/>
+                                    <Setter Property="Height" Value="30"/>
+                                    <Setter Property="FlowDirection" Value="RightToLeft"/>
+                                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                    <Setter Property="FontWeight" Value="Black"/>
+                                    <Setter Property="FontSize" Value="13"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        
+
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label x:Name="Emty" Content="لیست امانت خالی است" FontFamily="Calibri" FontSize="20" FontWeight="Bold" Margin="350,80,0,0" Visibility="Collapsed"/>

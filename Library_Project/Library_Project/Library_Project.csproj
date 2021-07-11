@@ -70,6 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Resources\Classes\Book.cs" />
+    <Compile Include="Resources\Classes\CellColorConvertor.cs" />
     <Compile Include="Resources\Classes\DatabaseControl.cs" />
     <Compile Include="Resources\Classes\Message.cs" />
     <Compile Include="Resources\Classes\RowToIndexConv.cs" />

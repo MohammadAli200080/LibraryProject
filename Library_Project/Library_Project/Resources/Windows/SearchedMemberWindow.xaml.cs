@@ -65,15 +65,15 @@ namespace Library_Project.Resources.Windows
                 {
                     Borrowed = BorrowedBook.infoBorrowed(username);
                     BookBorrowed.Visibility = Visibility.Visible;
-                    for(int i=0;i< BorrowedBook.infoBorrowed(username).Count; i++)
+                    for (int i = 0; i < BorrowedBook.infoBorrowed(username).Count; i++)
                     {
                         if (int.Parse(BorrowedBook.infoBorrowed(username)[i].remainDate) > 0)
                         {
-                            Borrowed[i].remainDate += "روز باقی مانده است ";
+                            Borrowed[i].remainDate = Borrowed[i].remainDate + " روز باقی مانده است ";
                         }
                         if (int.Parse(BorrowedBook.infoBorrowed(username)[i].remainDate) < 0)
                         {
-                            Borrowed[i].remainDate = Math.Abs(int.Parse(Borrowed[i].remainDate)).ToString() + "روز گذشته است ";
+                            Borrowed[i].remainDate = Math.Abs(int.Parse(Borrowed[i].remainDate)).ToString() +  " روز گذشته است ";
                         }
                     }
                     BookBorrowed.ItemsSource = Borrowed;
