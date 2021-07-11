@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace Library_Project.Resources.Classes
 {
+    /// <summary>
+    /// an enum for using in different windows
+    /// Employee -> For registring employee
+    /// Member -> For Member Registration
+    /// MemberFromMemberWindow -> From Member dashboard for paying money
+    /// Manager -> From manager window
+    /// </summary>
     public enum typeOfUser
     {
         Employee, Member, MemberFromMemberWindow, Manager

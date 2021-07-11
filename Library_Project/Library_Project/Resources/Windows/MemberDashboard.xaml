@@ -225,22 +225,29 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
-                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical">
                         <Label Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Center" Margin="85,20,85,20" FontSize="40" FontWeight="Black">
                             بخش کیف پول
                         </Label>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Right" Margin="450,100,0,50" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
-                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-700,100,500,50" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
+                            <TextBlock Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Right" Margin="450,50,0,100" FontSize="30" FontWeight="Black" Text=":مقدار پول موجود در حساب شما"/>
+                            <TextBlock x:Name="money" Foreground="#FF060F70" FontFamily="Calibri" HorizontalAlignment="Left" Margin="-700,50,500,100" FontSize="30" FontWeight="Black" TextAlignment="Left"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TextBlock Foreground="#FF060F70" FontFamily="Calibri" Margin="104,70,104,60" FontSize="30" FontWeight="Black" Text=":برای اضافه کردن پول به کیف پول خود بر روی دکمۀ زیر کلیک کنید" Height="52"/>
-                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
-                            <Button Margin="70,0" Width="450" Height="56" FontWeight="Black" FontFamily="Calibri" FontSize="25" Background="AliceBlue" Content="صفحۀ پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
+                        <TextBlock Foreground="#FF060F70" FlowDirection="RightToLeft" FontFamily="Calibri" Margin="110,70,110,20" FontSize="30" FontWeight="Black"  Height="92">
+                            مقدار مبلغی که می خواهید به بانک پول اضافه شود را وارد کنید، و<LineBreak/>
+                            سپس بر روی دکمه پرداخت کلیک کنید.
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="txtMoney" TextChanged="txtMoney_TextChanged" FontFamily="Calibri" Margin="240,10,10,40" TextAlignment="Left" materialDesign:HintAssist.Hint="مبلغ" Foreground="#FF060F70" BorderBrush="#FF060F70" FlowDirection="LeftToRight" FontWeight="Black" FontSize="25" Width="400"/>
                             <materialDesign:PackIcon Kind="Money" Width="60" Height="60" Foreground="#FF060F70"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="132,0,116,30" Orientation="Horizontal">
+                            <Button Margin="110,0" Width="400" Height="56" FontFamily="Calibri" FontWeight="Black" FontSize="25" Background="AliceBlue" Content="صفحۀ پرداخت" Foreground="#FF060F70" x:Name="pay" Click="Pay_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

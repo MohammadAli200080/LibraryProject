@@ -22,17 +22,41 @@ namespace Library_Project.Resourses.Windows
     /// </summary>
     public partial class Payment : Window
     {
-        private typeOfUser Type { get; set; } 
+        private typeOfUser Type { get; set; }
         private string username { get; set; }
         private ManagerDashboard md;
-        public Payment(typeOfUser type, string username = "", ManagerDashboard managerDashboard = null)
+        private decimal Money { get; set; }
+        public Payment(typeOfUser type, string username = "", ManagerDashboard managerDashboard = null, string money = null)
         {
-            md = managerDashboard;
+            this.md = managerDashboard;
             this.username = username;
             this.Type = type;
+
+            if (money != null)
+                this.Money = decimal.Parse(money);
+
             InitializeComponent();
+
+            InitializeMoneyText();
             txCardNum1.Focus();
         }
+
+        private void InitializeMoneyText()
+        {
+            if (Type == typeOfUser.Manager || Type == typeOfUser.MemberFromMemberWindow)
+            {
+                txMoney.Text = Convert.ToDecimal(Money).ToString("#,##0.00");
+                txMoney.Select(txMoney.Text.Length, 0);
+                txMoney.IsReadOnly = true;
+                txMoney.TextAlignment = TextAlignment.Center;
+                var bc = new BrushConverter();
+                txMoney.Background = (Brush)bc.ConvertFrom("#FF43AD03");
+                txMoney.Foreground = Brushes.WhiteSmoke;
+                txMoney.Margin = new Thickness(0);
+                txMoney.FontSize = 22;
+            }
+        }
+
         private void btnMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;

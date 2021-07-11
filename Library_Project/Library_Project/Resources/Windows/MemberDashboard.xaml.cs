@@ -228,11 +228,23 @@ namespace Library_Project.Resources.Windows
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMoney.Text))
+            {
+                MessageBox.Show(".لطفا ابتدا فیلد مبلغ را پر کنید");
+                return;
+            }
+            if (decimal.Parse(txtMoney.Text) < 100000)
+            {
+                MessageBox.Show(".حداقل باید 100,000ریال پرداخت کنید");
+                txtMoney.Clear();
+                return;
+            }
             if (PaymentWindow == null)
             {
-                PaymentWindow = new Payment(typeOfUser.MemberFromMemberWindow, Username);
+                PaymentWindow = new Payment(typeOfUser.MemberFromMemberWindow, Username, null, txtMoney.Text);
                 PaymentWindow.Closed += (s, _) => PaymentWindow = null;
                 PaymentWindow.Show();
+                this.Close();
             }
         }
 
@@ -295,7 +307,7 @@ namespace Library_Project.Resources.Windows
                 MessageBox.Show(".اشتراک شما در کمتر از یک هفتۀ آتی به اتمام می رسد لطفا ابتدا اقدام به تمدید آن کنید و سپس این عملیات را تکرار کنید");
                 return false;
             }
-            if(int.Parse(result.TotalDays.ToString()) < 0)
+            if (int.Parse(result.TotalDays.ToString()) < 0)
             {
                 MessageBox.Show("اشتراک شما گذشته است ابتدا آن را تمدید کنید");
                 return false;
@@ -340,7 +352,7 @@ namespace Library_Project.Resources.Windows
                     return;
                 }
             }
-            else if(Member.AbleToReturnBook(book.nameBook, out money) && Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
+            else if (Member.AbleToReturnBook(book.nameBook, out money) && Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
             {
                 if (Member.ReturnBook(book.nameBook, Username))
                 {
@@ -455,7 +467,7 @@ namespace Library_Project.Resources.Windows
                                               searchedBook => searchedBook.Name,
                                               (borrowedBook, searchedBook) => new
                                               {
-                                                  Row=borrowedBook.Row,
+                                                  Row = borrowedBook.Row,
                                                   Name = borrowedBook.nameBook,
                                                   Author = searchedBook.Author,
                                                   Category = searchedBook.Category,
@@ -501,5 +513,21 @@ namespace Library_Project.Resources.Windows
             }
         }
 
+        private void txtMoney_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var text = txtMoney.Text;
+            if (text.Any(x => char.IsLetter(x)))
+            {
+                MessageBox.Show(".امکان وارد کردن حرف در این بحش وجود ندارد");
+                txtMoney.Clear();
+                txtMoney.Focus();
+                return;
+            }
+            if (txtMoney.Text != string.Empty)
+            {
+                txtMoney.Text = string.Format("{0:N0}", double.Parse(txtMoney.Text.Replace(",", "")));
+                txtMoney.Select(txtMoney.Text.Length, 0);
+            }
+        }
     }
 }

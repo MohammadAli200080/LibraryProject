@@ -190,11 +190,23 @@ namespace Library_Project.Resources.Windows
 
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMoney.Text))
+            {
+                MessageBox.Show(".لطفا ابتدا فیلد مبلغ را پر کنید");
+                return;
+            }
+            if (decimal.Parse(txtMoney.Text) < 100000)
+            {
+                MessageBox.Show(".حداقل باید 100,000ریال پرداخت کنید");
+                txtMoney.Clear();
+                return;
+            }
             if (PaymentWindow == null)
             {
-                PaymentWindow = new Payment(typeOfUser.Manager, "admin", this);
+                PaymentWindow = new Payment(typeOfUser.Manager, "admin", this, txtMoney.Text);
                 PaymentWindow.Closed += (s, _) => PaymentWindow = null;
                 PaymentWindow.Show();
+                txtMoney.Clear();
             }
         }
         /// <summary>
@@ -258,6 +270,23 @@ namespace Library_Project.Resources.Windows
         private void allEmployeesData_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
+
+        private void txtMoney_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var text = txtMoney.Text;
+            if (text.Any(x => char.IsLetter(x)))
+            {
+                MessageBox.Show(".امکان وارد کردن حرف در این بحش وجود ندارد");
+                txtMoney.Clear();
+                txtMoney.Focus();
+                return;
+            }
+            if (txtMoney.Text != string.Empty)
+            {
+                txtMoney.Text = string.Format("{0:N0}", double.Parse(txtMoney.Text.Replace(",", "")));
+                txtMoney.Select(txtMoney.Text.Length, 0);
+            }
         }
     }
 }
