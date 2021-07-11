@@ -37,7 +37,7 @@ namespace Library_Project.Resources.Classes
         }
         public static void RemoveBook(string UserName)
         {
-            DataTable data = DatabaseControl.Select("SELECT * FROM T_Books INNER JOIN T_Borrowed ON T_Books.bookName = T_Borrowed.bookName");
+            DataTable data = DatabaseControl.Select("SELECT * FROM T_Borrowed INNER JOIN T_Books ON T_Borrowed.bookName = T_Books.bookName");
             DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE username='" + UserName + "'");
             for(int i = 0; i < data.Rows.Count; i++)
             {

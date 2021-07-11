@@ -290,12 +290,16 @@ namespace Library_Project.Resources.Windows
             DateTime b = DateTime.Parse(member.SubsriptionDate);
             TimeSpan result = b - a;
 
-            if (int.Parse(result.TotalDays.ToString()) < 7)
+            if (int.Parse(result.TotalDays.ToString()) < 7 && int.Parse(result.TotalDays.ToString()) > 0)
             {
                 MessageBox.Show(".اشتراک شما در کمتر از یک هفتۀ آتی به اتمام می رسد لطفا ابتدا اقدام به تمدید آن کنید و سپس این عملیات را تکرار کنید");
                 return false;
             }
-
+            if(int.Parse(result.TotalDays.ToString()) < 0)
+            {
+                MessageBox.Show("اشتراک شما گذشته است ابتدا آن را تمدید کنید");
+                return false;
+            }
             for (int i = 0; i < BorrowedBook.infoBorrowed(Username).Count; i++)
             {
                 if (int.Parse(BorrowedBook.infoBorrowed(Username)[i].remainDate) < 0)
@@ -324,7 +328,7 @@ namespace Library_Project.Resources.Windows
             }
 
             decimal money;
-            if (Member.AbleToReturnBook(book.nameBook, out money))
+            if (Member.AbleToReturnBook(book.nameBook, out money) && !Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
             {
                 if (Member.ReturnBook(book.nameBook, Username))
                 {
@@ -333,6 +337,18 @@ namespace Library_Project.Resources.Windows
                     UpdateMoney();
                     NameCollection = Book.GetAllNames(Username).ToList();
                     MessageBox.Show(".کتاب با موفقیت پس داده شد");
+                    return;
+                }
+            }
+            else if(Member.AbleToReturnBook(book.nameBook, out money) && Member.date2(DateTime.Now.ToShortDateString().ToString(), book.returnDate))
+            {
+                if (Member.ReturnBook(book.nameBook, Username))
+                {
+                    UpdateAvailableBoosData();
+                    UpdateMyBooksData();
+                    UpdateMoney();
+                    NameCollection = Book.GetAllNames(Username).ToList();
+                    MessageBox.Show("جریمه از حساب شما کم شد.\nکتاب با موفقیت پس داده شد");
                     return;
                 }
             }
