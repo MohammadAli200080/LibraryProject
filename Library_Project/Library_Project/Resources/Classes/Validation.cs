@@ -156,7 +156,7 @@ namespace Library_Project.Resources.Classes
         public static bool IsValidPassword(string password)
         {
             string pattern = @"^(?=.*[A-Z])[a-zA-Z0-9_]{8,32}";
-
+            
             Regex re = new Regex(pattern);
 
             if (re.IsMatch(password)) return true;
