@@ -147,7 +147,7 @@ namespace Library_Project.Resources.Classes
         {
             string pattern = @"(^[a-zA-Z0-9_-]{1,32})@([a-zA-Z0-9]{1,8}\.)([a-zA-Z]{1,3})$";
 
-            Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
+            Regex re = new Regex(pattern);
 
             if (re.IsMatch(email)) return true;
             else return false;
@@ -155,9 +155,9 @@ namespace Library_Project.Resources.Classes
 
         public static bool IsValidPassword(string password)
         {
-            string pattern = @"(?=.*[A-Z])[a-zA-Z0-9_]{8,32}";
+            string pattern = @"^(?=.*[A-Z])[a-zA-Z0-9_]{8,32}";
 
-            Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
+            Regex re = new Regex(pattern);
 
             if (re.IsMatch(password)) return true;
             else return false;
@@ -166,7 +166,7 @@ namespace Library_Project.Resources.Classes
         {
             string pattern = @"^[0-9]*$";
 
-            Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
+            Regex re = new Regex(pattern);
 
             if (re.IsMatch(PassCard)) return true;
             else return false;
@@ -175,7 +175,7 @@ namespace Library_Project.Resources.Classes
         {
             string pattern = @"^(?=.*[a-zA-Z])[a-zA-Z ]{3,32}$";
 
-            Regex re = new Regex(pattern, RegexOptions.IgnoreCase);
+            Regex re = new Regex(pattern);
 
             if (re.IsMatch(username)) return true;
             else return false;
@@ -185,7 +185,7 @@ namespace Library_Project.Resources.Classes
         {
             string stringOfRegex = @"^09+[0-9]{9}$";
 
-            Regex re = new Regex(stringOfRegex, RegexOptions.IgnoreCase);
+            Regex re = new Regex(stringOfRegex);
 
             if (re.IsMatch(PhoneNumber.ToString())) return true;
             else return false;
@@ -195,7 +195,7 @@ namespace Library_Project.Resources.Classes
         {
             string stringOfRegex = @"^[0-9]{3,4}$";
 
-            Regex re = new Regex(stringOfRegex, RegexOptions.IgnoreCase);
+            Regex re = new Regex(stringOfRegex);
 
             if (re.IsMatch(cvv2.ToString())) return true;
             else return false;
