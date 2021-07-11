@@ -47,11 +47,19 @@ namespace Library_Project.Resources.Windows
                 txtName.Focus();
                 return;
             }
+            if (int.Parse(txtPublishNumber.Text) < 0)
+            {
+                MessageBox.Show("شماره چاپ نمی تواند منفی باشد");
+                txtPublishNumber.Clear();
+                txtPublishNumber.Focus();
+                return;
+            }
             try
             {
-                if (Convert.ToInt32(txtBookNumber.Text) == 0)
+                if (Convert.ToInt32(txtBookNumber.Text) <= 0)
                 {
                     MessageBox.Show(".تعداد باید عددی مثبت باشد");
+                    txtBookNumber.Clear();
                     txtBookNumber.Focus();
                     return;
                 }

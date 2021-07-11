@@ -244,7 +244,7 @@ namespace Library_Project.Resources.Windows
                 PaymentWindow = new Payment(typeOfUser.MemberFromMemberWindow, Username, null, txtMoney.Text);
                 PaymentWindow.Closed += (s, _) => PaymentWindow = null;
                 PaymentWindow.Show();
-                this.Close();
+                txtMoney.Clear();
             }
         }
 

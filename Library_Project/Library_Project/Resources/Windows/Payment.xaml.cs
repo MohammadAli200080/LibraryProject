@@ -203,10 +203,20 @@ namespace Library_Project.Resourses.Windows
                 txMoney.Focus();
                 return;
             }
-            if (txMoney.Text != string.Empty)
+            try
             {
-                txMoney.Text = string.Format("{0:N0}", double.Parse(txMoney.Text.Replace(",", "")));
-                txMoney.Select(txMoney.Text.Length, 0);
+                if (txMoney.Text != string.Empty)
+                {
+                    txMoney.Text = string.Format("{0:N0}", double.Parse(txMoney.Text.Replace(",", "")));
+                    txMoney.Select(txMoney.Text.Length, 0);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ورودی نامعتبر است");
+                txMoney.Clear();
+                txMoney.Focus();
+                return;
             }
         }
 
