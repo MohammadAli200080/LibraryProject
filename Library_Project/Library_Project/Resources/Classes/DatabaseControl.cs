@@ -81,7 +81,7 @@ namespace Library_Project.Resources.Classes
             return table;
         }
 
-        public static void UpdateBookTable(string name)
+        public static void UpdateBookTable(string name, int number)
         {
             SqlConnection connection = new SqlConnection();
             SqlCommand command = new SqlCommand();
@@ -93,11 +93,9 @@ namespace Library_Project.Resources.Classes
 
             command.Connection = connection;
 
-            int count = 0;
-
             var table = TableFiller("SELECT * FROM T_Books WHERE bookName = '" + name + "'", connection);
 
-            count = Convert.ToInt32(table.Rows[0]["quantity"].ToString()) + 1;
+            var count = Convert.ToInt32(table.Rows[0]["quantity"].ToString()) + number;
 
             command.CommandText = "UPDATE T_Books SET quantity = '" + count + "' WHERE bookName = '" + name + "' ";
 

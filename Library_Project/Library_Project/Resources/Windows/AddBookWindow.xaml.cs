@@ -78,9 +78,17 @@ namespace Library_Project.Resources.Windows
 
             try
             {
-                if (Book.BookExists(book.Name))
+                if (Book.BookExists(book) == 0)
                 {
-                    DatabaseControl.UpdateBookTable(book.Name);
+                    int number = int.Parse(txtBookNumber.Text);
+                    DatabaseControl.UpdateBookTable(book.Name, number);
+                }
+                else if (Book.BookExists(book) > 0)
+                {
+                    MessageBox.Show(".کتابی با همین نام اما اطلاعات متفاوت در کتابخانه موجود است. لطفا در وارد کردن نام کتاب دقت کنید");
+                    txtName.Clear();
+                    txtName.Focus();
+                    return;
                 }
                 else
                 {

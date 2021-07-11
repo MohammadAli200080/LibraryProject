@@ -39,11 +39,11 @@ namespace Library_Project.Resources.Classes
         {
             DataTable data = DatabaseControl.Select("SELECT * FROM T_Borrowed INNER JOIN T_Books ON T_Borrowed.bookName = T_Books.bookName");
             DatabaseControl.Exe("DELETE FROM T_Borrowed WHERE username='" + UserName + "'");
-            for(int i = 0; i < data.Rows.Count; i++)
+            for (int i = 0; i < data.Rows.Count; i++)
             {
                 if (data.Rows[i]["username"].ToString() == UserName)
-                    DatabaseControl.Exe("UPDATE T_Books SET quantity='" + (int.Parse(data.Rows[i]["quantity"].ToString())+ 1) + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");
-            }            
+                    DatabaseControl.Exe("UPDATE T_Books SET quantity='" + (int.Parse(data.Rows[i]["quantity"].ToString()) + 1) + "' WHERE bookName='" + data.Rows[i]["bookName"] + "'");
+            }
         }
     }
     public class Book
@@ -81,7 +81,7 @@ namespace Library_Project.Resources.Classes
                 _quantity = value;
             }
         }
-        public Book(int Row,string name, string author, string category, string publishNumber, string quantity)
+        public Book(int Row, string name, string author, string category, string publishNumber, string quantity)
         {
             this.Name = name;
             this.Author = author;
@@ -90,7 +90,7 @@ namespace Library_Project.Resources.Classes
             this.PublishNumber = int.Parse(publishNumber);
             this.Row = Row;
         }
-        public Book( string name, string author, string category, string publishNumber, string quantity)
+        public Book(string name, string author, string category, string publishNumber, string quantity)
         {
             this.Name = name;
             this.Author = author;
@@ -159,7 +159,7 @@ namespace Library_Project.Resources.Classes
                              book => book.Name,
                              (name, book) => book)
                              .ToList();
-                for(int i = 0; i < books.Count; i++)
+                for (int i = 0; i < books.Count; i++)
                 {
                     books[i].Row = i + 1;
                 }
@@ -192,7 +192,7 @@ namespace Library_Project.Resources.Classes
 
             var availableBooks = allBooks.Where(x => x.Quantity != 0).ToList();
 
-            for(int i = 0; i < availableBooks.Count; i++)
+            for (int i = 0; i < availableBooks.Count; i++)
             {
                 availableBooks[i].Row = i + 1;
             }
@@ -257,23 +257,27 @@ namespace Library_Project.Resources.Classes
             return book;
         }
 
-        // <summary> a method for checking existance of book by name </summary>
-        // <returns> a boolean. true if book exists, false if not exists.</returns>
-        // <Exceptions> 
-        //      ArgumentNullException : if there are no books added to database. 
-        // </Exceptions>
+        /// <summary> a method for checking existance of book by name </summary>
+        /// <returns> an integer . 0 if book exists, -1 if no book with this name found. 1 if book with this name found but are not same book.</returns>
+        /// <Exceptions> 
+        ///      ArgumentNullException : if there are no books added to database. 
+        /// </Exceptions>
 
-        public static bool BookExists(string name)
+        public static int BookExists(Book book)
         {
             var books = TakeAllBooks();
 
             if (books == null)
                 throw new ArgumentNullException("Books", "No books have been added.");
 
-            var index = Array.FindIndex(books, b => b.Name == name);
+            var index = Array.FindIndex(books, b => b.Name.ToLower() == book.Name.ToLower());
 
-            if (index < 0) return false;
-            else return true;
+            if (index < 0) return -1;
+            else
+            {
+                if (books[index].Author.ToLower() == book.Author.ToLower() && books[index].Category.ToLower() == book.Category.ToLower() && books[index].PublishNumber == book.PublishNumber) return 0;
+                return 1;
+            }
         }
 
         // <summary> a method for checking availability of book by name </summary>
