@@ -111,7 +111,7 @@ namespace Library_Project.Resources.Classes
 
             try
             {
-                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where username = '" + username.Trim() + "' AND password = '" + password + "'", connection);
+                DataTable table = DatabaseControl.TableFiller("select * from T_Employees where username = '" + @username.Trim() + "' COLLATE SQL_Latin1_General_CP1_CS_AS AND password = '" + @password + "' COLLATE SQL_Latin1_General_CP1_CS_AS", connection);
 
                 if (table.Rows.Count == 1)
                 {
@@ -121,7 +121,7 @@ namespace Library_Project.Resources.Classes
 
                 table.Clear();
 
-                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + username.Trim() + "' AND password = '" + password + "'", connection);
+                table = DatabaseControl.TableFiller("select * from T_Members where username = '" + @username.Trim() + "' COLLATE SQL_Latin1_General_CP1_CS_AS AND password = '" + @password + "' COLLATE SQL_Latin1_General_CP1_CS_AS", connection);
 
                 if (table.Rows.Count == 1)
                 {
